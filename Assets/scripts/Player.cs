@@ -5,9 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float Player_speed = 5f;
-    
-    
+    private Rigidbody Body;
+    public float Force = 5;
 
+    void Start()
+    {
+        Body = GetComponent<Rigidbody>();
+    }
     void Update()
     {
         Move();
@@ -33,7 +37,18 @@ public class Player : MonoBehaviour
         {
             this.transform.Translate(Vector3.right * Player_speed * Time.deltaTime);
         }
+
+        //跳跃
+        if (float.Parse(string.Format("{0:F1}", transform.position.y)) > 1.6f)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Body.velocity += Vector3.up * Force;
+        }
     }
+
     
     
 }
