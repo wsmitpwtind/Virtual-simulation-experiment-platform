@@ -5,12 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float Player_speed = 5f;
-    public float Sensitivety_mouse_wheel = 10f;
     
+    
+
     void Update()
     {
         Move();
-        Lookaround();
+        
         
        
     }
@@ -33,13 +34,6 @@ public class Player : MonoBehaviour
             this.transform.Translate(Vector3.right * Player_speed * Time.deltaTime);
         }
     }
-    void Lookaround()
-    {
-        //滚轮实现镜头缩进和拉远
-        if (Input.GetAxis("Mouse ScrollWheel") != 0)
-        {
-            GetComponent<Camera>().fieldOfView = GetComponent<Camera>().fieldOfView - Input.GetAxis("Mouse ScrollWheel") * Sensitivety_mouse_wheel;
-        }
-
-    }
+    
+    
 }
