@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1364935264306414190}
   - component: {fileID: 2050111824291905825}
   - component: {fileID: 9213412079064981101}
+  - component: {fileID: 7847921315412282967}
   m_Layer: 0
   m_Name: Desk_01_Snaps014
   m_TagString: Untagged
@@ -95,3 +96,16 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: a95ab372a0e02ba4194d0a8ceea4f314, type: 2}
+--- !u!65 &7847921315412282967
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802575831363400479}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5969554, y: 0.72962606, z: 0.4015109}
+  m_Center: {x: 0.000000014901161, y: 0.36518627, z: -0.00006453693}

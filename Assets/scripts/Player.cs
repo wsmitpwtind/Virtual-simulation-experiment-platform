@@ -5,12 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float Player_speed = 5f;
-    public float Sensitivety_mouse_wheel = 10f;
-    
+    private Rigidbody Body;
+    public float Force = 5;
+
+    void Start()
+    {
+        Body = GetComponent<Rigidbody>();
+    }
     void Update()
     {
         Move();
-        Lookaround();
+        
         
        
     }
@@ -32,14 +37,18 @@ public class Player : MonoBehaviour
         {
             this.transform.Translate(Vector3.right * Player_speed * Time.deltaTime);
         }
-    }
-    void Lookaround()
-    {
-        //滚轮实现镜头缩进和拉远
-        if (Input.GetAxis("Mouse ScrollWheel") != 0)
-        {
-            GetComponent<Camera>().fieldOfView = GetComponent<Camera>().fieldOfView - Input.GetAxis("Mouse ScrollWheel") * Sensitivety_mouse_wheel;
-        }
 
+        //跳跃
+        if (float.Parse(string.Format("{0:F1}", transform.position.y)) > 1.6f)
+        {
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Body.velocity += Vector3.up * Force;
+        }
     }
+
+    
+    
 }
