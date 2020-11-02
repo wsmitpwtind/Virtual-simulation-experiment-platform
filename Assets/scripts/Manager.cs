@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class Manager : MonoBehaviour
 {
     public static int state = 0; //0代表未开始，1代表正在实验，2代表结束实验
-    private GameObject player;
+    private GameObject Player;
+    private GameObject Camera;
     private GameObject Canvas;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        Player = GameObject.Find("Player");
+        Camera = GameObject.Find("MainCamera");
         Canvas = GameObject.Find("Canvas");
         state = 0;
     }
@@ -38,7 +40,7 @@ public class Manager : MonoBehaviour
 
     void If_bug()
     {
-        if(player.transform.position.y < 0f)
+        if(Player.transform.position.y < 0f)
         {
             SceneManager.LoadScene("Bug");
         }
@@ -47,5 +49,6 @@ public class Manager : MonoBehaviour
     void Quit_the_experienment()
     {
         Canvas.transform.Find("Dropdown").gameObject.SetActive(false);
+        Camera.GetComponent<Look>().enabled = true;
     }
 }

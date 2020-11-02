@@ -30,7 +30,7 @@ public class Open_door : MonoBehaviour
 
     void Open_classroom_door()
     {
-        if (Player.transform.position.z < 3.2f)
+        if (Player.transform.position.z < 3.7f)
         {
             Door.transform.localEulerAngles = new Vector3(0, -75, 0);
         }else
