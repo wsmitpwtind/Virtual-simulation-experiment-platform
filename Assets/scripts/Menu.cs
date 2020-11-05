@@ -12,7 +12,7 @@ public class Menu : MonoBehaviour
     {
         Instrument = GameObject.Find("Instrument");
         Calculator = GameObject.Find("Calculator");
-        GameObject.Find("Dropdown").GetComponent<Dropdown>().onValueChanged.AddListener(ConsoleResult);
+        GameObject.Find("Dropdown").GetComponent<Dropdown>().onValueChanged.AddListener(menu);
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class Menu : MonoBehaviour
     {
         
     }
-    public void ConsoleResult(int value)
+    public void menu(int value)
     {
         if (value == 0)
         {

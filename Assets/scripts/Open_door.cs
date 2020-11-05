@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Open_door : MonoBehaviour
 {
+    private bool Is_open = false;
     private GameObject Door;
     private GameObject Player;
     // Start is called before the first frame update
@@ -17,15 +19,17 @@ public class Open_door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        If_end();
     }
     void OnTriggerEnter(Collider other)
     {
         Open_classroom_door();
+        Is_open = true;
     }
     void OnTriggerExit(Collider other)
     {
         Close_classroom_door();
+        Is_open = false;
     }
 
     void Open_classroom_door()
@@ -43,4 +47,12 @@ public class Open_door : MonoBehaviour
     {
         Door.transform.localEulerAngles = new Vector3(0, 0, 0);
     }
+    void If_end()
+    {
+        if (Is_open && Player.transform.position.z > 4.5f)
+        {
+            SceneManager.LoadScene("End");
+        }
+    }
+
 }

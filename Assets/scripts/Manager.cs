@@ -22,6 +22,7 @@ public class Manager : MonoBehaviour
     void Update()
     {
         If_bug();
+        
 
         if (state == 1)
         {
@@ -45,6 +46,7 @@ public class Manager : MonoBehaviour
             SceneManager.LoadScene("Bug");
         }
     }
+    
 
     void Quit_the_experienment()
     {
