@@ -88,6 +88,22 @@ public static class StaticMethods {
         double bar = Average(bi), xav = Average(X), yav = Average(Y);
         return new double[][] { new double[] { bar, yav - xav * bar, xav, yav, Uncertain_A(bi) / n }, bi };
     }
+    public static double[] BookVolume(double[] A, double[] B, double[] C) {//长宽高
+        if(A == null || B == null || C == null) {
+            return null;
+        }
+        int n = A.Length;
+        if(B.Length != n || C.Length != n) {
+            return null;
+        }
+        double A_av = Average(A), B_av = Average(B), C_av = Average(C);
+        double u1a = Uncertain_A(A), u1b = Uncertain_A(B), u1c = Uncertain_A(C);
+        double u2 = 0.02 / MATH.Sqrt(3);
+        double ua = MATH.Sqrt(u1a * u1a + u2 * u2) / A_av, ub = MATH.Sqrt(u1b * u1b + u2 * u2) / B_av, uc = MATH.Sqrt(u1c * u1c + u2 * u2) / C_av;
+        double V = A_av * B_av * C_av;
+        double uv = MATH.Sqrt(ua * ua + ub * ub + uc * uc) * V;
+        return new double[] { V, uv };
+    }
 }
 public static class InstrumentError {
     public const double time_error = 5.8e-6 + 0.01;
