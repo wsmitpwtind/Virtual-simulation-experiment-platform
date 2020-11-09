@@ -9,6 +9,7 @@ public static class StaticMethods {
         Debug.Log("test");
     }
     public static double Uncertain_A(double[] input) {
+        //A类不确定度
         double s1 = 0.0, s2 = 0.0;
         int length = input.Length;
         for(int i = 0; i < length; i++) {
@@ -34,6 +35,7 @@ public static class StaticMethods {
         return a * b / GCD(a, b);
     }
     public static double Variance(IEnumerable<double> nums) {
+        //方差
         double s = 0, av = Average(nums); int n = 0;
         foreach(double i in nums) {
             n++; s += (i - av) * (i - av);
@@ -41,6 +43,7 @@ public static class StaticMethods {
         return s / n;
     }
     public static double Covariance(double[] X, double[] Y) {
+        //协方差
         if(X == null || Y == null || X.Length != Y.Length) {
             throw new UnityException("数组长度不统一");
         }
@@ -54,6 +57,7 @@ public static class StaticMethods {
         return (s / n) - (sx / n) * (sy / n);
     }
     public static double[] LinearFit(double[] X, double[] Y) {
+        //对自变量数组X和因变量Y做线性拟合
         if(X == null || Y == null || X.Length != Y.Length) {
             return null;
         }
@@ -72,9 +76,11 @@ public static class StaticMethods {
         for(int i = 0; i < n; i++) {
             u += (Y[i] - (a + b * X[i])) * (Y[i] - (a + b * X[i]));
         }
+        //返回值:{拟合的b,拟合的a,相关系数r,不确定度}
         return new double[] { b, a, r, MATH.Sqrt(u / (n - 2)) };
     }
     public static double[][] SuccessionalDifference(double[] X, double[] Y) {
+        //对自变量数组X和因变量Y做逐差法
         if(X == null || Y == null || X.Length != Y.Length) {
             return null;
         }
@@ -86,9 +92,10 @@ public static class StaticMethods {
             bi[i] = (Y[i + dif] - Y[i]) / (X[i + dif] - X[i]);
         }
         double bar = Average(bi), xav = Average(X), yav = Average(Y);
+        //返回值:{{拟合的b,拟合的a,X的平均值,Y的平均值,b的不确定度},{每个逐差的斜率}}
         return new double[][] { new double[] { bar, yav - xav * bar, xav, yav, Uncertain_A(bi) / n }, bi };
     }
-    public static double[] BookVolume(double[] A, double[] B, double[] C) {//长宽高
+    public static double[] BookVolume(double[] A, double[] B, double[] C, out string calcstr = null) {//测量数据,长A 宽B 高C,calcstr若不为null返回计算过程字符串
         if(A == null || B == null || C == null) {
             return null;
         }
@@ -99,10 +106,15 @@ public static class StaticMethods {
         double A_av = Average(A), B_av = Average(B), C_av = Average(C);
         double u1a = Uncertain_A(A), u1b = Uncertain_A(B), u1c = Uncertain_A(C);
         double u2 = 0.02 / MATH.Sqrt(3);
-        double ua = MATH.Sqrt(u1a * u1a + u2 * u2) / A_av, ub = MATH.Sqrt(u1b * u1b + u2 * u2) / B_av, uc = MATH.Sqrt(u1c * u1c + u2 * u2) / C_av;
+        double ua = MATH.Sqrt(u1a * u1a + u2 * u2), ub = MATH.Sqrt(u1b * u1b + u2 * u2), uc = MATH.Sqrt(u1c * u1c + u2 * u2);
+        double uar = ua / A_av, ubr = ub / B_av, ucr = uc / C_av;
         double V = A_av * B_av * C_av;
-        double uv = MATH.Sqrt(ua * ua + ub * ub + uc * uc) * V;
-        return new double[] { V, uv };
+        double uv = MATH.Sqrt(uar * uar + ubr * ubr + ucr * ucr);
+        double u = uv * V;
+        if(calcstr != null) {
+            calcstr = $"计算过程:A={A_av};B={B_av};C={C_av};\r\n卡尺的b类不确定度Ub={u2}\r\na类不确定度:Ua(A)={u1a};Ua(B)={u1b};Ua(C)={u1c};\r\n合成不确实度U(A)={ua};U(B)={ub};U(C)={uc};\r\n相对不确定度 U(V)/V=sqrt((U(a)/A)^2+(U(b)/B)^2+(U(C)/C)^2))={uv}\r\n最终结果:V={V};U(V)={u}";
+        }
+        return new double[] { V, u };
     }
 }
 public static class InstrumentError {
