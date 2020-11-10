@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     private GameObject Instrument;
-    private GameObject Calculator;
+    private GameObject Experiment1;
     // Start is called before the first frame update
     void Start()
     {
         Instrument = GameObject.Find("Instrument");
-        Calculator = GameObject.Find("Calculator");
+        Experiment1 = GameObject.Find("Experiment1");
         GameObject.Find("Dropdown").GetComponent<Dropdown>().onValueChanged.AddListener(menu);
     }
 
@@ -25,16 +25,16 @@ public class Menu : MonoBehaviour
         if (value == 0)
         {
             Instrument.transform.Find("buttons").gameObject.SetActive(false);
-            Calculator.transform.Find("InputFields").gameObject.SetActive(false);
+            Experiment1.transform.Find("InputFields1").gameObject.SetActive(false);
         }
         else if (value == 1)
         {
             Instrument.transform.Find("buttons").gameObject.SetActive(true);
-            Calculator.transform.Find("InputFields").gameObject.SetActive(false);
+            Experiment1.transform.Find("InputFields1").gameObject.SetActive(false);
         }
         else if (value == 2)
         {
-            Calculator.transform.Find("InputFields").gameObject.SetActive(true);
+            Experiment1.transform.Find("InputFields1").gameObject.SetActive(true);
             Instrument.transform.Find("buttons").gameObject.SetActive(false);
             
         }

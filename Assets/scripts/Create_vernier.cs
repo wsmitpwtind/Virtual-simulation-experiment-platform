@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Create_vernier : MonoBehaviour
 {
     public GameObject My_vernier;
+    private GameObject Now_vernier;
     Vector3 position = new Vector3(0, 2f, -2.5f);
     Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, 0));
     
@@ -22,7 +23,17 @@ public class Create_vernier : MonoBehaviour
     }
     void Vernier()
     {
-        GameObject trigonum = GameObject.Instantiate(My_vernier, position, rotation) as GameObject;
-        trigonum.transform.localScale = new Vector3(2, 2, 2);
+        Now_vernier = GameObject.Find("Vernier(Clone)");
+
+        if (Now_vernier == null)
+        {
+            GameObject trigonum = GameObject.Instantiate(My_vernier, position, rotation) as GameObject;
+            trigonum.transform.localScale = new Vector3(2, 2, 2);
+        }
+        else
+        {
+            Destroy(Now_vernier);
+        }
+        
     }
 }
