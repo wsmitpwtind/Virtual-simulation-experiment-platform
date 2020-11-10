@@ -95,13 +95,13 @@ public static class StaticMethods {
         //返回值:{{拟合的b,拟合的a,X的平均值,Y的平均值,b的不确定度},{每个逐差的斜率}}
         return new double[][] { new double[] { bar, yav - xav * bar, xav, yav, Uncertain_A(bi) / n }, bi };
     }
-    public static double[] BookVolume(double[] A, double[] B, double[] C, out string calcstr = null) {//测量数据,长A 宽B 高C,calcstr若不为null返回计算过程字符串
+    public static (double[],string) BookVolume(double[] A, double[] B, double[] C) {//测量数据,长A 宽B 高C,calcstr若不为null返回计算过程字符串
         if(A == null || B == null || C == null) {
-            return null;
+            return default;
         }
         int n = A.Length;
         if(B.Length != n || C.Length != n) {
-            return null;
+            return default;
         }
         double A_av = Average(A), B_av = Average(B), C_av = Average(C);
         double u1a = Uncertain_A(A), u1b = Uncertain_A(B), u1c = Uncertain_A(C);
@@ -111,10 +111,7 @@ public static class StaticMethods {
         double V = A_av * B_av * C_av;
         double uv = MATH.Sqrt(uar * uar + ubr * ubr + ucr * ucr);
         double u = uv * V;
-        if(calcstr != null) {
-            calcstr = $"计算过程:A={A_av};B={B_av};C={C_av};\r\n卡尺的b类不确定度Ub={u2}\r\na类不确定度:Ua(A)={u1a};Ua(B)={u1b};Ua(C)={u1c};\r\n合成不确实度U(A)={ua};U(B)={ub};U(C)={uc};\r\n相对不确定度 U(V)/V=sqrt((U(a)/A)^2+(U(b)/B)^2+(U(C)/C)^2))={uv}\r\n最终结果:V={V};U(V)={u}";
-        }
-        return new double[] { V, u };
+        return (new double[] { V, u }, $"计算过程:A={A_av};B={B_av};C={C_av};\r\n卡尺的b类不确定度Ub={u2}\r\na类不确定度:Ua(A)={u1a};Ua(B)={u1b};Ua(C)={u1c};\r\n合成不确实度U(A)={ua};U(B)={ub};U(C)={uc};\r\n相对不确定度 U(V)/V=sqrt((U(a)/A)^2+(U(b)/B)^2+(U(C)/C)^2))={uv}\r\n最终结果:V={V};U(V)={u}");
     }
 }
 public static class InstrumentError {
