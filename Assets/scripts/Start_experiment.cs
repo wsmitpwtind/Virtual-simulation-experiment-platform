@@ -24,7 +24,7 @@ public class Start_experiment : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.E))
         {
-            Manager.state = 1;//开始实验
+            Exp_1.state_1 = 1;//开始实验
             Start_the_experienment();
         }
     }

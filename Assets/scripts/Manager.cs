@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour
-{
-    public static int state = 0; //0代表未开始，1代表正在实验，2代表结束实验
+{    
     private GameObject Player;
     private GameObject Camera;
     private GameObject Canvas;
@@ -15,7 +14,7 @@ public class Manager : MonoBehaviour
         Player = GameObject.Find("Player");
         Camera = GameObject.Find("MainCamera");
         Canvas = GameObject.Find("Canvas");
-        state = 0;
+        
     }
 
     // Update is called once per frame
@@ -24,14 +23,13 @@ public class Manager : MonoBehaviour
         If_bug();
         
 
-        if (state == 1)
+        if (Exp_1.state_1 == 1)
         {
-            
-            Debug.Log("正在试验");
+                        
             if (Input.GetKey(KeyCode.Q))
             {
                 Debug.Log("退出试验");
-                state = 0;
+                Exp_1.state_1 = 0;
                 Quit_the_experienment();
             }
         }
