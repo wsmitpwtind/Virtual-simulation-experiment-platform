@@ -89,10 +89,10 @@ public class MoveRuler : MonoBehaviour {
         head_rigid.transform.localPosition = head_pos0;
     }
     private void OnCollisionEnter(Collision collision) {
-        if(collision.collider == head_rigid) {
+        if(collision.collider.attachedRigidbody == head_rigid) {
             head_rigid.velocity = Vector3.zero;
         }
-        else if(collision.collider == body_rigid) {
+        else if(collision.collider.attachedRigidbody == body_rigid) {
             body_rigid.velocity = Vector3.zero;
         }
     }
