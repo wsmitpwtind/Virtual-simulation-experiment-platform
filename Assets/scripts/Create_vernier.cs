@@ -34,6 +34,7 @@ public class Create_vernier : MonoBehaviour
         {
             Destroy(Now_vernier);
         }
-        
+
+        GameObject.Find("Dropdown").GetComponent<Dropdown>().value = 0;
     }
 }
