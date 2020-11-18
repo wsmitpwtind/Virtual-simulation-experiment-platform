@@ -24,14 +24,8 @@ public class Indicator : MonoBehaviour
 
     public void ShowIndicate(string Key, string Message)
     {
-        if (IndicateText == null)
-            Console.WriteLine("找不到IndicateText");
         IndicateText.text = Message;
-        if (KeyText == null)
-            Console.WriteLine("找不到KeyText");
         KeyText.text = Key;
-        if (IndicatorCanvas == null)
-            Console.WriteLine("找不到IndicatorCanvas");
         IndicatorCanvas.gameObject.SetActive(true);
     }
 
