@@ -18,8 +18,9 @@ public class Start_experiment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
     void OnTriggerStay(Collider other)
     {
         if (Input.GetKey(KeyCode.E))
@@ -28,8 +29,22 @@ public class Start_experiment : MonoBehaviour
             Start_the_experienment();
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (Exp_1.state_1 != 1)
+            GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("E", "开始实验");
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (Exp_1.state_1 != 1)
+            GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
+    }
+
     void Start_the_experienment()
     {
+        GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
         Canvas.transform.Find("Dropdown").gameObject.SetActive(true);
         Camera.GetComponent<Look>().enabled = false;
 

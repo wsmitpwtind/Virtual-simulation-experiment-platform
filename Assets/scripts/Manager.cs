@@ -41,6 +41,8 @@ public class Manager : MonoBehaviour
     {
         if(Player.transform.position.y < 0f)
         {
+            Exp_1.state_1 = 0;
+            Quit_the_experienment();
             SceneManager.LoadScene("Bug");
         }
     }
