@@ -26,6 +26,8 @@ public class Menu : MonoBehaviour
         {
             Instrument.transform.Find("buttons").gameObject.SetActive(false);
             Experiment1.transform.Find("InputFields1").gameObject.SetActive(false);
+            Experiment1.transform.Find("Deal_1").gameObject.SetActive(false);
+            Experiment1.transform.Find("Result_1").gameObject.SetActive(false);
         }
         else if (value == 1)
         {
