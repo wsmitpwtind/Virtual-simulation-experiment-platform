@@ -31,6 +31,7 @@ public class Create_trigonum : MonoBehaviour
         {
             Destroy(Now_trigonum);
         }
-        
+
+        GameObject.Find("Dropdown").GetComponent<Dropdown>().value = 0;
     }
 }

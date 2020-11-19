@@ -24,20 +24,20 @@ public class Menu : MonoBehaviour
     {
         if (value == 0)
         {
-            Instrument.transform.Find("buttons").gameObject.SetActive(false);
+            Instrument.transform.Find("Buttons").gameObject.SetActive(false);
             Experiment1.transform.Find("InputFields1").gameObject.SetActive(false);
             Experiment1.transform.Find("Deal_1").gameObject.SetActive(false);
             Experiment1.transform.Find("Result_1").gameObject.SetActive(false);
         }
         else if (value == 1)
         {
-            Instrument.transform.Find("buttons").gameObject.SetActive(true);
+            Instrument.transform.Find("Buttons").gameObject.SetActive(true);
             Experiment1.transform.Find("InputFields1").gameObject.SetActive(false);
         }
         else if (value == 2)
         {
             Experiment1.transform.Find("InputFields1").gameObject.SetActive(true);
-            Instrument.transform.Find("buttons").gameObject.SetActive(false);
+            Instrument.transform.Find("Buttons").gameObject.SetActive(false);
             
         }
     }

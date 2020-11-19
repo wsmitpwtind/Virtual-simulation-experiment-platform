@@ -23,11 +23,19 @@ public class Open_door : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Open_classroom_door();
-        Is_open = true;
+        GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("E", "开门退出实验");
+    }
+    void OnTriggerStay(Collider other)
+    {
+        if (Input.GetKey(KeyCode.E))
+        {
+            Open_classroom_door();
+            Is_open = true;
+        }
     }
     void OnTriggerExit(Collider other)
     {
+        GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
         Close_classroom_door();
         Is_open = false;
     }
