@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityScript.Lang;
 
 public class MoveRuler2 : MonoBehaviour {
     // Start is called before the first frame update
