@@ -16,10 +16,10 @@ public class To_deal_2 : MonoBehaviour
     // Update is called once per frame
     void end()
     {
-        if (Exp_1.Experiment1_measure[3]>0)
+        if (Exp_2.Experiment2_measure[3]>0)
         {
-            Experiment2.transform.Find("InputFields1").gameObject.SetActive(false);
-            Experiment2.transform.Find("Deal_1").gameObject.SetActive(true);
+            Experiment2.transform.Find("InputFields2").gameObject.SetActive(false);
+            Experiment2.transform.Find("Deal_2").gameObject.SetActive(true);
         }
         
     }

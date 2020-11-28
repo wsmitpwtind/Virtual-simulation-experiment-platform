@@ -20,8 +20,8 @@ public class To_result_2 : MonoBehaviour
         {
             Exp_2.A_real_thickness = StaticMethods.Uncertain_A(Exp_2.Experiment2_measure);
 
-            Experiment2.transform.Find("Result_1").gameObject.SetActive(true);
-            Experiment2.transform.Find("Deal_1").gameObject.SetActive(false);
+            Experiment2.transform.Find("Result_2").gameObject.SetActive(true);
+            Experiment2.transform.Find("Deal_2").gameObject.SetActive(false);
         }
     }
 }

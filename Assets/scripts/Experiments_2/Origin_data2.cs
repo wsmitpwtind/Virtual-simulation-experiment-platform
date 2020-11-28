@@ -21,7 +21,7 @@ public class Origin_data2 : MonoBehaviour
         {
             Exp_2.Experiment2_measure[Number - 1] = Input;
             Number += 1;
-            GameObject.Find("Text_number1").GetComponent<Text>().text = "请输入您的第" + Number + "个实验数据";
+            GameObject.Find("Text_number2").GetComponent<Text>().text = "请输入您的第" + Number + "个实验数据";
         }
         
         
