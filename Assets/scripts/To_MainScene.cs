@@ -19,7 +19,16 @@ public class To_MainScene : MonoBehaviour
     }
     void Tomainscene()
     {
-        
+        var AniInstance = GameObject.Find("Canvas").GetComponent<FadeAnimate>();
+        var tmp = GameObject.Find("Canvas").GetComponentsInChildren<RawImage>(true);
+        var Transition = tmp[tmp.Length - 1].gameObject;
+        Transition.SetActive(true);
+        AniInstance.Show(Transition, 400);
+        Invoke("Delay", (float)0.5);
+    }
+
+    void Delay()
+    {
         SceneManager.LoadScene("MainScene");
     }
 }

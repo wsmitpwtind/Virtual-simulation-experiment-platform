@@ -14,7 +14,10 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        Move();
+        if  (Exp_1.Move_able == 1)
+        {
+            Move();
+        }
         
         
        

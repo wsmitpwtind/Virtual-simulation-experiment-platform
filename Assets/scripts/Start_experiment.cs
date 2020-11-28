@@ -47,8 +47,10 @@ public class Start_experiment : MonoBehaviour
         GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
         Canvas.transform.Find("Dropdown").gameObject.SetActive(true);
         Camera.GetComponent<Look>().enabled = false;
-
+        Exp_1.Move_able = 0;
+        Player.transform.position = new Vector3(1.18f, 1.6f, -1.58f);
         Player.transform.rotation = Quaternion.Euler(new Vector3(0f, -90f, 0f));
         Camera.transform.rotation = Quaternion.Euler(new Vector3(30f, -90f, 0f));
+        //Camera.GetComponent<Look>().enabled = true;
     }
 }

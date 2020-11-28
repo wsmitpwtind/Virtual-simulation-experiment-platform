@@ -16,6 +16,7 @@ public class Open_explain : MonoBehaviour
     // Update is called once per frame
     void Open()
     {
-        Canvas.transform.Find("Explain").gameObject.SetActive(true);
+        GameObject.Find("Canvas").GetComponent<FadeAnimate>().Show(Canvas.transform.Find("Explain").gameObject, 200);
+        // Canvas.transform.Find("Explain").gameObject.SetActive(true);
     }
 }

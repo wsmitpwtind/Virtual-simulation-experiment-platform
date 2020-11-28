@@ -56,6 +56,11 @@ public class Look : MonoBehaviour
             transform.localEulerAngles = new Vector3(Rotation_x,0, 0);
             player.GetComponent<Transform>().localEulerAngles = new Vector3(0, Rotation_y, 0);
         }
+        if (Input.GetKey(KeyCode.E) | Input.GetKey(KeyCode.UpArrow))
+        {
+            Rotation_x-=2;
+           // Rotation_y += 2;
+        }
     }
     public enum RotationAxes
     {
