@@ -16,7 +16,8 @@ public class Shut_explain : MonoBehaviour
     // Update is called once per frame
     void Shut()
     {
-        Explain.SetActive(false);
+        // Explain.SetActive(false);
+        GameObject.Find("Canvas").GetComponent<FadeAnimate>().Hide(Explain, 200);
     }
 
 }
