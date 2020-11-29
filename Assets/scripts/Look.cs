@@ -58,7 +58,7 @@ public class Look : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.E) | Input.GetKey(KeyCode.UpArrow))
         {
-            Rotation_x-=2;
+            //Rotation_x-=2;
            // Rotation_y += 2;
         }
     }
