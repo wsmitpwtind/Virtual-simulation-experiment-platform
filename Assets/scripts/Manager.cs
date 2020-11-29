@@ -52,5 +52,6 @@ public class Manager : MonoBehaviour
     {
         Canvas.transform.Find("Dropdown").gameObject.SetActive(false);
         Camera.GetComponent<Look>().enabled = true;
+        Exp_1.Move_able = 1;
     }
 }
