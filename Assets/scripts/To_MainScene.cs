@@ -15,13 +15,13 @@ public class To_MainScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     void Tomainscene()
     {
         var AniInstance = GameObject.Find("Canvas").GetComponent<FadeAnimate>();
         var tmp = GameObject.Find("Canvas").GetComponentsInChildren<RawImage>(true);
-        if (tmp.Length != 0)
+        if (tmp.Length != 0 && AniInstance != null)
         {
             var Transition = tmp[tmp.Length - 1].gameObject;
             Transition.SetActive(true);

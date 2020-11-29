@@ -97,8 +97,7 @@ public class FadeAnimate : MonoBehaviour
                 item.gameObj.color = color;
             }
             if ((!item.setted) && item.canSetActive)
-            {
-                Debug.Log(item.canSetActive);
+            { 
                 item.gameObj.gameObject.SetActive(item.active);
                 item.setted = true;
             }
