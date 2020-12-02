@@ -16,12 +16,19 @@ public class To_result_2 : MonoBehaviour
     // Update is called once per frame
     void end()
     {
-        if (Exp_2.A_thickness > 0&& Exp_2.B_thickness > 0)
+        /*if (Exp_2.A_thickness > 0&& Exp_2.B_thickness > 0)
         {
             Exp_2.A_real_thickness = StaticMethods.Uncertain_A(Exp_2.Experiment2_measure);
 
             Experiment2.transform.Find("Result_2").gameObject.SetActive(true);
             Experiment2.transform.Find("Deal_2").gameObject.SetActive(false);            
+        }*/
+        if (Exp_2.V_thickness > 0 )
+        {
+            Exp_2.V_real_thickness = StaticMethods.Uncertain_A(Exp_2.Experiment2_length);
+
+            Experiment2.transform.Find("Result_2").gameObject.SetActive(true);
+            Experiment2.transform.Find("Deal_2").gameObject.SetActive(false);
         }
     }
 }

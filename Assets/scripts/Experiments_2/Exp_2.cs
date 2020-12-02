@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Exp_2 : MonoBehaviour
 {
-    public static double[] Experiment2_measure = new double[1000];
-    public static double A_thickness = 0;
+    public static double[] Experiment2_length = new double[100];
+    public static double[] Experiment2_width = new double[100];
+    public static double[] Experiment2_height = new double[100];
+    public static double V_thickness = 0;
     public static double B_thickness = 0;
-    public static double A_real_thickness = 0;
+    public static double V_real_thickness = 0;
     public static double B_real_thickness = 0;
     public static int Move_able = 1;
     public static double score_2 = 0;

@@ -17,7 +17,7 @@ public class Deal_data2_1 : MonoBehaviour
     {
         if (double.TryParse(value, out Input) == true)
         {
-            Exp_2.A_thickness = Input;
+            Exp_2.V_thickness = Input;
         }
     }
 }

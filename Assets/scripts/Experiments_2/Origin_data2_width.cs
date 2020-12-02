@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Origin_data2 : MonoBehaviour
+public class Origin_data2_width : MonoBehaviour
 {
     
     private int Number = 1;
@@ -19,9 +19,9 @@ public class Origin_data2 : MonoBehaviour
     {
         if(double.TryParse(value,out Input)==true)
         {
-            Exp_2.Experiment2_measure[Number - 1] = Input;
+            Exp_2.Experiment2_width[Number - 1] = Input;
             Number += 1;
-            GameObject.Find("Text_number2").GetComponent<Text>().text = "请输入您的第" + Number + "个实验数据";
+            GameObject.Find("Text_number2").GetComponent<Text>().text = "请输入您宽度的第" + Number + "个实验数据/cm";
         }
         
         
