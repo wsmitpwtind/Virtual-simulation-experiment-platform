@@ -30,8 +30,8 @@ public class Create_vernier : MonoBehaviour
             GameObject trigonum = GameObject.Instantiate(My_vernier, position, rotation) as GameObject;
             trigonum.transform.localScale = new Vector3(2, 2, 2);
             trigonum.AddComponent<Move_book>();
-            trigonum.AddComponent<BoxCollider>();
             trigonum.AddComponent<MoveRuler>();
+            trigonum.AddComponent<Rigidbody>();
         }
         else
         {
