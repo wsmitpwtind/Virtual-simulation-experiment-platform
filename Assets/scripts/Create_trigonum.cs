@@ -27,7 +27,9 @@ public class Create_trigonum : MonoBehaviour
         {
             GameObject trigonum = GameObject.Instantiate(My_trigonum, position, rotation) as GameObject;
             trigonum.AddComponent<Move_book>();
-            trigonum.AddComponent<BoxCollider>();
+            trigonum.AddComponent<Rigidbody>();
+            Rigidbody rb = trigonum.GetComponent<Rigidbody>();
+            rb.useGravity = false;
         }
         else
         {

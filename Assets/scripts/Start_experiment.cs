@@ -7,6 +7,7 @@ public class Start_experiment : MonoBehaviour
     private GameObject Canvas;
     private GameObject Camera;
     private GameObject Player;
+    private bool enan=true;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,16 @@ public class Start_experiment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.D)&& Exp_1.state_1 == 1)
+        {
+            Camera.GetComponent<Look>().enabled = false;
+            print(Camera.GetComponent<Look>().enabled);
+        }
+        if (Input.GetKeyDown(KeyCode.F) && Exp_1.state_1 == 1)
+        {
+            Camera.GetComponent<Look>().enabled = true;
+            print(Camera.GetComponent<Look>().enabled);
+        }
     }
 
     void OnTriggerStay(Collider other)
@@ -46,11 +56,15 @@ public class Start_experiment : MonoBehaviour
     {
         GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
         Canvas.transform.Find("Dropdown").gameObject.SetActive(true);
-        Camera.GetComponent<Look>().enabled = false;
         Exp_1.Move_able = 0;
         Player.transform.position = new Vector3(1.18f, 1.6f, -1.58f);
         Player.transform.rotation = Quaternion.Euler(new Vector3(0f, -90f, 0f));
         Camera.transform.rotation = Quaternion.Euler(new Vector3(30f, -90f, 0f));
-        //Camera.GetComponent<Look>().enabled = true;
+        Camera.GetComponent<Look>().enabled = true;
+        GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("DF", "锁定/解除视角");
+        if (Input.GetKey(KeyCode.F))
+        {
+            Camera.GetComponent<Look>().enabled = !Camera.GetComponent<Look>().enabled;
+        }
     }
 }
