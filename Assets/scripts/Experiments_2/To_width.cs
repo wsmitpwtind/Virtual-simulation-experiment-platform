@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class To_deal_2 : MonoBehaviour
+public class To_width : MonoBehaviour
 {
     private GameObject Experiment2;
     // Start is called before the first frame update
@@ -16,11 +16,11 @@ public class To_deal_2 : MonoBehaviour
     // Update is called once per frame
     void end()
     {
-        if (Exp_2.Experiment2_height[4]>0)
+        if (Exp_2.Experiment2_length[4] > 0)
         {
-            Experiment2.transform.Find("InputFields2_3").gameObject.SetActive(false);
-            Experiment2.transform.Find("Deal_2").gameObject.SetActive(true);
+            Experiment2.transform.Find("InputFields2_1").gameObject.SetActive(false);
+            Experiment2.transform.Find("InputFields2_2").gameObject.SetActive(true);
         }
-        
+
     }
 }
