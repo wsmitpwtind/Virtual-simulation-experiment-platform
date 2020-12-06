@@ -17,9 +17,6 @@ public class Show_score : MonoBehaviour
             }
         }
         GetComponent<Text>().text += score;
-        Debug.Log(Test_score.Pre_Test[1]);
-        Debug.Log(Test_score.Pre_Test[3]);
-        Debug.Log(Test_score.Pre_Test[5]);
     }
 
     // Update is called once per frame
