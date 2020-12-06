@@ -22,7 +22,7 @@ public class Create_trigonum : MonoBehaviour
     }
     void Trigonum()
     {
-        Now_trigonum = GameObject.Find("Ruler_03_Snaps014(Clone)");
+        Now_trigonum = GameObject.Find("Ruler(Clone)");
         if (Now_trigonum == null)
         {
             GameObject trigonum = GameObject.Instantiate(My_trigonum, position, rotation) as GameObject;

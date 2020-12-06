@@ -1,11 +1,9 @@
 fileFormatVersion: 2
-guid: a9c635e494777ff4fb15310441063a92
+guid: 8399924018fb1164d8acc92bc57d412d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - My_vernier: {fileID: 919132149155446097, guid: bcd0556407ae9a34bbeb5ce0738ae449,
-      type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

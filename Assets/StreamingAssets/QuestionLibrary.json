@@ -1,0 +1,22 @@
+[
+    {
+        "id": 0,
+        "type": 1,
+        "question": "",
+        "answer": ["", ""]
+    },
+    {
+        "id": 1,
+        "type": 2,
+        "question": "",
+        "options" : ["", ""],
+        "answer": ["1"]
+    },
+    {
+        "id": 2,
+        "type": 3,
+        "question": "",
+        "options" : ["", ""],
+        "answer": ["1", "2", "4"]
+    }
+]
