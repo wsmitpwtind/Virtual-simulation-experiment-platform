@@ -90,7 +90,7 @@ public class FadeAnimate : MonoBehaviour
                 animateObjects.RemoveAt(i);
                 continue;
             }
-            if (item.canSetOpacity)
+            if (item.canSetOpacity && item.gameObj.name != "Mask")
             {
                 Color color = item.gameObj.color;
                 color.a = (float)item.opacity;

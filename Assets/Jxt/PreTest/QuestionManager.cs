@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 public class QuestionManager : MonoBehaviour
 {
     public double score = 0;
+    public List<Question> right = new List<Question>();
+    public List<Question> wrong = new List<Question>();
     private List<Question> allQuestions = null;
 
     // Start is called before the first frame update
@@ -24,10 +26,19 @@ public class QuestionManager : MonoBehaviour
 
     }
 
-    public void SubmitQuestion(Question question, string answer)
+    public bool SubmitQuestion(Question question, string answer)
     {
         if (question.Judge(answer))
+        {
             score += 0.1;
+            right.Add(question);
+            return true;
+        }
+        else
+        {
+            wrong.Add(question);
+            return false;
+        }
     }
 
     public IEnumerable<Question> GetQuestions(int count)
@@ -110,6 +121,7 @@ public class Question
 
     public bool Judge(string answer)
     {
+        answer = answer.Trim();
         if (type == QuestionType.Text)
         {
             foreach (var item in key)
