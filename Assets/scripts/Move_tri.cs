@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Move_book : MonoBehaviour
+public class Move_tri : MonoBehaviour
 {
     private float distance = 0.5f;
     private Vector3 dist;
@@ -18,8 +18,9 @@ public class Move_book : MonoBehaviour
     private bool IsGet = false;
     private bool Ismove = false;
     private float Time_T = 3.0f;
-
-
+    private bool enable_move = true;
+    private bool On_exam = false;
+    // Start is called before the first frame update
     private void OnMouseEnter()
     {
         IsGet = true;
@@ -50,15 +51,44 @@ public class Move_book : MonoBehaviour
         }
         MouseStartScreen = MouseNewScreen;
     }
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "book")
+        {
+            enable_move=false;
+            On_exam = true;
+            GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("A", "进行测量");
+            GameObject.Find("Canvas2").GetComponent<Indicator>().ShowIndicate("S", "放弃测量");
+           
+        }
+    }
     void Update()
     {
-        if (Input.GetMouseButton(1) && (IsGet || Ismove))
+        if (Input.GetKey(KeyCode.S)&&On_exam)
         {
-            Ismove = true;
-            OffsetX = Input.GetAxis("Mouse X");//获取鼠标x轴的偏移量
-            OffsetY = Input.GetAxis("Mouse Y");//获取鼠标y轴的偏移量
-            transform.Rotate(new Vector3(OffsetY, -OffsetX, 0) * speed, Space.World);
+            transform.position = new Vector3(0, 1.94f, -3f);
+            enable_move = true;
+            On_exam = false;
+            GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("D", "锁定视角");
+            GameObject.Find("Canvas2").GetComponent<Indicator>().ShowIndicate("F", "解锁视角");
+        }
+        if (Input.GetKey(KeyCode.A) && On_exam)
+        {
+            GameObject Cam = GameObject.Find("MainCamera");
+            GameObject ruler = GameObject.Find("ruler(Clone)");
+            print(this.transform.eulerAngles);
+            print(Cam.transform.eulerAngles);
+            Cam.transform.rotation = Quaternion.Euler(this.transform.eulerAngles);
+        }
+        if (enable_move)
+        {
+            if (Input.GetMouseButton(1) && (IsGet || Ismove))
+            {
+                Ismove = true;
+                OffsetX = Input.GetAxis("Mouse X");//获取鼠标x轴的偏移量
+                OffsetY = Input.GetAxis("Mouse Y");//获取鼠标y轴的偏移量
+                transform.Rotate(new Vector3(OffsetY, -OffsetX, 0) * speed, Space.World);
+            }
         }
 
         if (!Input.GetMouseButton(1))
@@ -87,20 +117,20 @@ public class Move_book : MonoBehaviour
 
 
                 if (transform.eulerAngles.y < 30 && transform.eulerAngles.y > 1)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x , transform.eulerAngles.y-1, transform.eulerAngles.z);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y - 1, transform.eulerAngles.z);
                 if (transform.eulerAngles.y <= 1)
                     transform.rotation = Quaternion.Euler(transform.eulerAngles.x, 0.0f, transform.eulerAngles.z);
                 if (transform.eulerAngles.y > 330 && transform.eulerAngles.y < 359)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x , transform.eulerAngles.y+1, transform.eulerAngles.z);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y + 1, transform.eulerAngles.z);
                 if (transform.eulerAngles.y >= 359)
                     transform.rotation = Quaternion.Euler(transform.eulerAngles.x, 360.0f, transform.eulerAngles.z);
 
                 if (transform.eulerAngles.y < 89 && transform.eulerAngles.y > 60)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y+1, transform.eulerAngles.z);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y + 1, transform.eulerAngles.z);
                 if (transform.eulerAngles.y <= 120 && transform.eulerAngles.y >= 91)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y-1, transform.eulerAngles.z);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y - 1, transform.eulerAngles.z);
                 if (transform.eulerAngles.y < 91 && transform.eulerAngles.y > 89)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x,90.0f, transform.eulerAngles.z);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, 90.0f, transform.eulerAngles.z);
 
                 if (transform.eulerAngles.y < 179 && transform.eulerAngles.y > 150)
                     transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y + 1, transform.eulerAngles.z);
@@ -121,32 +151,32 @@ public class Move_book : MonoBehaviour
 
 
                 if (transform.eulerAngles.z < 30 && transform.eulerAngles.z > 1)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y , transform.eulerAngles.z-1);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - 1);
                 if (transform.eulerAngles.z <= 1)
                     transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 0.0f);
                 if (transform.eulerAngles.z > 330 && transform.eulerAngles.z < 359)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y , transform.eulerAngles.z+1);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 1);
                 if (transform.eulerAngles.z >= 359)
                     transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 360.0f);
 
                 if (transform.eulerAngles.z < 89 && transform.eulerAngles.z > 60)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z+1);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 1);
                 if (transform.eulerAngles.z <= 120 && transform.eulerAngles.z >= 91)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y , transform.eulerAngles.z-1);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - 1);
                 if (transform.eulerAngles.z < 91 && transform.eulerAngles.z > 89)
                     transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 90.0f);
 
                 if (transform.eulerAngles.z < 179 && transform.eulerAngles.z > 150)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z+1);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 1);
                 if (transform.eulerAngles.z <= 210 && transform.eulerAngles.z >= 181)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y , transform.eulerAngles.z-1);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - 1);
                 if (transform.eulerAngles.z < 181 && transform.eulerAngles.z > 179)
                     transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 180.0f);
 
                 if (transform.eulerAngles.z < 269 && transform.eulerAngles.z > 240)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y , transform.eulerAngles.z+1);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 1);
                 if (transform.eulerAngles.z <= 300 && transform.eulerAngles.z >= 271)
-                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y , transform.eulerAngles.z-1);
+                    transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - 1);
                 if (transform.eulerAngles.z < 271 && transform.eulerAngles.z > 269)
                     transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y, 270.0f);
 
@@ -181,13 +211,14 @@ public class Move_book : MonoBehaviour
 
     void OnMouseDrag()
     {
-        //获取到鼠标的位置(鼠标水平的输入和竖直的输入以及距离)
-        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
-        //物体的位置，屏幕坐标转换为世界坐标
-        Vector3 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        //把鼠标位置传给物体
-        print("qwq");
-        this.transform.position = objectPosition;
+        if (enable_move)
+        {
+            //获取到鼠标的位置(鼠标水平的输入和竖直的输入以及距离)
+            Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
+            //物体的位置，屏幕坐标转换为世界坐标
+            Vector3 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+            //把鼠标位置传给物体
+            transform.position = objectPosition;
+        }
     }
-
 }

@@ -61,7 +61,8 @@ public class Start_experiment : MonoBehaviour
         Player.transform.rotation = Quaternion.Euler(new Vector3(0f, -90f, 0f));
         Camera.transform.rotation = Quaternion.Euler(new Vector3(30f, -90f, 0f));
         Camera.GetComponent<Look>().enabled = true;
-        GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("DF", "锁定/解除视角");
+        GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("D", "锁定视角");
+        GameObject.Find("Canvas2").GetComponent<Indicator>().ShowIndicate("F", "解锁视角");
         if (Input.GetKey(KeyCode.F))
         {
             Camera.GetComponent<Look>().enabled = !Camera.GetComponent<Look>().enabled;
