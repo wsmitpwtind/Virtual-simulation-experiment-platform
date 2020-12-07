@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LoadQuestion : MonoBehaviour
 {
-    public Toggle toggle;
+    //public Toggle toggle;
 
     private int cnt = 0;
     private QuestionManager QM = null;
@@ -28,7 +28,13 @@ public class LoadQuestion : MonoBehaviour
         testPages.Add(new RadioTestPage(GameObject.Find("RadioTitle").GetComponent<Text>(),
             GameObject.Find("RadioQuestion").GetComponent<Text>(), GameObject.Find("RadioDropdown").GetComponent<Dropdown>()));
         testPages.Add(new CheckboxTestPage(GameObject.Find("CheckboxTitle").GetComponent<Text>(),
-            GameObject.Find("CheckboxQuestion").GetComponent<Text>()));
+            GameObject.Find("CheckboxQuestion").GetComponent<Text>(), new List<Toggle>() {
+                GameObject.Find("CheckboxToggle1").GetComponent<Toggle>(),
+                GameObject.Find("CheckboxToggle2").GetComponent<Toggle>(),
+                GameObject.Find("CheckboxToggle3").GetComponent<Toggle>(),
+                GameObject.Find("CheckboxToggle4").GetComponent<Toggle>(),
+                GameObject.Find("CheckboxToggle5").GetComponent<Toggle>()
+            }));
         foreach (var item in pages)
             item.SetActive(false);
         QM = GetComponent<QuestionManager>();
@@ -161,30 +167,39 @@ public class CheckboxTestPage : TestPage
 {
     private List<Toggle> toggles { get; } = new List<Toggle>();
 
-    public CheckboxTestPage(Text title, Text question) : base(title, question)
+    public CheckboxTestPage(Text title, Text question, List<Toggle> toggles) : base(title, question)
     {
-
+        for (int i = toggles.Count - 1; i >= 0; i--)
+        {
+            toggles[i].gameObject.SetActive(false);
+            toggles[i].isOn = false;
+        }
+        this.toggles = toggles;
     }
 
     public override void SetOptions(List<string> options)
     {
         for (int i = toggles.Count - 1; i >= 0; i--)
         {
-            GameObject.Destroy(toggles[i].gameObject);
-            toggles.RemoveAt(i);
+            toggles[i].gameObject.SetActive(false);
+            toggles[i].isOn = false;
+            //GameObject.Destroy(toggles[i].gameObject);
+            //toggles.RemoveAt(i);
         }
-        Toggle ToggleObj = GameObject.Find("Canvas").GetComponent<LoadQuestion>().toggle;
+        //Toggle ToggleObj = GameObject.Find("Canvas").GetComponent<LoadQuestion>().toggle;
         for (int i = 0; i < options.Count; i++)
         {
             var tmp = $"{(char)(65 + i)}. {options[i]}";
-            var position = new Vector3(0, 15 - i * 30, 0);
-            var quaternion = new Quaternion(0, 0, 0, 0);
-            Toggle toggle = GameObject.Instantiate<Toggle>(ToggleObj, position, quaternion);
-            toggle.transform.SetParent(GameObject.Find("Canvas").GetComponent<LoadQuestion>().pages[2].transform);
-            toggle.transform.localPosition = position;
-            toggle.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 680);
-            toggle.GetComponentInChildren<Text>().text = tmp;
-            toggles.Add(toggle);
+            //var position = new Vector3(0, 15 - i * 30, 0);
+            //var quaternion = new Quaternion(0, 0, 0, 0);
+            //Toggle toggle = GameObject.Instantiate<Toggle>(ToggleObj, position, quaternion);
+            //toggle.transform.SetParent(GameObject.Find("Canvas").GetComponent<LoadQuestion>().pages[2].transform);
+            //toggle.transform.localPosition = position;
+            //toggle.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 680);
+            //toggle.GetComponentInChildren<Text>().text = tmp;
+            //toggles.Add(toggle);
+            toggles[i].GetComponentInChildren<Text>().text = tmp;
+            toggles[i].gameObject.SetActive(true);
         }
     }
 
@@ -193,7 +208,7 @@ public class CheckboxTestPage : TestPage
         List<char> ret = new List<char>();
         foreach (var item in toggles)
         {
-            if (item.isOn)
+            if (item.isOn && item.IsActive())
                 ret.Add(item.GetComponentInChildren<Text>().text[0]);
         }
         return string.Join("|", ret);
