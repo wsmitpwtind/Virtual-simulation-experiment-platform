@@ -27,7 +27,7 @@ public class Create_vernier : MonoBehaviour
         Vv2 = Now_vernier2.transform.position- Now_vernier.transform.position;
         print(Vv1);
 
-        indicatorManager = GameObject.Find("Gamemanager").GetComponent<IndicatorManager>();
+        indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
     }
 
     // Update is called once per frame

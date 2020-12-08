@@ -41,7 +41,7 @@ public class Indicator : MonoBehaviour
     public void ShowIndicate(string Key, string Message)
     {
         IndicateText.text = Message;
-        KeyText.text = Key;
+        KeyText.text = Key;        
         IndicatorCanvas.gameObject.SetActive(true);
     }
 
