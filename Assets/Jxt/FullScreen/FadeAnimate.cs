@@ -126,7 +126,7 @@ public class FadeAnimate : MonoBehaviour
             if (item.done)
             {
                 item.gameObj.gameObject.SetActive(item.active);
-                if (item.active)
+                if (item.active && item.gameObj.name != "Mask")
                 {
                     Color color = item.gameObj.color;
                     color.a = 1;
