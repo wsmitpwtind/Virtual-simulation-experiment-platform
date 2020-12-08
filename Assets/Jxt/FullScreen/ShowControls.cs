@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Bug场景动画处理程序
+/// </summary>
 public class ShowControls : MonoBehaviour
 {
     private GameObject ControlObject = null;
+    /// <summary>
+    /// 延迟播放Timer
+    /// </summary>
     private System.Timers.Timer bigTimer = null;
+    /// <summary>
+    /// 动画Timer
+    /// </summary>
     private System.Timers.Timer smallTimer = null;
     private Image DimImage = null;
 

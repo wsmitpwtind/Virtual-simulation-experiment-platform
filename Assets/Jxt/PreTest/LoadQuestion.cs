@@ -3,24 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 测试题目渲染程序
+/// </summary>
 public class LoadQuestion : MonoBehaviour
 {
+    #region 私有字段
+    /// <summary>
+    /// 当前已展示题目个数
+    /// </summary>
     private int cnt = 0;
+    /// <summary>
+    /// 功能页面对象，用于展示/隐藏页面
+    /// </summary>
+    private List<GameObject> pages = new List<GameObject>();
+    /// <summary>
+    /// 功能页面抽象模型
+    /// </summary>
+    private List<ITestPage> testPages = new List<ITestPage>();
+    /// <summary>
+    /// 未作答提示对象
+    /// </summary>
+    private GameObject inputEmpty = null;
+
     private FadeAnimate aniInstant = null;
     private QuestionManager questionManager = null;
     private IEnumerator<Question> enumerator = null;
-    private List<GameObject> pages = new List<GameObject>();
-    private List<ITestPage> testPages = new List<ITestPage>();
     private ITestPage curTestPage = null;
-    private GameObject inputEmpty = null;
     private Button nextButton = null;
     private Text keyLabelRed = null;
     private Text keyLabelGreen = null;
-
+    #endregion
 
     // Start is called before the first frame update
     private void Start()
     {
+        #region 获取Unity GameObject 和 Components
         inputEmpty = GameObject.Find("InputEmpty");
         aniInstant = GetComponent<FadeAnimate>();
         nextButton = GameObject.Find("NextButton").GetComponent<Button>();
@@ -42,15 +60,22 @@ public class LoadQuestion : MonoBehaviour
                 GameObject.Find("CheckboxToggle4").GetComponent<Toggle>(),
                 GameObject.Find("CheckboxToggle5").GetComponent<Toggle>()
             }));
+        questionManager = GetComponent<QuestionManager>();
+        #endregion
+
+        #region 设置GameObject为不可见
         foreach (var item in pages)
             item.SetActive(false);
         inputEmpty.SetActive(false);
         nextButton.gameObject.SetActive(false);
         keyLabelRed.gameObject.SetActive(false);
         keyLabelGreen.gameObject.SetActive(false);
-        questionManager = GetComponent<QuestionManager>();
+        #endregion
     }
 
+    /// <summary>
+    /// QuestionManager加载题库完成后回调方法
+    /// </summary>
     public void BeginCallback()
     {
         var questions = questionManager.GetQuestions(10);
@@ -65,22 +90,24 @@ public class LoadQuestion : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 显示题目到屏幕
+    /// </summary>
+    /// <param name="question">题目</param>
     private void LoadOne(Question question)
     {
         cnt++;
-        ITestPage testPage = ShowPage(question.type);
+        foreach (var item in pages)
+            item.SetActive(false);
+        pages[(int)question.type - 1].SetActive(true);
+        ITestPage testPage = testPages[(int)question.type - 1];
         curTestPage = testPage;
         testPage.SetQuestion(question, cnt);
     }
 
-    private ITestPage ShowPage(Question.QuestionType type)
-    {
-        foreach (var item in pages)
-            item.SetActive(false);
-        pages[(int)type - 1].SetActive(true);
-        return testPages[(int)type - 1];
-    }
-
+    /// <summary>
+    /// 显示最终得分
+    /// </summary>
     private void ShowScore()
     {
         foreach (var item in pages)
@@ -89,6 +116,9 @@ public class LoadQuestion : MonoBehaviour
         GameObject.Find("Pre_Test_Score").GetComponent<Text>().text += $"{questionManager.score}";
     }
 
+    /// <summary>
+    /// 下一页按钮的监听器
+    /// </summary>
     public void NextListener()
     {
         if (enumerator.MoveNext())
@@ -100,6 +130,9 @@ public class LoadQuestion : MonoBehaviour
         keyLabelGreen.gameObject.SetActive(false);
     }
 
+    /// <summary>
+    /// 提交按钮的监听器
+    /// </summary>
     public void SubmitListener()
     {
         string answer = curTestPage.GetAnswer();
@@ -109,6 +142,7 @@ public class LoadQuestion : MonoBehaviour
         {
             bool isRight = questionManager.SubmitQuestion(enumerator.Current, answer);
             nextButton.gameObject.SetActive(true);
+            // 显示正确答案
             if (isRight)
             {
                 keyLabelGreen.gameObject.SetActive(true);

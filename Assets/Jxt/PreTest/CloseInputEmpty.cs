@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 关闭未作答提示框的脚本。
+/// </summary>
 public class CloseInputEmpty : MonoBehaviour
 {
     private FadeAnimate aniInstant = null;

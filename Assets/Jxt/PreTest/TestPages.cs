@@ -3,17 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 小测页面抽象模型接口
+/// </summary>
 public interface ITestPage
 {
+    /// <summary>
+    /// 获取用户答案
+    /// </summary>
+    /// <returns>答案</returns>
     string GetAnswer();
+
+    /// <summary>
+    /// 设置题目到屏幕
+    /// </summary>
+    /// <param name="question">题目</param>
+    /// <param name="count">第几道题目</param>
     void SetQuestion(Question question, int count);
 }
 
+/// <summary>
+/// 小测页面的基类
+/// </summary>
 public class TestPage : ITestPage
 {
+    /// <summary>
+    /// 小测页面的标题
+    /// </summary>
     protected internal Text title { get; set; }
+    /// <summary>
+    /// 小测页面的题干
+    /// </summary>
     protected internal Text question { get; set; }
 
+    /// <summary>
+    /// 基础构造函数
+    /// </summary>
+    /// <param name="title">标题组件</param>
+    /// <param name="question">题干组件</param>
     public TestPage(Text title, Text question)
     {
         this.title = title;
@@ -30,9 +57,12 @@ public class TestPage : ITestPage
     public virtual string GetAnswer()
     {
         return null;
-    }    
+    }
 }
 
+/// <summary>
+/// 填空类小测页面
+/// </summary>
 public class TextTestPage : TestPage
 {
     private InputField input { get; }
@@ -48,9 +78,18 @@ public class TextTestPage : TestPage
     }
 }
 
+/// <summary>
+/// 单选类小测页面
+/// </summary>
 public class RadioTestPage : TestPage
 {
+    /// <summary>
+    /// 单选框
+    /// </summary>
     private SortedList<string, Toggle> toggles = new SortedList<string, Toggle>();
+    /// <summary>
+    /// 单选框的组
+    /// </summary>
     private ToggleGroup toggleGroup { get; }
 
     public RadioTestPage(Text title, Text question, ToggleGroup toggleGroup) : base(title, question)
@@ -87,8 +126,14 @@ public class RadioTestPage : TestPage
     }
 }
 
+/// <summary>
+/// 多选类小测页面
+/// </summary>
 public class CheckboxTestPage : TestPage
 {
+    /// <summary>
+    /// 多选框
+    /// </summary>
     private List<Toggle> toggles { get; } = new List<Toggle>();
 
     public CheckboxTestPage(Text title, Text question, List<Toggle> toggles) : base(title, question)

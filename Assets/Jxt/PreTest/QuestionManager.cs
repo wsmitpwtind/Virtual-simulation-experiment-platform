@@ -6,11 +6,26 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Newtonsoft.Json;
 
+/// <summary>
+/// 题库管理器
+/// </summary>
 public class QuestionManager : MonoBehaviour
 {
+    /// <summary>
+    /// 总分
+    /// </summary>
     public double score = 0;
+    /// <summary>
+    /// 回答正确的题目
+    /// </summary>
     public List<Question> right = new List<Question>();
+    /// <summary>
+    /// 回答错误的题目
+    /// </summary>
     public List<Question> wrong = new List<Question>();
+    /// <summary>
+    /// 题库中所有的题目
+    /// </summary>
     private List<Question> allQuestions = null;
 
     // Start is called before the first frame update
@@ -26,6 +41,12 @@ public class QuestionManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 提交题目用户答案
+    /// </summary>
+    /// <param name="question">题目</param>
+    /// <param name="answer">答案</param>
+    /// <returns>正确与否</returns>
     public bool SubmitQuestion(Question question, string answer)
     {
         if (question.Judge(answer))
@@ -41,6 +62,11 @@ public class QuestionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 获取指定数目的题目
+    /// </summary>
+    /// <param name="count">题目数量</param>
+    /// <returns>指定数目的题目</returns>
     public IEnumerable<Question> GetQuestions(int count)
     {
         try
@@ -76,8 +102,17 @@ public class QuestionManager : MonoBehaviour
     }
 }
 
+/// <summary>
+/// Json 读取帮助程序
+/// </summary>
 public static class JsonHelper
 {
+    /// <summary>
+    /// 从指定文件读取Json并映射到模型T
+    /// </summary>
+    /// <typeparam name="T">映射数据模型</typeparam>
+    /// <param name="filePath">文件路径</param>
+    /// <returns>数据 读取失败则为空</returns>
     public static T LoadJsonFromDataFile<T>(string filePath) where T : class
     {
         if (!File.Exists(filePath))
@@ -98,6 +133,9 @@ public static class JsonHelper
     }
 }
 
+/// <summary>
+/// 题目的数据模型
+/// </summary>
 [Serializable]
 public class Question
 {
@@ -111,6 +149,9 @@ public class Question
 
     public List<string> key { get; set; }
 
+    /// <summary>
+    /// 题目类型
+    /// </summary>
     [Serializable]
     public enum QuestionType
     {
@@ -119,6 +160,11 @@ public class Question
         Mutiple = 3
     }
 
+    /// <summary>
+    /// 传入答案判断正误
+    /// </summary>
+    /// <param name="answer">用户答案</param>
+    /// <returns>正确与否</returns>
     public bool Judge(string answer)
     {
         answer = answer.Trim();
