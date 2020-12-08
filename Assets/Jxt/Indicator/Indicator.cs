@@ -12,13 +12,29 @@ public class Indicator : MonoBehaviour
 
     Text KeyText = null;
 
+    public string keyText
+    {
+        get => KeyText.text;
+    }
+
+    public string indicateText
+    {
+        get => IndicateText.text;
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
-        IndicatorCanvas = GameObject.Find("Indicator").GetComponent<Canvas>();
-        IndicateText = GameObject.Find("IndicateText").GetComponent<Text>();
-        KeyText = GameObject.Find("KeyText").GetComponent<Text>();
-
+        IndicatorCanvas = GetComponent<Canvas>();
+        var texts = GetComponentsInChildren<Text>(true);
+        foreach (var item in texts)
+        {
+            if ("KeyText".Equals(item.gameObject.name))
+                KeyText = item;
+            if ("IndicateText".Equals(item.gameObject.name))
+                IndicateText = item;
+        }
         IndicatorCanvas.gameObject.SetActive(false);
     }
 
