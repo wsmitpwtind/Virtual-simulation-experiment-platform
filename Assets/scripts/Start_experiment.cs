@@ -50,11 +50,14 @@ public class Start_experiment : MonoBehaviour
     {
         if (Exp_1.state_1 != 1)
             GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
+
     }
 
     void Start_the_experienment()
     {
         GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
+        GameObject.Find("Canvas2").GetComponent<Indicator>().HideIndicate();
+        GameObject.Find("Canvas3").GetComponent<Indicator>().HideIndicate();
         Canvas.transform.Find("Dropdown").gameObject.SetActive(true);
         Exp_1.Move_able = 0;
         Player.transform.position = new Vector3(1.18f, 1.6f, -1.58f);

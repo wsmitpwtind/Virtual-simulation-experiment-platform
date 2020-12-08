@@ -36,6 +36,8 @@ public class Open_door : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
+        GameObject.Find("Canvas2").GetComponent<Indicator>().HideIndicate();
+        GameObject.Find("Canvas3").GetComponent<Indicator>().HideIndicate();
         Close_classroom_door();
         Is_open = false;
     }

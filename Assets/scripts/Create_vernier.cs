@@ -44,6 +44,7 @@ public class Create_vernier : MonoBehaviour
         if (Now_vernier.transform.position.x-9f>0)
         {
             Now_vernier.transform.position = position;
+            GameObject.Find("Canvas3").GetComponent<Indicator>().ShowIndicate("P", "进行夹持");
 
         }
         else
@@ -51,6 +52,8 @@ public class Create_vernier : MonoBehaviour
             Now_vernier.transform.position= new Vector3(10.2f, 2f, -2.5f);
             Now_vernier1.transform.position = Vv1+ Now_vernier.transform.position;
             Now_vernier2.transform.position = Vv2+ Now_vernier.transform.position;
+            GameObject.Find("Canvas3").GetComponent<Indicator>().HideIndicate();
+
 
         }
 
