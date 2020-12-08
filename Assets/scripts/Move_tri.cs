@@ -27,7 +27,7 @@ public class Move_tri : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        indicatorManager = GameObject.Find("Gamemanager").GetComponent<IndicatorManager>();
+        indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
     }
 
     private void OnMouseEnter()

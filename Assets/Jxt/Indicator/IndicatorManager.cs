@@ -23,9 +23,9 @@ public class IndicatorManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Indicator1 = GameObject.Find("Indicator").GetComponent<Indicator>();
-        Indicator2 = GameObject.Find("Indicator2").GetComponent<Indicator>();
-        Indicator3 = GameObject.Find("Indicator3").GetComponent<Indicator>();
+        //Indicator1 = GameObject.Find("Indicator1").GetComponent<Indicator>();
+        //Indicator2 = GameObject.Find("Indicator2").GetComponent<Indicator>();
+        //Indicator3 = GameObject.Find("Indicator3").GetComponent<Indicator>();
     }
 
     // Update is called once per frame

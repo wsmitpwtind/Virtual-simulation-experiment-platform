@@ -16,7 +16,7 @@ public class Start_experiment : MonoBehaviour
         Camera = GameObject.Find("MainCamera");
         Player = GameObject.Find("Player");
 
-        indicatorManager = GameObject.Find("Gamemanager").GetComponent<IndicatorManager>();
+        indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
     }
 
     // Update is called once per frame
@@ -66,8 +66,8 @@ public class Start_experiment : MonoBehaviour
         Player.transform.position = new Vector3(1.18f, 1.6f, -1.58f);
         Player.transform.rotation = Quaternion.Euler(new Vector3(0f, -90f, 0f));
         Camera.transform.rotation = Quaternion.Euler(new Vector3(30f, -90f, 0f));
-        Camera.GetComponent<Look>().enabled = true;
-        indicatorManager.Indicator1.ShowIndicate("D", "锁定视角");
+        Camera.GetComponent<Look>().enabled = false;
+        indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
         if (Input.GetKey(KeyCode.F))
         {
             Camera.GetComponent<Look>().enabled = !Camera.GetComponent<Look>().enabled;
