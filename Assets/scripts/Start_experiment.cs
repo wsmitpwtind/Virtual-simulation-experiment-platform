@@ -7,13 +7,16 @@ public class Start_experiment : MonoBehaviour
     private GameObject Canvas;
     private GameObject Camera;
     private GameObject Player;
-    private bool enan=true;
+    IndicatorManager indicatorManager;
+
     // Start is called before the first frame update
     void Start()
     {
         Canvas = GameObject.Find("Canvas");
         Camera = GameObject.Find("MainCamera");
         Player = GameObject.Find("Player");
+
+        indicatorManager = GameObject.Find("Gamemanager").GetComponent<IndicatorManager>();
     }
 
     // Update is called once per frame
@@ -23,11 +26,13 @@ public class Start_experiment : MonoBehaviour
         {
             Camera.GetComponent<Look>().enabled = false;
             print(Camera.GetComponent<Look>().enabled);
+            indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
         }
         if (Input.GetKeyDown(KeyCode.F) && Exp_1.state_1 == 1)
         {
             Camera.GetComponent<Look>().enabled = true;
             print(Camera.GetComponent<Look>().enabled);
+            indicatorManager.Indicator1.ShowIndicate("D", "锁定视角");
         }
     }
 
@@ -43,29 +48,26 @@ public class Start_experiment : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (Exp_1.state_1 != 1)
-            GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("E", "开始实验");
+            indicatorManager.Indicator1.ShowIndicate("E", "开始实验");
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (Exp_1.state_1 != 1)
-            GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
+            indicatorManager.Indicator1.HideIndicate();
 
     }
 
     void Start_the_experienment()
     {
-        GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
-        GameObject.Find("Canvas2").GetComponent<Indicator>().HideIndicate();
-        GameObject.Find("Canvas3").GetComponent<Indicator>().HideIndicate();
+        indicatorManager.HideAllIndicator();
         Canvas.transform.Find("Dropdown").gameObject.SetActive(true);
         Exp_1.Move_able = 0;
         Player.transform.position = new Vector3(1.18f, 1.6f, -1.58f);
         Player.transform.rotation = Quaternion.Euler(new Vector3(0f, -90f, 0f));
         Camera.transform.rotation = Quaternion.Euler(new Vector3(30f, -90f, 0f));
         Camera.GetComponent<Look>().enabled = true;
-        GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("D", "锁定视角");
-        GameObject.Find("Canvas2").GetComponent<Indicator>().ShowIndicate("F", "解锁视角");
+        indicatorManager.Indicator1.ShowIndicate("D", "锁定视角");
         if (Input.GetKey(KeyCode.F))
         {
             Camera.GetComponent<Look>().enabled = !Camera.GetComponent<Look>().enabled;

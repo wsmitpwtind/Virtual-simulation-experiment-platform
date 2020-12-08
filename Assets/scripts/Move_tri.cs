@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +21,15 @@ public class Move_tri : MonoBehaviour
     private float Time_T = 3.0f;
     private bool enable_move = true;
     private bool On_exam = false;
+
+    private Tuple<string, string> LookLockedIndicate;
+    private IndicatorManager indicatorManager;
     // Start is called before the first frame update
+    private void Start()
+    {
+        indicatorManager = GameObject.Find("Gamemanager").GetComponent<IndicatorManager>();
+    }
+
     private void OnMouseEnter()
     {
         IsGet = true;
@@ -57,9 +66,9 @@ public class Move_tri : MonoBehaviour
         {
             enable_move=false;
             On_exam = true;
-            GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("A", "进行测量");
-            GameObject.Find("Canvas2").GetComponent<Indicator>().ShowIndicate("S", "放弃测量");
-           
+            indicatorManager.Indicator1.ShowIndicate("A", "进行测量");
+            indicatorManager.Indicator2.ShowIndicate("S", "放弃测量");
+            LookLockedIndicate =Tuple.Create(indicatorManager.Indicator1.keyText, indicatorManager.Indicator1.indicateText);
         }
     }
     void Update()
@@ -69,8 +78,8 @@ public class Move_tri : MonoBehaviour
             transform.position = new Vector3(0, 1.94f, -3f);
             enable_move = true;
             On_exam = false;
-            GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("D", "锁定视角");
-            GameObject.Find("Canvas2").GetComponent<Indicator>().ShowIndicate("F", "解锁视角");
+            indicatorManager.Indicator1.ShowIndicate(LookLockedIndicate.Item1, LookLockedIndicate.Item2);
+            indicatorManager.Indicator2.HideIndicate();
         }
         if (Input.GetKey(KeyCode.A) && On_exam)
         {

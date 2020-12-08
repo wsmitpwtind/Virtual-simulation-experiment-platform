@@ -9,11 +9,15 @@ public class Open_door : MonoBehaviour
     private bool Is_open = false;
     private GameObject Door;
     private GameObject Player;
+
+    IndicatorManager indicatorManager;
     // Start is called before the first frame update
     void Start()
     {
         Door = GameObject.Find("Door_hint");
         Player = GameObject.Find("Player");
+
+        indicatorManager = GameObject.Find("Gamemanager").GetComponent<IndicatorManager>();
     }
 
     // Update is called once per frame
@@ -23,7 +27,7 @@ public class Open_door : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        GameObject.Find("Canvas").GetComponent<Indicator>().ShowIndicate("E", "开门退出实验");
+        indicatorManager.Indicator1.ShowIndicate("E", "开门退出实验");
     }
     void OnTriggerStay(Collider other)
     {
@@ -35,9 +39,7 @@ public class Open_door : MonoBehaviour
     }
     void OnTriggerExit(Collider other)
     {
-        GameObject.Find("Canvas").GetComponent<Indicator>().HideIndicate();
-        GameObject.Find("Canvas2").GetComponent<Indicator>().HideIndicate();
-        GameObject.Find("Canvas3").GetComponent<Indicator>().HideIndicate();
+        indicatorManager.HideAllIndicator();
         Close_classroom_door();
         Is_open = false;
     }
