@@ -17,7 +17,7 @@ public class Open_door : MonoBehaviour
         Door = GameObject.Find("Door_hint");
         Player = GameObject.Find("Player");
 
-        indicatorManager = GameObject.Find("Gamemanager").GetComponent<IndicatorManager>();
+        indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
     }
 
     // Update is called once per frame
