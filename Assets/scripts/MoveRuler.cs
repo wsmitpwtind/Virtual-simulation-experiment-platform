@@ -18,7 +18,7 @@ public class MoveRuler : MonoBehaviour {
     private void Start() {
         body_obj = GameObject.Find("MeasureBody");
         head_obj = GameObject.Find("MeasureHead");
-        cube_obj = GameObject.Find("Cube");
+        cube_obj = GameObject.Find("book_0001b");
         body_rigid = body_obj.GetComponent<Rigidbody>();
         head_rigid = head_obj.GetComponent<Rigidbody>();
         body_collide = body_obj.GetComponent<BoxCollider>();
@@ -48,15 +48,16 @@ public class MoveRuler : MonoBehaviour {
                     ResetRulerPosition();
                     status = (status + 1) % 3;
                     switch(status) {
-                        case 1:
-                            cube_obj.transform.rotation = Quaternion.Euler(0, 90, 0);
-                            break;
-                        case 2:
-                            cube_obj.transform.rotation = Quaternion.Euler(0, 0, 90);
-                            break;
-                        default:
-                            cube_obj.transform.rotation = Quaternion.Euler(0, 0, 0);
-                            break;
+                    case 1:
+                    cube_obj.transform.rotation = Quaternion.Euler(0, 90, 0);
+                    break;
+                    case 2:
+                    cube_obj.transform.rotation = Quaternion.Euler(0, 0, 90);
+                    cube_obj.transform.position = new Vector3(-2.42f, 25.0f, 0);
+                    break;
+                    default:
+                    cube_obj.transform.rotation = Quaternion.Euler(0, 0, 0);
+                    break;
                     }
                     Debug.Log(string.Join("\r\n", cube_obj.transform.position, cube_obj.transform.rotation));
                 }
@@ -90,9 +91,11 @@ public class MoveRuler : MonoBehaviour {
     }
     private void OnCollisionEnter(Collision collision) {
         if(collision.collider.attachedRigidbody == head_rigid) {
+            head_rigid.constraints |= RigidbodyConstraints.FreezePositionX;
             head_rigid.velocity = Vector3.zero;
         }
         else if(collision.collider.attachedRigidbody == body_rigid) {
+            body_rigid.constraints |= RigidbodyConstraints.FreezePositionX;
             body_rigid.velocity = Vector3.zero;
         }
     }
