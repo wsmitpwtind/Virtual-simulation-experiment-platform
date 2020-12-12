@@ -88,6 +88,8 @@ public class MoveRuler : MonoBehaviour {
     private void ResetRulerPosition() {
         body_rigid.transform.localPosition = Vector3.zero;
         head_rigid.transform.localPosition = head_pos0;
+        head_rigid.constraints &= ~RigidbodyConstraints.FreezePositionX;
+        body_rigid.constraints &= ~RigidbodyConstraints.FreezePositionX;
     }
     private void OnCollisionEnter(Collision collision) {
         if(collision.collider.attachedRigidbody == head_rigid) {
