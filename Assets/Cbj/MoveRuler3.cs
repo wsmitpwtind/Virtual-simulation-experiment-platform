@@ -38,8 +38,11 @@ public class MoveRuler3 : MonoBehaviour {
         ruler2_head_rigid = ruler2_head.GetComponent<Rigidbody>();
         ruler2_body_rigid = ruler2_body.GetComponent<Rigidbody>();
         cam = Camera.main;
+        flag = 3;
         cam.transform.position = cam_pos[0].pos;
         cam.transform.rotation = cam_pos[0].rot;
+        //ruler1.SetActive(false);
+        //ruler2.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,9 +55,9 @@ public class MoveRuler3 : MonoBehaviour {
             flag = 1;
             current = 0;
             ruler2.SetActive(false);
-            ruler2.hideFlags |= HideFlags.HideInInspector;
+            //ruler2.hideFlags |= HideFlags.HideInInspector;
             ruler1.SetActive(true);
-            ruler1.hideFlags &= ~HideFlags.HideInInspector;
+            //ruler1.hideFlags &= ~HideFlags.HideInInspector;
             ruler1.transform.rotation = ruler1_rot[0];
         }
         else if(Input.GetKeyDown(KeyCode.X)) {
@@ -65,9 +68,9 @@ public class MoveRuler3 : MonoBehaviour {
             flag = 0;
             current = 0;
             ruler2.SetActive(false);
-            ruler2.hideFlags |= HideFlags.HideInInspector;
+            //ruler2.hideFlags |= HideFlags.HideInInspector;
             ruler1.SetActive(true);
-            ruler1.hideFlags &= ~HideFlags.HideInInspector;
+            //ruler1.hideFlags &= ~HideFlags.HideInInspector;
             ruler1.transform.rotation = ruler1_rot[1];
         }
         else if(Input.GetKeyDown(KeyCode.Y)) {
@@ -77,16 +80,27 @@ public class MoveRuler3 : MonoBehaviour {
             gameObject.transform.rotation = book_rot[0];
             flag = 2;
             current = 0;
-            ruler1.hideFlags |= HideFlags.HideInInspector;
+            //ruler1.hideFlags |= HideFlags.HideInInspector;
             ruler1.SetActive(false);
-            ruler2.hideFlags &= ~HideFlags.HideInInspector;
+            //ruler2.hideFlags &= ~HideFlags.HideInInspector;
             ruler2.SetActive(true);
         }
         else if(Input.GetKeyDown(KeyCode.P) && flag == 2) {
             ruler2_body_rigid.velocity = Vector3.right;
             ruler2_head_rigid.velocity = Vector3.left;
         }
-        else if(Input.GetKeyDown(KeyCode.L)) {
+        else if(Input.GetKeyDown(KeyCode.O)) {
+            flag = 3;
+            gameObject.transform.position = book_pos[5];
+            gameObject.transform.rotation = book_rot[1];
+            cam.transform.position = cam_pos[0].pos;
+            cam.transform.rotation = cam_pos[0].rot;
+            ruler1.SetActive(true);
+            ruler2.SetActive(true);
+            //ruler1.hideFlags &= ~HideFlags.HideInInspector;
+            //ruler2.hideFlags &= ~HideFlags.HideInInspector;
+        }
+        else if(Input.GetKeyDown(KeyCode.L) && flag != 3) {
             current += 1;
             switch(flag) {
             case 0:
