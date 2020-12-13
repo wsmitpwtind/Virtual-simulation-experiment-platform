@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 /// <summary>
 /// 右上角按键提示框处理程序
@@ -12,6 +13,8 @@ public class Indicator : MonoBehaviour
     private Canvas IndicatorCanvas = null;
     private Text IndicateText = null;
     private Text KeyText = null;
+
+    private bool shown = false;
 
     /// <summary>
     /// 按键文本。仅能显示一个字符。
@@ -45,7 +48,6 @@ public class Indicator : MonoBehaviour
             if ("IndicateText".Equals(item.gameObject.name))
                 IndicateText = item;
         }
-        IndicatorCanvas.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -55,9 +57,14 @@ public class Indicator : MonoBehaviour
     /// <param name="Message">提示说明文本</param>
     public void ShowIndicate(string Key, string Message)
     {
+        if (shown)
+            HideIndicate();
         IndicateText.text = Message;
-        KeyText.text = Key;        
-        IndicatorCanvas.gameObject.SetActive(true);
+        KeyText.text = Key;
+        var animate = IndicatorCanvas.gameObject.GetComponent<RectTransform>().DOLocalMoveX(300, .5f);
+        animate.SetEase(Ease.OutExpo);
+        shown = true;
+        // IndicatorCanvas.gameObject.SetActive(true);
     }
 
     /// <summary>
@@ -65,6 +72,9 @@ public class Indicator : MonoBehaviour
     /// </summary>
     public void HideIndicate()
     {
-        IndicatorCanvas.gameObject.SetActive(false);
+        var animate = IndicatorCanvas.gameObject.GetComponent<RectTransform>().DOLocalMoveX(500, .5f);
+        animate.SetEase(Ease.OutExpo);
+        shown = false;
+        // IndicatorCanvas.gameObject.SetActive(false);
     }
 }
