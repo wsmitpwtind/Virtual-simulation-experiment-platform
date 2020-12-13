@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 /// <summary>
 /// 测试题目渲染程序
@@ -66,7 +67,6 @@ public class LoadQuestion : MonoBehaviour
         #region 设置GameObject为不可见
         foreach (var item in pages)
             item.SetActive(false);
-        inputEmpty.SetActive(false);
         nextButton.gameObject.SetActive(false);
         keyLabelRed.gameObject.SetActive(false);
         keyLabelGreen.gameObject.SetActive(false);
@@ -137,7 +137,11 @@ public class LoadQuestion : MonoBehaviour
     {
         string answer = curTestPage.GetAnswer();
         if (answer.Trim().Length == 0)
-            aniInstant.Show(inputEmpty);
+        {
+            DOTween.Clear();
+            inputEmpty.GetComponent<RectTransform>().DOLocalMoveY(150, 0.5f).SetEase(Ease.OutExpo);
+            inputEmpty.GetComponent<RectTransform>().DOLocalMoveY(300, 0.5f).SetEase(Ease.OutExpo).SetDelay(2);
+        }
         else
         {
             bool isRight = questionManager.SubmitQuestion(enumerator.Current, answer);
