@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Xml.Serialization;
 using UnityEngine;
 using MATH = System.Math;
+using System.Text;
+using Newtonsoft.Json;
 
 public static class StaticMethods {
     public static void cbj0() {
@@ -15,7 +17,7 @@ public static class StaticMethods {
         //A类不确定度
         double s1 = 0.0, s2 = 0.0;
         int length = input.Length;
-        for(int i = 0; i < length; i++) {
+        for(int i = 0;i < length;i++) {
             s1 += input[i];
             s2 += input[i] * input[i];
         }
@@ -52,7 +54,7 @@ public static class StaticMethods {
         }
         double s = 0.0, sx = 0.0, sy = 0.0;
         int n = X.Length;
-        for(int i = 0; i < n; i++) {
+        for(int i = 0;i < n;i++) {
             s += X[i] * Y[i];
             sx += X[i];
             sy += Y[i];
@@ -66,7 +68,7 @@ public static class StaticMethods {
         }
         int n = X.Length;
         double xav = Average(X), yav = Average(Y), xyav = 0.0, x2av = 0.0, y2av = 0.0, u = 0.0;
-        for(int i = 0; i < n; i++) {
+        for(int i = 0;i < n;i++) {
             xyav += X[i] * Y[i];
             x2av += X[i] * X[i];
             y2av += Y[i] * Y[i];
@@ -76,7 +78,7 @@ public static class StaticMethods {
         b = (xav * yav - xyav) / (xav * xav - x2av);
         a = yav - b * xav;
         r = (xyav - xav * yav) / MATH.Sqrt((x2av - xav * xav) * (y2av - yav * yav));
-        for(int i = 0; i < n; i++) {
+        for(int i = 0;i < n;i++) {
             u += (Y[i] - (a + b * X[i])) * (Y[i] - (a + b * X[i]));
         }
         //返回值:{拟合的b,拟合的a,相关系数r,不确定度}
@@ -91,14 +93,14 @@ public static class StaticMethods {
         int n = k / 2;
         int dif = k % 2 == 0 ? n : n + 1;
         double[] bi = new double[n];
-        for(int i = 0; i < n; i++) {
+        for(int i = 0;i < n;i++) {
             bi[i] = (Y[i + dif] - Y[i]) / (X[i + dif] - X[i]);
         }
         double bar = Average(bi), xav = Average(X), yav = Average(Y);
         //返回值:{{拟合的b,拟合的a,X的平均值,Y的平均值,b的不确定度},{每个逐差的斜率}}
         return new double[][] { new double[] { bar, yav - xav * bar, xav, yav, Uncertain_A(bi) / n }, bi };
     }
-    public static (double[],string) BookVolume(double[] A, double[] B, double[] C) {//测量数据,长A 宽B 高C,calcstr若不为null返回计算过程字符串
+    public static (double[], string) BookVolume(double[] A, double[] B, double[] C) {//测量数据,长A 宽B 高C,calcstr若不为null返回计算过程字符串
         if(A == null || B == null || C == null) {
             return default;
         }
@@ -149,35 +151,35 @@ public static class InstrumentError {
     }
     public static double steel_tape(int level, double length) {
         switch(level) {
-            case 1:
-                return 0.1 + 0.001 * length;
-            case 2:
-                return 0.3 + 0.002 * length;
-            default:
-                throw new UnityException(":)");
+        case 1:
+            return 0.1 + 0.001 * length;
+        case 2:
+            return 0.3 + 0.002 * length;
+        default:
+            throw new UnityException(":)");
         }
     }
     public static double caliper(double division, double length) {
         if(length < 0.0) throw new UnityException("长度必须>=0");
         switch(division) {
-            case 0.02:
-                if(length <= 150) return 0.02;
-                else if(length <= 200) return 0.03;
-                else if(length <= 300) return 0.04;
-                else if(length <= 500) return 0.05;
-                else if(length <= 1000) return 0.07;
-                else throw new UnityException("不支持>=1000的");
-            case 0.05:
-                if(length <= 200) return 0.05;
-                else if(length <= 500) return 0.08;
-                else if(length <= 1000) return 0.1;
-                else throw new UnityException("不支持>=1000的");
-            case 0.1:
-                if(length <= 500) return 0.10;
-                else if(length <= 1000) return 0.15;
-                else throw new UnityException("不支持>=1000的");
-            default:
-                throw new UnityException("分度值不支持");
+        case 0.02:
+            if(length <= 150) return 0.02;
+            else if(length <= 200) return 0.03;
+            else if(length <= 300) return 0.04;
+            else if(length <= 500) return 0.05;
+            else if(length <= 1000) return 0.07;
+            else throw new UnityException("不支持>=1000的");
+        case 0.05:
+            if(length <= 200) return 0.05;
+            else if(length <= 500) return 0.08;
+            else if(length <= 1000) return 0.1;
+            else throw new UnityException("不支持>=1000的");
+        case 0.1:
+            if(length <= 500) return 0.10;
+            else if(length <= 1000) return 0.15;
+            else throw new UnityException("不支持>=1000的");
+        default:
+            throw new UnityException("分度值不支持");
         }
     }
     public static double micrometer(double length) {
@@ -196,7 +198,7 @@ public static class InstrumentError {
     }
     public static double resistance_box(double[] a, double[] r, double r0) {
         double s = 0;
-        for(int i = 0; i < a.Length; i++) {
+        for(int i = 0;i < a.Length;i++) {
             s += (a[i] * r[i] / 100);
         }
         return s += r0;
@@ -204,20 +206,20 @@ public static class InstrumentError {
     public static double full_immersion_mercury_thermometer(double t, double division) {
         if(-30.0 <= t && t <= 100.0) {
             switch(division) {
-                case 0.1: return 0.2;
-                case 0.2: return 0.3;
-                case 0.5: return 0.5;
-                case 1.0: return 1.0;
-                default: break;
+            case 0.1: return 0.2;
+            case 0.2: return 0.3;
+            case 0.5: return 0.5;
+            case 1.0: return 1.0;
+            default: break;
             }
         }
         else if(100.0 < t && t <= 200.0) {
             switch(division) {
-                case 0.1: return 0.4;
-                case 0.2: return 0.4;
-                case 0.5: return 1.0;
-                case 1.0: return 1.5;
-                default: break;
+            case 0.1: return 0.4;
+            case 0.2: return 0.4;
+            case 0.5: return 1.0;
+            case 1.0: return 1.5;
+            default: break;
             }
         }
         throw new UnityException("不支持的操作");
@@ -225,42 +227,42 @@ public static class InstrumentError {
     public static double mercury_thermometer(double t, double division) {
         if(-30.0 <= t && t <= 100.0) {
             switch(division) {
-                case 0.5: return 1.0;
-                case 1.0: return 1.5;
-                default: break;
+            case 0.5: return 1.0;
+            case 1.0: return 1.5;
+            default: break;
             }
         }
         else if(100.0 < t && t <= 200.0) {
             switch(division) {
-                case 0.5: return 1.5;
-                case 1.0: return 2.0;
-                default: break;
+            case 0.5: return 1.5;
+            case 1.0: return 2.0;
+            default: break;
             }
         }
         throw new UnityException("不支持的操作");
     }
     public static double Pt_Rh_couple(int level, double t) {
         switch(level) {
-            case 1:
-                if(0 <= t && t <= 1100) return 1;
-                else if(1100 < t && t <= 1600) return 1 + 0.03 * (t - 1100);
-                else throw new UnityException("不支持的操作");
-            case 2:
-                if(0 <= t && t <= 600) return 1.5;
-                else if(600 < t && t <= 1600) return 0.0025 * t;
-                else throw new UnityException("不支持的操作");
-            default:
-                throw new UnityException("不支持的操作");
+        case 1:
+            if(0 <= t && t <= 1100) return 1;
+            else if(1100 < t && t <= 1600) return 1 + 0.03 * (t - 1100);
+            else throw new UnityException("不支持的操作");
+        case 2:
+            if(0 <= t && t <= 600) return 1.5;
+            else if(600 < t && t <= 1600) return 0.0025 * t;
+            else throw new UnityException("不支持的操作");
+        default:
+            throw new UnityException("不支持的操作");
         }
     }
     public static double Pt_resistance(char level, double t) {
         switch(level) {
-            case 'A':
-                return 0.15 + 0.002 * MATH.Abs(t);
-            case 'B':
-                return 0.30 + 0.005 * MATH.Abs(t);
-            default:
-                throw new UnityException("不支持的操作");
+        case 'A':
+            return 0.15 + 0.002 * MATH.Abs(t);
+        case 'B':
+            return 0.30 + 0.005 * MATH.Abs(t);
+        default:
+            throw new UnityException("不支持的操作");
         }
     }
 }
@@ -271,23 +273,23 @@ public class FileOpenDialog {
     public int structSize = 0;
     public IntPtr dlgOwner = IntPtr.Zero;
     public IntPtr instance = IntPtr.Zero;
-    public String filter = null;
-    public String customFilter = null;
+    public string filter = null;
+    public string customFilter = null;
     public int maxCustFilter = 0;
     public int filterIndex = 0;
-    public String file = null;
+    public string file = null;
     public int maxFile = 0;
-    public String fileTitle = null;
+    public string fileTitle = null;
     public int maxFileTitle = 0;
-    public String initialDir = null;
-    public String title = null;
+    public string initialDir = null;
+    public string title = null;
     public int flags = 0;
     public short fileOffset = 0;
     public short fileExtension = 0;
-    public String defExt = null;
+    public string defExt = null;
     public IntPtr custData = IntPtr.Zero;
     public IntPtr hook = IntPtr.Zero;
-    public String templateName = null;
+    public string templateName = null;
     public IntPtr reservedPtr = IntPtr.Zero;
     public int reservedInt = 0;
     public int flagsEx = 0;
@@ -298,7 +300,132 @@ public static class IOHelper {
     public static extern int MessageBox(IntPtr hwnd, string text, string caption, uint type);
     [DllImport("comdlg32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetOpenFileName", SetLastError = true, ThrowOnUnmappableChar = true)]
     public static extern int OpenFileDialog(FileOpenDialog lpofn);
+    [DllImport("comdlg32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetSaveFileName", SetLastError = true, ThrowOnUnmappableChar = true)]
+    public static extern int SaveFileDialog(FileOpenDialog lpofn);
     [DllImport("kernel32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto)]
     public static extern int GetLastError();
+    public static string ReadData() {
+        try {
+            FileOpenDialog dialog = new FileOpenDialog();
+            dialog.structSize = Marshal.SizeOf(dialog);
+            dialog.filter = "txt files(*.txt)\0*.txt;\0All Files(*.*)\0*.*;\0\0";
+            dialog.file = new string(new char[256]);
+            dialog.maxFile = dialog.file.Length;
+            dialog.fileTitle = new string(new char[64]);
+            dialog.maxFileTitle = dialog.fileTitle.Length;
+            dialog.initialDir = Application.dataPath;  //默认路径
+            dialog.title = "Open File Dialog";
+            dialog.defExt = "txt";//显示文件的类型
+                                  //注意一下项目不一定要全选 但是0x00000008项不要缺少
+            dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
+
+            //MessageBox(IntPtr.Zero, "cbj666", "cbj0", 0u);
+            if(OpenFileDialog(dialog) != 0) {
+                string openname = dialog.file.Replace("\0",""), result;
+                Debug.Log(openname);
+                using(StreamReader sr = new StreamReader(openname)) {
+                    result = sr.ReadToEnd();
+                }
+                return result;
+            }
+            else {
+                Debug.Log(GetLastError());
+            }
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+        return null;
+    }
+    public static void WriteData(string data) {
+        try {
+            FileOpenDialog dialog = new FileOpenDialog();
+            dialog.structSize = Marshal.SizeOf(dialog);
+            dialog.filter = "txt files(*.txt)\0*.txt;\0All Files(*.*)\0*.*;\0\0";
+            dialog.file = new string(new char[256]);
+            dialog.maxFile = dialog.file.Length;
+            dialog.fileTitle = new string(new char[64]);
+            dialog.maxFileTitle = dialog.fileTitle.Length;
+            dialog.initialDir = Application.dataPath;  //默认路径
+            dialog.title = "Open File Dialog";
+            dialog.defExt = "txt";//显示文件的类型
+                                  //注意一下项目不一定要全选 但是0x00000008项不要缺少
+            dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
+            if(SaveFileDialog(dialog) != 0) {
+                string openname = dialog.file.Replace("\0", "");
+                Debug.Log(openname);
+                using(StreamWriter sw = new StreamWriter(openname, false, Encoding.UTF8)) {
+                    sw.WriteLine(data);
+                }
+            }
+            else {
+                Debug.Log(GetLastError());
+            }
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+    }
+    public static T ReadJson<T>() {
+        try {
+            FileOpenDialog dialog = new FileOpenDialog();
+            dialog.structSize = Marshal.SizeOf(dialog);
+            dialog.filter = "json files(*.json)\0*.json;\0txt files(*.txt)\0*.txt;\0All Files(*.*)\0*.*;\0\0";
+            dialog.file = new string(new char[256]);
+            dialog.maxFile = dialog.file.Length;
+            dialog.fileTitle = new string(new char[64]);
+            dialog.maxFileTitle = dialog.fileTitle.Length;
+            dialog.initialDir = Application.dataPath;  //默认路径
+            dialog.title = "Open File Dialog";
+            dialog.defExt = "json";//显示文件的类型
+                                  //注意一下项目不一定要全选 但是0x00000008项不要缺少
+            dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;
+            if(OpenFileDialog(dialog) != 0) {
+                string openname = dialog.file.Replace("\0", ""), result;
+                Debug.Log(openname);
+                using(StreamReader sr = new StreamReader(openname)) {
+                    result = sr.ReadToEnd();
+                }
+                
+                return JsonConvert.DeserializeObject<T>(result);
+            }
+            else {
+                Debug.Log(GetLastError());
+            }
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+        return default;
+    }
+    public static void WriteJson<T>(T data) {
+        try {
+            FileOpenDialog dialog = new FileOpenDialog();
+            dialog.structSize = Marshal.SizeOf(dialog);
+            dialog.filter = "json files(*.json)\0*.json;\0txt files(*.txt)\0*.txt;\0All Files(*.*)\0*.*;\0\0";
+            dialog.file = new string(new char[256]);
+            dialog.maxFile = dialog.file.Length;
+            dialog.fileTitle = new string(new char[64]);
+            dialog.maxFileTitle = dialog.fileTitle.Length;
+            dialog.initialDir = Application.dataPath;  //默认路径
+            dialog.title = "Open File Dialog";
+            dialog.defExt = "json";//显示文件的类型
+                                   //注意一下项目不一定要全选 但是0x00000008项不要缺少
+            dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;
+            if(SaveFileDialog(dialog) != 0) {
+                string openname = dialog.file.Replace("\0", "");
+                Debug.Log(openname);
+                using(StreamWriter sw = new StreamWriter(openname, false, Encoding.UTF8)) {
+                    sw.WriteLine(JsonConvert.SerializeObject(data));
+                }
+            }
+            else {
+                Debug.Log(GetLastError());
+            }
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+    }
 }
 
