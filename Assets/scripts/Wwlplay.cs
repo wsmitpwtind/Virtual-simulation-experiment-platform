@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wwlplay : MonoBehaviour
 {
-    private float[] time = {10f,100f};//每段音频的时间
+    private float[] time = {10f,10f};//每段音频的时间
     private bool[] IfnotFirst = new bool[10]; 
     private void Update()
     {
