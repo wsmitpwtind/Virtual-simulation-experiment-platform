@@ -37,13 +37,15 @@ public class Create_vernier : MonoBehaviour
     }
     void Vernier()
     {
-        Now_vernier = GameObject.Find("Vernier");
+        //Now_vernier = GameObject.Find("Vernier");
         BoxCollider Bc = Now_vernier.GetComponent<BoxCollider>();
-        GameObject V1 = GameObject.Find("Vernier");
-        Move_vernier v1=V1.GetComponent<Move_vernier>();
+        //GameObject V1 = GameObject.Find("Vernier");
+        //Move_vernier v1=V1.GetComponent<Move_vernier>();
+        Move_vernier v1 = Now_vernier.GetComponent<Move_vernier>();
         v1.move1 = true;
-        GameObject V2 = GameObject.Find("Vernier");
-        Move_vernier v2 = V2.GetComponent<Move_vernier>();
+        //GameObject V2 = GameObject.Find("Vernier");
+        //Move_vernier v2 = V2.GetComponent<Move_vernier>();
+        Move_vernier v2 = Now_vernier.GetComponent<Move_vernier>();
         v2.move2 = true;
         if (Now_vernier.transform.position.x-9f>0)
         {
