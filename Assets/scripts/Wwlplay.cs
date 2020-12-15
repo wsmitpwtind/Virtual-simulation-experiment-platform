@@ -2,52 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine.Video;
-
-using UnityEngine.UI;
-
 public class Wwlplay : MonoBehaviour
 {
-
-    //定义参数获取VideoPlayer组件和RawImage组件
-
-    private VideoPlayer videoPlayer;
-
-    private RawImage rawImage;
-
-    // Use this for initialization
-
-    void Start()
+    private float[] time = {10f,100f};//每段音频的时间
+    private bool[] IfnotFirst = new bool[10]; 
+    private void Update()
     {
-
-        //获取场景中对应的组件
-
-        videoPlayer = this.GetComponent<VideoPlayer>();
-
-        rawImage = this.GetComponent<RawImage>();
-
-    }
-
-
-
-    // Update is called once per frame
-
-    void Update()
-    {
-
-        //如果videoPlayer没有对应的视频texture，则返回
-
-        if (videoPlayer.texture == null)
+        if (Exp_1.state_1 == 1&&IfnotFirst[0]==false)
         {
-
-            return;
-
+            transform.Find("Wwl").gameObject.SetActive(true);
+            transform.Find("voice2").gameObject.SetActive(true);
+            IfnotFirst[0] = true;
+            Invoke("ShutWwl", time[0]);
+        }
+        if (Exp_1.state_1 == 0 && IfnotFirst[1] == false)
+        {
+            transform.Find("Wwl").gameObject.SetActive(true);
+            transform.Find("voice1").gameObject.SetActive(true);
+            IfnotFirst[1] = true;
+            Invoke("ShutWwl", time[1]);
         }
 
-        //把VideoPlayerd的视频渲染到UGUI的RawImage
-
-        rawImage.texture = videoPlayer.texture;
-
     }
+
+    private void ShutWwl()
+    {
+        transform.Find("Wwl").gameObject.SetActive(false);
+    }
+
 
 }
