@@ -1,8 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Xml.Serialization;
 using UnityEngine;
 using MATH = System.Math;
+
 public static class StaticMethods {
     public static void cbj0() {
         Debug.Log("test");
@@ -261,4 +265,40 @@ public static class InstrumentError {
     }
 }
 
+
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+public class FileOpenDialog {
+    public int structSize = 0;
+    public IntPtr dlgOwner = IntPtr.Zero;
+    public IntPtr instance = IntPtr.Zero;
+    public String filter = null;
+    public String customFilter = null;
+    public int maxCustFilter = 0;
+    public int filterIndex = 0;
+    public String file = null;
+    public int maxFile = 0;
+    public String fileTitle = null;
+    public int maxFileTitle = 0;
+    public String initialDir = null;
+    public String title = null;
+    public int flags = 0;
+    public short fileOffset = 0;
+    public short fileExtension = 0;
+    public String defExt = null;
+    public IntPtr custData = IntPtr.Zero;
+    public IntPtr hook = IntPtr.Zero;
+    public String templateName = null;
+    public IntPtr reservedPtr = IntPtr.Zero;
+    public int reservedInt = 0;
+    public int flagsEx = 0;
+}
+public delegate int DialogHookProc(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam);
+public static class IOHelper {
+    [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "MessageBox")]
+    public static extern int MessageBox(IntPtr hwnd, string text, string caption, uint type);
+    [DllImport("comdlg32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetOpenFileName", SetLastError = true, ThrowOnUnmappableChar = true)]
+    public static extern int OpenFileDialog(FileOpenDialog lpofn);
+    [DllImport("kernel32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto)]
+    public static extern int GetLastError();
+}
 

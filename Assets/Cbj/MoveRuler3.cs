@@ -5,40 +5,8 @@ using System.Runtime.InteropServices;
 using UnityEditor;
 using UnityEngine;
 
-[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-public class FileOpenDialog {
-    public int structSize = 0;
-    public IntPtr dlgOwner = IntPtr.Zero;
-    public IntPtr instance = IntPtr.Zero;
-    public String filter = null;
-    public String customFilter = null;
-    public int maxCustFilter = 0;
-    public int filterIndex = 0;
-    public String file = null;
-    public int maxFile = 0;
-    public String fileTitle = null;
-    public int maxFileTitle = 0;
-    public String initialDir = null;
-    public String title = null;
-    public int flags = 0;
-    public short fileOffset = 0;
-    public short fileExtension = 0;
-    public String defExt = null;
-    public IntPtr custData = IntPtr.Zero;
-    public IntPtr hook = IntPtr.Zero;
-    public String templateName = null;
-    public IntPtr reservedPtr = IntPtr.Zero;
-    public int reservedInt = 0;
-    public int flagsEx = 0;
-}
-public delegate int DialogHookProc(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam);
+
 public class MoveRuler3 : MonoBehaviour {
-    [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "MessageBox")]
-    public static extern int MessageBox(IntPtr hwnd, string text, string caption, uint type);
-    [DllImport("comdlg32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetOpenFileName", SetLastError = true, ThrowOnUnmappableChar = true)]
-    public static extern int OpenFileDialog(FileOpenDialog lpofn);
-    [DllImport("kernel32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto)]
-    public static extern int GetLastError();
     // Start is called before the first frame update
     protected GameObject ruler1, ruler2, ruler2_head, ruler2_body;
     protected Rigidbody ruler1_rigid, ruler2_head_rigid, ruler2_body_rigid;
@@ -176,14 +144,14 @@ public class MoveRuler3 : MonoBehaviour {
             dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
 
             //MessageBox(IntPtr.Zero, "cbj666", "cbj0", 0u);
-            if(OpenFileDialog(dialog) != 0) {
+            if(IOHelper.OpenFileDialog(dialog) != 0) {
                 Debug.Log(dialog.file);
                 var o = Resources.Load(dialog.file);
                 Debug.Log(o == null);
                 
             }
             else {
-                Debug.Log(GetLastError());
+                Debug.Log(IOHelper.GetLastError());
             }
         }
     }
