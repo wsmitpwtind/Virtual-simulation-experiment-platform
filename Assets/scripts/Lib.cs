@@ -10,7 +10,7 @@ using System.Text;
 using Newtonsoft.Json;
 using UnityEngine.UIElements;
 using UnityEditor;
-
+using OBJECT = UnityEngine.Object;
 public static class StaticMethods {
     public static void cbj0() {
         Debug.Log("test");
@@ -416,15 +416,15 @@ public static class IOHelper {
                 return;
             }
             string dest = Path.GetFileName(tmp);
-            string dir = $"{Application.dataPath}/prefab/{dest}";
+            string dir = $"{Application.dataPath}/resources/{dest}";
             try {
                 File.Copy(open, dir, true);
             }
             catch(Exception ex) {
             }
 
-            var obj = PrefabUtility.LoadPrefabContents($"assets/prefab/{dest}");
-            
+            //var obj = PrefabUtility.LoadPrefabContents($"assets/prefab/{dest}");
+            var obj = AssetDatabase.LoadAssetAtPath<OBJECT>($"./assets/resources/{dest}");
             Debug.Log(obj);
         }
         catch(Exception ex) {
