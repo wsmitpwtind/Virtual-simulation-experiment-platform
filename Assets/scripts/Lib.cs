@@ -332,6 +332,32 @@ public static class IOHelper {
         }
         return null;
     }
+    public static string SaveFile() {
+        try {
+            OpenFileName ofn = default;
+            ofn.lStructSize = Marshal.SizeOf(ofn);
+            ofn.lpstrFilter = "All files(*.*)\0\0";
+            ofn.lpstrFile = new string(new char[256]);
+            ofn.nMaxFile = ofn.lpstrFile.Length;
+            ofn.lpstrFileTitle = new string(new char[64]);
+            ofn.nMaxFileTitle = ofn.lpstrFileTitle.Length;
+            /*ofn.lpfnHook = (hwnd, msg, wparam, lparam) => {
+                Console.WriteLine($"hwnd:{hwnd},msg:{msg},wparam:{wparam},lparam:{lparam}");
+                //return DefDlgProc(hwnd, msg, wparam, lparam);
+                return 0;
+            };*/
+            ofn.Flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;//| 0x00000020;
+            if(SaveFileDialog(ref ofn) != 0) {
+                //Console.WriteLine(ofn.lpstrFile);
+                //Console.WriteLine(ofn.lpstrFileTitle);
+                return ofn.lpstrFile;
+            }
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+        return null;
+    }
     public static T ReadJson<T>() {
         try {
             string jsonpath = OpenFile();
@@ -350,7 +376,7 @@ public static class IOHelper {
     }
     public static void WriteJson<T>(T json) {
         try {
-            string jsonpath = OpenFile();
+            string jsonpath = SaveFile();
             using(StreamWriter sw = new StreamWriter(jsonpath, false, Encoding.UTF8)) {
                 sw.WriteLine(JsonConvert.SerializeObject(json));
             }
@@ -374,7 +400,7 @@ public static class IOHelper {
     }
     public static void WriteString(string data) {
         try {
-            string jsonpath = OpenFile();
+            string jsonpath = SaveFile();
             using(StreamWriter sw = new StreamWriter(jsonpath, false, Encoding.UTF8)) {
                 sw.WriteLine(data);
             }
