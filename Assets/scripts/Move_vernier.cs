@@ -44,7 +44,7 @@ public class Move_vernier : MonoBehaviour
     }
     void Code()
     {
-        print("qwqw");
+        //print("qwqw");
         GameObject V1 = GameObject.Find("MeasureBody");
         GameObject V2 = GameObject.Find("MeasureHead");
         if (move1)

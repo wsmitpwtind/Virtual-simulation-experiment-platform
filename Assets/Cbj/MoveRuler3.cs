@@ -1,6 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEditor;
 using UnityEngine;
+
 
 public class MoveRuler3 : MonoBehaviour {
     // Start is called before the first frame update
@@ -116,6 +120,16 @@ public class MoveRuler3 : MonoBehaviour {
             default:
                 break;
             }
+        }
+        else if(Input.GetKeyDown(KeyCode.K)) {
+            Debug.Log(Application.dataPath);
+            Debug.Log(Application.consoleLogPath);
+            Debug.Log(Application.streamingAssetsPath);
+            Debug.Log(Application.persistentDataPath);
+            Debug.Log(Application.temporaryCachePath);
+        }
+        else if(Input.GetKeyDown(KeyCode.J)) {
+            IOHelper.AddPrefab();
         }
     }
     private void ResetRulerPosition() {

@@ -1,8 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.IO;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Xml.Serialization;
 using UnityEngine;
 using MATH = System.Math;
+using System.Text;
+using Newtonsoft.Json;
+using UnityEngine.UIElements;
+using UnityEditor;
+using OBJECT = UnityEngine.Object;
 public static class StaticMethods {
     public static void cbj0() {
         Debug.Log("test");
@@ -11,7 +19,7 @@ public static class StaticMethods {
         //A类不确定度
         double s1 = 0.0, s2 = 0.0;
         int length = input.Length;
-        for(int i = 0; i < length; i++) {
+        for(int i = 0;i < length;i++) {
             s1 += input[i];
             s2 += input[i] * input[i];
         }
@@ -48,7 +56,7 @@ public static class StaticMethods {
         }
         double s = 0.0, sx = 0.0, sy = 0.0;
         int n = X.Length;
-        for(int i = 0; i < n; i++) {
+        for(int i = 0;i < n;i++) {
             s += X[i] * Y[i];
             sx += X[i];
             sy += Y[i];
@@ -62,7 +70,7 @@ public static class StaticMethods {
         }
         int n = X.Length;
         double xav = Average(X), yav = Average(Y), xyav = 0.0, x2av = 0.0, y2av = 0.0, u = 0.0;
-        for(int i = 0; i < n; i++) {
+        for(int i = 0;i < n;i++) {
             xyav += X[i] * Y[i];
             x2av += X[i] * X[i];
             y2av += Y[i] * Y[i];
@@ -72,7 +80,7 @@ public static class StaticMethods {
         b = (xav * yav - xyav) / (xav * xav - x2av);
         a = yav - b * xav;
         r = (xyav - xav * yav) / MATH.Sqrt((x2av - xav * xav) * (y2av - yav * yav));
-        for(int i = 0; i < n; i++) {
+        for(int i = 0;i < n;i++) {
             u += (Y[i] - (a + b * X[i])) * (Y[i] - (a + b * X[i]));
         }
         //返回值:{拟合的b,拟合的a,相关系数r,不确定度}
@@ -87,14 +95,14 @@ public static class StaticMethods {
         int n = k / 2;
         int dif = k % 2 == 0 ? n : n + 1;
         double[] bi = new double[n];
-        for(int i = 0; i < n; i++) {
+        for(int i = 0;i < n;i++) {
             bi[i] = (Y[i + dif] - Y[i]) / (X[i + dif] - X[i]);
         }
         double bar = Average(bi), xav = Average(X), yav = Average(Y);
         //返回值:{{拟合的b,拟合的a,X的平均值,Y的平均值,b的不确定度},{每个逐差的斜率}}
         return new double[][] { new double[] { bar, yav - xav * bar, xav, yav, Uncertain_A(bi) / n }, bi };
     }
-    public static (double[],string) BookVolume(double[] A, double[] B, double[] C) {//测量数据,长A 宽B 高C,calcstr若不为null返回计算过程字符串
+    public static (double[], string) BookVolume(double[] A, double[] B, double[] C) {//测量数据,长A 宽B 高C,calcstr若不为null返回计算过程字符串
         if(A == null || B == null || C == null) {
             return default;
         }
@@ -145,35 +153,35 @@ public static class InstrumentError {
     }
     public static double steel_tape(int level, double length) {
         switch(level) {
-            case 1:
-                return 0.1 + 0.001 * length;
-            case 2:
-                return 0.3 + 0.002 * length;
-            default:
-                throw new UnityException(":)");
+        case 1:
+            return 0.1 + 0.001 * length;
+        case 2:
+            return 0.3 + 0.002 * length;
+        default:
+            throw new UnityException(":)");
         }
     }
     public static double caliper(double division, double length) {
         if(length < 0.0) throw new UnityException("长度必须>=0");
         switch(division) {
-            case 0.02:
-                if(length <= 150) return 0.02;
-                else if(length <= 200) return 0.03;
-                else if(length <= 300) return 0.04;
-                else if(length <= 500) return 0.05;
-                else if(length <= 1000) return 0.07;
-                else throw new UnityException("不支持>=1000的");
-            case 0.05:
-                if(length <= 200) return 0.05;
-                else if(length <= 500) return 0.08;
-                else if(length <= 1000) return 0.1;
-                else throw new UnityException("不支持>=1000的");
-            case 0.1:
-                if(length <= 500) return 0.10;
-                else if(length <= 1000) return 0.15;
-                else throw new UnityException("不支持>=1000的");
-            default:
-                throw new UnityException("分度值不支持");
+        case 0.02:
+            if(length <= 150) return 0.02;
+            else if(length <= 200) return 0.03;
+            else if(length <= 300) return 0.04;
+            else if(length <= 500) return 0.05;
+            else if(length <= 1000) return 0.07;
+            else throw new UnityException("不支持>=1000的");
+        case 0.05:
+            if(length <= 200) return 0.05;
+            else if(length <= 500) return 0.08;
+            else if(length <= 1000) return 0.1;
+            else throw new UnityException("不支持>=1000的");
+        case 0.1:
+            if(length <= 500) return 0.10;
+            else if(length <= 1000) return 0.15;
+            else throw new UnityException("不支持>=1000的");
+        default:
+            throw new UnityException("分度值不支持");
         }
     }
     public static double micrometer(double length) {
@@ -192,7 +200,7 @@ public static class InstrumentError {
     }
     public static double resistance_box(double[] a, double[] r, double r0) {
         double s = 0;
-        for(int i = 0; i < a.Length; i++) {
+        for(int i = 0;i < a.Length;i++) {
             s += (a[i] * r[i] / 100);
         }
         return s += r0;
@@ -200,20 +208,20 @@ public static class InstrumentError {
     public static double full_immersion_mercury_thermometer(double t, double division) {
         if(-30.0 <= t && t <= 100.0) {
             switch(division) {
-                case 0.1: return 0.2;
-                case 0.2: return 0.3;
-                case 0.5: return 0.5;
-                case 1.0: return 1.0;
-                default: break;
+            case 0.1: return 0.2;
+            case 0.2: return 0.3;
+            case 0.5: return 0.5;
+            case 1.0: return 1.0;
+            default: break;
             }
         }
         else if(100.0 < t && t <= 200.0) {
             switch(division) {
-                case 0.1: return 0.4;
-                case 0.2: return 0.4;
-                case 0.5: return 1.0;
-                case 1.0: return 1.5;
-                default: break;
+            case 0.1: return 0.4;
+            case 0.2: return 0.4;
+            case 0.5: return 1.0;
+            case 1.0: return 1.5;
+            default: break;
             }
         }
         throw new UnityException("不支持的操作");
@@ -221,44 +229,207 @@ public static class InstrumentError {
     public static double mercury_thermometer(double t, double division) {
         if(-30.0 <= t && t <= 100.0) {
             switch(division) {
-                case 0.5: return 1.0;
-                case 1.0: return 1.5;
-                default: break;
+            case 0.5: return 1.0;
+            case 1.0: return 1.5;
+            default: break;
             }
         }
         else if(100.0 < t && t <= 200.0) {
             switch(division) {
-                case 0.5: return 1.5;
-                case 1.0: return 2.0;
-                default: break;
+            case 0.5: return 1.5;
+            case 1.0: return 2.0;
+            default: break;
             }
         }
         throw new UnityException("不支持的操作");
     }
     public static double Pt_Rh_couple(int level, double t) {
         switch(level) {
-            case 1:
-                if(0 <= t && t <= 1100) return 1;
-                else if(1100 < t && t <= 1600) return 1 + 0.03 * (t - 1100);
-                else throw new UnityException("不支持的操作");
-            case 2:
-                if(0 <= t && t <= 600) return 1.5;
-                else if(600 < t && t <= 1600) return 0.0025 * t;
-                else throw new UnityException("不支持的操作");
-            default:
-                throw new UnityException("不支持的操作");
+        case 1:
+            if(0 <= t && t <= 1100) return 1;
+            else if(1100 < t && t <= 1600) return 1 + 0.03 * (t - 1100);
+            else throw new UnityException("不支持的操作");
+        case 2:
+            if(0 <= t && t <= 600) return 1.5;
+            else if(600 < t && t <= 1600) return 0.0025 * t;
+            else throw new UnityException("不支持的操作");
+        default:
+            throw new UnityException("不支持的操作");
         }
     }
     public static double Pt_resistance(char level, double t) {
         switch(level) {
-            case 'A':
-                return 0.15 + 0.002 * MATH.Abs(t);
-            case 'B':
-                return 0.30 + 0.005 * MATH.Abs(t);
-            default:
-                throw new UnityException("不支持的操作");
+        case 'A':
+            return 0.15 + 0.002 * MATH.Abs(t);
+        case 'B':
+            return 0.30 + 0.005 * MATH.Abs(t);
+        default:
+            throw new UnityException("不支持的操作");
         }
     }
 }
 
+
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+public struct OpenFileName {
+    public int lStructSize;
+    public IntPtr hwndOwner;
+    public IntPtr hInstance;
+    public string lpstrFilter;
+    public string lpstrCustomFilter;
+    public int nMaxCustFilter;
+    public int nFilterIndex;
+    public string lpstrFile;
+    public int nMaxFile;
+    public string lpstrFileTitle;
+    public int nMaxFileTitle;
+    public string lpstrInitialDir;
+    public string lpstrTitle;
+    public int Flags;
+    public short nFileOffset;
+    public short nFileExtension;
+    public string lpstrDefExt;
+    public IntPtr lCustData;
+    public IntPtr lpfnHook;
+    public string lpTemplateName;
+    public IntPtr pvReserved;
+    public int dwReserved;
+    public int flagsEx;
+}
+public delegate int DialogHookProc(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam);
+public static class IOHelper {
+    [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "MessageBox")]
+    public static extern int MessageBox(IntPtr hwnd, string text, string caption, uint type);
+    [DllImport("comdlg32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetOpenFileName", SetLastError = true, ThrowOnUnmappableChar = true)]
+    public static extern int OpenFileDialog(ref OpenFileName lpofn);
+    [DllImport("comdlg32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetSaveFileName", SetLastError = true, ThrowOnUnmappableChar = true)]
+    public static extern int SaveFileDialog(ref OpenFileName lpofn);
+    [DllImport("kernel32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto)]
+    public static extern int GetLastError();
+    public static string OpenFile() {
+        try {
+            OpenFileName ofn = default;
+            ofn.lStructSize = Marshal.SizeOf(ofn);
+            ofn.lpstrFilter = "All files(*.*)\0\0";
+            ofn.lpstrFile = new string(new char[256]);
+            ofn.nMaxFile = ofn.lpstrFile.Length;
+            ofn.lpstrFileTitle = new string(new char[64]);
+            ofn.nMaxFileTitle = ofn.lpstrFileTitle.Length;
+            /*ofn.lpfnHook = (hwnd, msg, wparam, lparam) => {
+                Console.WriteLine($"hwnd:{hwnd},msg:{msg},wparam:{wparam},lparam:{lparam}");
+                //return DefDlgProc(hwnd, msg, wparam, lparam);
+                return 0;
+            };*/
+            ofn.Flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;//| 0x00000020;
+            if(OpenFileDialog(ref ofn) != 0) {
+                //Console.WriteLine(ofn.lpstrFile);
+                //Console.WriteLine(ofn.lpstrFileTitle);
+                return ofn.lpstrFile;
+            }
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+        return null;
+    }
+    public static string SaveFile() {
+        try {
+            OpenFileName ofn = default;
+            ofn.lStructSize = Marshal.SizeOf(ofn);
+            ofn.lpstrFilter = "All files(*.*)\0\0";
+            ofn.lpstrFile = new string(new char[256]);
+            ofn.nMaxFile = ofn.lpstrFile.Length;
+            ofn.lpstrFileTitle = new string(new char[64]);
+            ofn.nMaxFileTitle = ofn.lpstrFileTitle.Length;
+            /*ofn.lpfnHook = (hwnd, msg, wparam, lparam) => {
+                Console.WriteLine($"hwnd:{hwnd},msg:{msg},wparam:{wparam},lparam:{lparam}");
+                //return DefDlgProc(hwnd, msg, wparam, lparam);
+                return 0;
+            };*/
+            ofn.Flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;//| 0x00000020;
+            if(SaveFileDialog(ref ofn) != 0) {
+                //Console.WriteLine(ofn.lpstrFile);
+                //Console.WriteLine(ofn.lpstrFileTitle);
+                return ofn.lpstrFile;
+            }
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+        return null;
+    }
+    public static T ReadJson<T>() {
+        try {
+            string jsonpath = OpenFile();
+            Debug.Log(jsonpath);
+            T result;
+            using(StreamReader sr = new StreamReader(jsonpath)) {
+                string tmp = sr.ReadToEnd();
+                result = JsonConvert.DeserializeObject<T>(tmp);
+            }
+            return result;
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+        return default;
+    }
+    public static void WriteJson<T>(T json) {
+        try {
+            string jsonpath = SaveFile();
+            using(StreamWriter sw = new StreamWriter(jsonpath, false, Encoding.UTF8)) {
+                sw.WriteLine(JsonConvert.SerializeObject(json));
+            }
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+    }
+    public static string ReadString() {
+        try {
+            string jsonpath = OpenFile(), tmp;
+            using(StreamReader sr = new StreamReader(jsonpath)) {
+                tmp = sr.ReadToEnd();
+            }
+            return tmp;
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+        return default;
+    }
+    public static void WriteString(string data) {
+        try {
+            string jsonpath = SaveFile();
+            using(StreamWriter sw = new StreamWriter(jsonpath, false, Encoding.UTF8)) {
+                sw.WriteLine(data);
+            }
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+    }
+    public static void AddPrefab() {
+        try {
+            string open = OpenFile(), tmp = string.Copy(open);
+            if(open == null) {
+                return;
+            }
+            string dest = Path.GetFileName(tmp);
+            string dir = $"{Application.dataPath}/resources/{dest}";
+            try {
+                File.Copy(open, dir, true);
+            }
+            catch(Exception ex) {
+            }
+
+            //var obj = PrefabUtility.LoadPrefabContents($"assets/prefab/{dest}");
+            var obj = AssetDatabase.LoadAssetAtPath<OBJECT>($"./assets/resources/{dest}");
+            Debug.Log(obj);
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+    }
+}
 

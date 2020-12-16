@@ -14,7 +14,7 @@ public class V2_move : MonoBehaviour
         if (other.tag == "book")
         {
             GameObject V2 = GameObject.Find("Vernier");
-            print("2");
+            //print("2");
             V2.GetComponent<Move_vernier>().move2 = false;
         }
        
