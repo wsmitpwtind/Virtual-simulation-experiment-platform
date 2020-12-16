@@ -122,10 +122,14 @@ public class MoveRuler3 : MonoBehaviour {
             }
         }
         else if(Input.GetKeyDown(KeyCode.K)) {
-            Debug.Log(IOHelper.ReadData());
+            Debug.Log(Application.dataPath);
+            Debug.Log(Application.consoleLogPath);
+            Debug.Log(Application.streamingAssetsPath);
+            Debug.Log(Application.persistentDataPath);
+            Debug.Log(Application.temporaryCachePath);
         }
         else if(Input.GetKeyDown(KeyCode.J)) {
-            IOHelper.WriteData("cbj%%%");
+            IOHelper.AddPrefab();
         }
     }
     private void ResetRulerPosition() {

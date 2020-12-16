@@ -8,6 +8,8 @@ using UnityEngine;
 using MATH = System.Math;
 using System.Text;
 using Newtonsoft.Json;
+using UnityEngine.UIElements;
+using UnityEditor;
 
 public static class StaticMethods {
     public static void cbj0() {
@@ -269,67 +271,60 @@ public static class InstrumentError {
 
 
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-public class FileOpenDialog {
-    public int structSize = 0;
-    public IntPtr dlgOwner = IntPtr.Zero;
-    public IntPtr instance = IntPtr.Zero;
-    public string filter = null;
-    public string customFilter = null;
-    public int maxCustFilter = 0;
-    public int filterIndex = 0;
-    public string file = null;
-    public int maxFile = 0;
-    public string fileTitle = null;
-    public int maxFileTitle = 0;
-    public string initialDir = null;
-    public string title = null;
-    public int flags = 0;
-    public short fileOffset = 0;
-    public short fileExtension = 0;
-    public string defExt = null;
-    public IntPtr custData = IntPtr.Zero;
-    public IntPtr hook = IntPtr.Zero;
-    public string templateName = null;
-    public IntPtr reservedPtr = IntPtr.Zero;
-    public int reservedInt = 0;
-    public int flagsEx = 0;
+public struct OpenFileName {
+    public int lStructSize;
+    public IntPtr hwndOwner;
+    public IntPtr hInstance;
+    public string lpstrFilter;
+    public string lpstrCustomFilter;
+    public int nMaxCustFilter;
+    public int nFilterIndex;
+    public string lpstrFile;
+    public int nMaxFile;
+    public string lpstrFileTitle;
+    public int nMaxFileTitle;
+    public string lpstrInitialDir;
+    public string lpstrTitle;
+    public int Flags;
+    public short nFileOffset;
+    public short nFileExtension;
+    public string lpstrDefExt;
+    public IntPtr lCustData;
+    public IntPtr lpfnHook;
+    public string lpTemplateName;
+    public IntPtr pvReserved;
+    public int dwReserved;
+    public int flagsEx;
 }
 public delegate int DialogHookProc(IntPtr hwnd, int msg, IntPtr wparam, IntPtr lparam);
 public static class IOHelper {
     [DllImport("user32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "MessageBox")]
     public static extern int MessageBox(IntPtr hwnd, string text, string caption, uint type);
     [DllImport("comdlg32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetOpenFileName", SetLastError = true, ThrowOnUnmappableChar = true)]
-    public static extern int OpenFileDialog(FileOpenDialog lpofn);
+    public static extern int OpenFileDialog(ref OpenFileName lpofn);
     [DllImport("comdlg32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto, EntryPoint = "GetSaveFileName", SetLastError = true, ThrowOnUnmappableChar = true)]
-    public static extern int SaveFileDialog(FileOpenDialog lpofn);
+    public static extern int SaveFileDialog(ref OpenFileName lpofn);
     [DllImport("kernel32.dll", CallingConvention = CallingConvention.StdCall, CharSet = CharSet.Auto)]
     public static extern int GetLastError();
-    public static string ReadData() {
+    public static string OpenFile() {
         try {
-            FileOpenDialog dialog = new FileOpenDialog();
-            dialog.structSize = Marshal.SizeOf(dialog);
-            dialog.filter = "txt files(*.txt)\0*.txt;\0All Files(*.*)\0*.*;\0\0";
-            dialog.file = new string(new char[256]);
-            dialog.maxFile = dialog.file.Length;
-            dialog.fileTitle = new string(new char[64]);
-            dialog.maxFileTitle = dialog.fileTitle.Length;
-            dialog.initialDir = Application.dataPath;  //默认路径
-            dialog.title = "Open File Dialog";
-            dialog.defExt = "txt";//显示文件的类型
-                                  //注意一下项目不一定要全选 但是0x00000008项不要缺少
-            dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
-
-            //MessageBox(IntPtr.Zero, "cbj666", "cbj0", 0u);
-            if(OpenFileDialog(dialog) != 0) {
-                string openname = dialog.file.Replace("\0",""), result;
-                Debug.Log(openname);
-                using(StreamReader sr = new StreamReader(openname)) {
-                    result = sr.ReadToEnd();
-                }
-                return result;
-            }
-            else {
-                Debug.Log(GetLastError());
+            OpenFileName ofn = default;
+            ofn.lStructSize = Marshal.SizeOf(ofn);
+            ofn.lpstrFilter = "All files(*.*)\0\0";
+            ofn.lpstrFile = new string(new char[256]);
+            ofn.nMaxFile = ofn.lpstrFile.Length;
+            ofn.lpstrFileTitle = new string(new char[64]);
+            ofn.nMaxFileTitle = ofn.lpstrFileTitle.Length;
+            /*ofn.lpfnHook = (hwnd, msg, wparam, lparam) => {
+                Console.WriteLine($"hwnd:{hwnd},msg:{msg},wparam:{wparam},lparam:{lparam}");
+                //return DefDlgProc(hwnd, msg, wparam, lparam);
+                return 0;
+            };*/
+            ofn.Flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;//| 0x00000020;
+            if(OpenFileDialog(ref ofn) != 0) {
+                //Console.WriteLine(ofn.lpstrFile);
+                //Console.WriteLine(ofn.lpstrFileTitle);
+                return ofn.lpstrFile;
             }
         }
         catch(Exception ex) {
@@ -337,91 +332,74 @@ public static class IOHelper {
         }
         return null;
     }
-    public static void WriteData(string data) {
-        try {
-            FileOpenDialog dialog = new FileOpenDialog();
-            dialog.structSize = Marshal.SizeOf(dialog);
-            dialog.filter = "txt files(*.txt)\0*.txt;\0All Files(*.*)\0*.*;\0\0";
-            dialog.file = new string(new char[256]);
-            dialog.maxFile = dialog.file.Length;
-            dialog.fileTitle = new string(new char[64]);
-            dialog.maxFileTitle = dialog.fileTitle.Length;
-            dialog.initialDir = Application.dataPath;  //默认路径
-            dialog.title = "Open File Dialog";
-            dialog.defExt = "txt";//显示文件的类型
-                                  //注意一下项目不一定要全选 但是0x00000008项不要缺少
-            dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;  //OFN_EXPLORER|OFN_FILEMUSTEXIST|OFN_PATHMUSTEXIST| OFN_ALLOWMULTISELECT|OFN_NOCHANGEDIR
-            if(SaveFileDialog(dialog) != 0) {
-                string openname = dialog.file.Replace("\0", "");
-                Debug.Log(openname);
-                using(StreamWriter sw = new StreamWriter(openname, false, Encoding.UTF8)) {
-                    sw.WriteLine(data);
-                }
-            }
-            else {
-                Debug.Log(GetLastError());
-            }
-        }
-        catch(Exception ex) {
-            Debug.LogError(ex);
-        }
-    }
     public static T ReadJson<T>() {
         try {
-            FileOpenDialog dialog = new FileOpenDialog();
-            dialog.structSize = Marshal.SizeOf(dialog);
-            dialog.filter = "json files(*.json)\0*.json;\0txt files(*.txt)\0*.txt;\0All Files(*.*)\0*.*;\0\0";
-            dialog.file = new string(new char[256]);
-            dialog.maxFile = dialog.file.Length;
-            dialog.fileTitle = new string(new char[64]);
-            dialog.maxFileTitle = dialog.fileTitle.Length;
-            dialog.initialDir = Application.dataPath;  //默认路径
-            dialog.title = "Open File Dialog";
-            dialog.defExt = "json";//显示文件的类型
-                                  //注意一下项目不一定要全选 但是0x00000008项不要缺少
-            dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;
-            if(OpenFileDialog(dialog) != 0) {
-                string openname = dialog.file.Replace("\0", ""), result;
-                Debug.Log(openname);
-                using(StreamReader sr = new StreamReader(openname)) {
-                    result = sr.ReadToEnd();
-                }
-                
-                return JsonConvert.DeserializeObject<T>(result);
+            string jsonpath = OpenFile();
+            Debug.Log(jsonpath);
+            T result;
+            using(StreamReader sr = new StreamReader(jsonpath)) {
+                string tmp = sr.ReadToEnd();
+                result = JsonConvert.DeserializeObject<T>(tmp);
             }
-            else {
-                Debug.Log(GetLastError());
-            }
+            return result;
         }
         catch(Exception ex) {
             Debug.LogError(ex);
         }
         return default;
     }
-    public static void WriteJson<T>(T data) {
+    public static void WriteJson<T>(T json) {
         try {
-            FileOpenDialog dialog = new FileOpenDialog();
-            dialog.structSize = Marshal.SizeOf(dialog);
-            dialog.filter = "json files(*.json)\0*.json;\0txt files(*.txt)\0*.txt;\0All Files(*.*)\0*.*;\0\0";
-            dialog.file = new string(new char[256]);
-            dialog.maxFile = dialog.file.Length;
-            dialog.fileTitle = new string(new char[64]);
-            dialog.maxFileTitle = dialog.fileTitle.Length;
-            dialog.initialDir = Application.dataPath;  //默认路径
-            dialog.title = "Open File Dialog";
-            dialog.defExt = "json";//显示文件的类型
-                                   //注意一下项目不一定要全选 但是0x00000008项不要缺少
-            dialog.flags = 0x00080000 | 0x00001000 | 0x00000800 | 0x00000200 | 0x00000008;
-            if(SaveFileDialog(dialog) != 0) {
-                string openname = dialog.file.Replace("\0", "");
-                Debug.Log(openname);
-                using(StreamWriter sw = new StreamWriter(openname, false, Encoding.UTF8)) {
-                    sw.WriteLine(JsonConvert.SerializeObject(data));
-                }
+            string jsonpath = OpenFile();
+            using(StreamWriter sw = new StreamWriter(jsonpath, false, Encoding.UTF8)) {
+                sw.WriteLine(JsonConvert.SerializeObject(json));
             }
-            else {
-                Debug.Log(GetLastError());
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+    }
+    public static string ReadString() {
+        try {
+            string jsonpath = OpenFile(), tmp;
+            using(StreamReader sr = new StreamReader(jsonpath)) {
+                tmp = sr.ReadToEnd();
             }
+            return tmp;
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+        return default;
+    }
+    public static void WriteString(string data) {
+        try {
+            string jsonpath = OpenFile();
+            using(StreamWriter sw = new StreamWriter(jsonpath, false, Encoding.UTF8)) {
+                sw.WriteLine(data);
+            }
+        }
+        catch(Exception ex) {
+            Debug.LogError(ex);
+        }
+    }
+    public static void AddPrefab() {
+        try {
+            string open = OpenFile(), tmp = string.Copy(open);
+            if(open == null) {
+                return;
+            }
+            string dest = Path.GetFileName(tmp);
+            string dir = $"{Application.dataPath}/prefab/{dest}";
+            try {
+                File.Copy(open, dir, true);
+            }
+            catch(Exception ex) {
+            }
+
+            var obj = PrefabUtility.LoadPrefabContents($"assets/prefab/{dest}");
+            
+            Debug.Log(obj);
         }
         catch(Exception ex) {
             Debug.LogError(ex);
