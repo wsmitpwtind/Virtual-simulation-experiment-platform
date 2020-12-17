@@ -409,27 +409,32 @@ public static class IOHelper {
             Debug.LogError(ex);
         }
     }
-    public static void AddPrefab() {
+    public static GameObject AddPrefab() {
         try {
             string open = OpenFile(), tmp = string.Copy(open);
             if(open == null) {
-                return;
+                return null;
             }
             string dest = Path.GetFileName(tmp);
             string dir = $"{Application.dataPath}/resources/{dest}";
             try {
                 File.Copy(open, dir, true);
             }
-            catch(Exception ex) {
+            catch(Exception ex2) {
+                Debug.Log(ex2);
             }
 
             //var obj = PrefabUtility.LoadPrefabContents($"assets/prefab/{dest}");
-            var obj = AssetDatabase.LoadAssetAtPath<OBJECT>($"./assets/resources/{dest}");
-            Debug.Log(obj);
+            string s = Path.GetFileNameWithoutExtension(dest);
+            //Debug.Log(s);
+            var obj = Resources.Load<GameObject>(s);
+            //Debug.Log(obj);
+            return obj;
         }
         catch(Exception ex) {
             Debug.LogError(ex);
         }
+        return null;
     }
 }
 

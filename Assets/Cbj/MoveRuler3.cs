@@ -129,7 +129,10 @@ public class MoveRuler3 : MonoBehaviour {
             Debug.Log(Application.temporaryCachePath);
         }
         else if(Input.GetKeyDown(KeyCode.J)) {
-            IOHelper.AddPrefab();
+            var obj = IOHelper.AddPrefab();
+            if(obj != null) {
+                GameObject.Instantiate(obj, new Vector3(0, 0, 0), Quaternion.Euler(0, 0, 0));
+            }
         }
     }
     private void ResetRulerPosition() {
