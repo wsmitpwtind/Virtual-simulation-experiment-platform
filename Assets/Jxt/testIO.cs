@@ -22,13 +22,13 @@ public class testIO : MonoBehaviour
         // GameObject obj =  IOHelper.AddPrefab();
 
         // GameObject.Instantiate<GameObject>(obj);
+        Storage storage = new Storage(1);
 
-        Storage.SetStorage("button", new Model123 (){
+        storage.SetStorage("button", new Model123 (){
             name = "WO",
             age = 122
         });
-
-        Debug.Log(Storage.GetStorage<Model123>("button").age);
+        Debug.Log(storage.GetStorage<Model123>("button").age);
     }
     class Model123
     {
