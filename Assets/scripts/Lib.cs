@@ -550,6 +550,11 @@ public class Storage
     {
         get => new Storage("common");
     }
+    public object this[Type T, string key]
+    {
+        get => typeof(Storage).GetMethod("GetStorage").MakeGenericMethod(T).Invoke(this, new object[] { key });
+        set => SetStorage(key, value);
+    }
     /// <summary>
     /// 获取Storage存储的对象，以类型T返回
     /// </summary>
