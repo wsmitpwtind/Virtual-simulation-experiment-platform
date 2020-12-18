@@ -550,9 +550,13 @@ public class Storage
     {
         get => new Storage("common");
     }
-    public object this[Type T, string key]
+    public object this[string key, Type t]
     {
-        get => typeof(Storage).GetMethod("GetStorage").MakeGenericMethod(T).Invoke(this, new object[] { key });
+        get => JsonConvert.DeserializeObject(FileIOHelper.ReadJSONFile(directory + key), t);
+        set => SetStorage(key, value);
+    }
+    public object this[string key]
+    {
         set => SetStorage(key, value);
     }
     /// <summary>
@@ -574,7 +578,9 @@ public class Storage
     public void SetStorage(string key, object values)
     {
         string path = directory + key;
-        FileIOHelper.SaveFile(path, JsonConvert.SerializeObject(values));
+        FileIOHelper.SaveFile(path, JsonConvert.SerializeObject(values, new JsonSerializerSettings() {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        }));
     }
     protected static class FileIOHelper
     {

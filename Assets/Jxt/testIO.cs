@@ -29,6 +29,7 @@ public class testIO : MonoBehaviour
             age = 122
         });
         Debug.Log(storage.GetStorage<Model123>("button").age);
+        Debug.Log((storage["button123", typeof(Model123)] as Model123).name);
     }
     class Model123
     {
