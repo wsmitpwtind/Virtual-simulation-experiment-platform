@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class Wwlplay : MonoBehaviour
 {
-    private float[] time = {10f,10f};//每段音频的时间
-    private bool[] IfnotFirst = new bool[10]; 
+    private float[] time = {7f,6f,6f};//每段音频的时间
+    private bool[] IfnotFirst = new bool[10];
+    private bool isplay = false;
     private void Update()
     {
-        if (Exp_1.state_1 == 1&&IfnotFirst[0]==false)
+        if (Exp_1.state_1 == 0&&IfnotFirst[0]==false&&isplay==false)
         {
             transform.Find("Wwl").gameObject.SetActive(true);
-            transform.Find("voice2").gameObject.SetActive(true);
+            transform.Find("voice0").gameObject.SetActive(true);
             IfnotFirst[0] = true;
+            isplay = true;
             Invoke("ShutWwl", time[0]);
         }
-        if (Exp_1.state_1 == 0 && IfnotFirst[1] == false)
+        if (Exp_1.state_1 == 1 && IfnotFirst[1] == false && isplay == false)
         {
             transform.Find("Wwl").gameObject.SetActive(true);
             transform.Find("voice1").gameObject.SetActive(true);
@@ -23,11 +25,14 @@ public class Wwlplay : MonoBehaviour
             Invoke("ShutWwl", time[1]);
         }
 
+
+
     }
 
     private void ShutWwl()
     {
         transform.Find("Wwl").gameObject.SetActive(false);
+        isplay = false;
     }
 
 

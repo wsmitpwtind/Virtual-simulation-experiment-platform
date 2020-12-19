@@ -8,15 +8,15 @@ public class Rand_move : MonoBehaviour
     private float speed_x;
     private float speed_y;
     private float speed_z;
-    private float limit = 0.05f;
+    private float limit = 0.06f;
     private Vector3 rot=new Vector3();
     // Start is called before the first frame update
     void Start()
     {
         start = transform.position;
-        speed_x = Random.Range(-5, 6) * 0.01f;
-        speed_y = Random.Range(-5, 6) * 0.01f;
-        speed_z = Random.Range(-5, 6) * 0.01f;
+        speed_x = Random.Range(-5, 6) * 0.015f;
+        speed_y = Random.Range(-5, 6) * 0.015f;
+        speed_z = Random.Range(-5, 6) * 0.015f;
     }
 
     // Update is called once per frame
