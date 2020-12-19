@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// <summary>
 /// 渐显渐隐动画的实例对象类
 /// </summary>
-public class AnimateObject
+public class AnimateObject : System.IDisposable
 {
     /// <summary>
     /// 托管的GameObject
@@ -98,6 +98,24 @@ public class AnimateObject
         ChangeCount++;
         timer.Start();
     }
+
+    public void Dispose()
+    {
+        timer.Stop();
+        timer.Dispose();
+        timer = null;
+    }
+
+    ~AnimateObject()
+    {
+        try
+        {
+            timer.Stop();
+            timer.Dispose();
+        }
+        catch
+        { }
+    }
 }
 
 /// <summary>
@@ -132,7 +150,10 @@ public class FadeAnimate : MonoBehaviour
                     color.a = 1;
                     item.gameObj.color = color;
                 }
+                var tmp = animateObjects[i];
                 animateObjects.RemoveAt(i);
+                tmp.Dispose();
+                tmp = null;
                 continue;
             }
             if (item.canSetOpacity && item.gameObj.name != "Mask")
@@ -142,7 +163,7 @@ public class FadeAnimate : MonoBehaviour
                 item.gameObj.color = color;
             }
             if ((!item.setted) && item.canSetActive)
-            { 
+            {
                 item.gameObj.gameObject.SetActive(item.active);
                 item.setted = true;
             }
