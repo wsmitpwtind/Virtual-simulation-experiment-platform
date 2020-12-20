@@ -56,3 +56,5 @@ public class Manager : MonoBehaviour
         GameObject.Find("Indicator").GetComponent<IndicatorManager>().HideAllIndicator();
     }
 }
+
+
