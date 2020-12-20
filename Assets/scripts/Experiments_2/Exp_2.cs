@@ -31,7 +31,6 @@ public class Exp_2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -76,6 +75,14 @@ public class MonitorableValue<T> where T : IEquatable<T>
                 oldValue = _value,
                 newValue = value
             });
+    }
+    public override bool Equals(object obj)
+    {
+        return Value.Equals(obj);
+    }
+    public override string ToString()
+    {
+        return Value.ToString();
     }
     public class ValueChangedEventArgs : EventArgs
     {
