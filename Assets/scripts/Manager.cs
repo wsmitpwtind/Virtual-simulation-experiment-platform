@@ -23,7 +23,7 @@ public class Manager : MonoBehaviour
         If_bug();
         
 
-        if (Exp_1.state_1 == 1)
+        if (Exp_2.state.Equals(1))
         {
                         
             if (Input.GetKey(KeyCode.Q))
@@ -41,7 +41,7 @@ public class Manager : MonoBehaviour
     {
         if(Player.transform.position.y < 0f)
         {
-            Exp_1.state_1 = 0;
+            Exp_2.state.Equals(0);
             Quit_the_experienment();
             SceneManager.LoadScene("Bug");
         }
@@ -52,7 +52,7 @@ public class Manager : MonoBehaviour
     {
         Canvas.transform.Find("Dropdown").gameObject.SetActive(false);
         Camera.GetComponent<Look>().enabled = true;
-        Exp_1.Move_able = 1;
+        Exp_2.Move_able = 1;
         GameObject.Find("Indicator").GetComponent<IndicatorManager>().HideAllIndicator();
     }
 }

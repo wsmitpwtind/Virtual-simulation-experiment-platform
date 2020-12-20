@@ -9,7 +9,6 @@ public class Rand_move : MonoBehaviour
     private float speed_y;
     private float speed_z;
     private float limit = 0.06f;
-    private Vector3 rot=new Vector3();
     // Start is called before the first frame update
     void Start()
     {

@@ -24,37 +24,25 @@ public class Exp_2 : MonoBehaviour
 
     public static int Move_able = 1;
     public static double score_2 = 0;
-    public static int state_2 = 0;//0代表未开始，1代表正在实验，2代表结束实验
 
 
-    public static MonitorableValue<int> state = new MonitorableValue<int>(0);
+    public static MonitorableValue<int> state = new MonitorableValue<int>(0);//0代表未开始，1代表正在实验，2代表结束实验
 
     // Start is called before the first frame update
     void Start()
     {
-        // 订阅事件
-        //state.onMyValueChanged += test;
-        // 更改值
-        state.Value = 1;
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
+        
     }
-
-
-    /*private void test(object sender,MonitorableValue.ValueChangedEventArgs e)
-    {
-        Debug.Log("123");
-    }*/
+         
 }
 
-
-
-
-//***************
 
 
 public class MonitorableValue<T> where T : IEquatable<T>
@@ -73,7 +61,7 @@ public class MonitorableValue<T> where T : IEquatable<T>
         get => _value;
         set
         {
-            if (_value.Equals(value))
+            if (!_value.Equals(value))
                 WhenValueChange(value);
             _value = value;
         }
