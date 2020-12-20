@@ -104,7 +104,9 @@ public static class StaticMethods {
         //返回值:{{拟合的b,拟合的a,X的平均值,Y的平均值,b的不确定度},{每个逐差的斜率}}
         return new double[][] { new double[] { bar, yav - xav * bar, xav, yav, Uncertain_A(bi) / n }, bi };
     }
-    public static (double[], string) BookVolume(double[] A, double[] B, double[] C) {//测量数据,长A 宽B 高C,calcstr若不为null返回计算过程字符串
+    public static (double, double, string) BookVolume(double[] A, double[] B, double[] C) {
+        //测量数据,长A 宽B 高C,用户输入自行计算的体积和不确定度
+        //calcstr若不为null返回计算过程字符串
         if(A == null || B == null || C == null) {
             return default;
         }
@@ -120,16 +122,18 @@ public static class StaticMethods {
         double V = A_av * B_av * C_av;
         double uv = MATH.Sqrt(uar * uar + ubr * ubr + ucr * ucr);
         double u = uv * V;
-        (string, string, bool) fx = FixResult(V, u);
-        return (new double[] { V, u }, $"计算过程:A={A_av};B={B_av};C={C_av};\r\n卡尺的b类不确定度Ub={u2}\r\na类不确定度:Ua(A)={u1a};Ua(B)={u1b};Ua(C)={u1c};\r\n合成不确实度U(A)={ua};U(B)={ub};U(C)={uc};\r\n相对不确定度 U(V)/V=sqrt((U(a)/A)^2+(U(b)/B)^2+(U(C)/C)^2))={uv}\r\n最终修约结果:V={fx.Item1};U(V)={fx.Item2},符合不确定度修约规范:{fx.Item3}");
+        (string, string) fx = FixResult(V, u);
+        return (V, u, $"计算过程:A={A_av};B={B_av};C={C_av};\r\n卡尺的b类不确定度Ub={u2}\r\na类不确定度:Ua(A)={u1a};Ua(B)={u1b};Ua(C)={u1c};\r\n合成不确实度U(A)={ua};U(B)={ub};U(C)={uc};\r\n相对不确定度 U(V)/V=sqrt((U(a)/A)^2+(U(b)/B)^2+(U(C)/C)^2))={uv}\r\n最终修约结果:V={fx.Item1};U(V)={fx.Item2}");
     }
-    public static (string, string, bool) FixResult(double origin, double uncertain) {
+    public static (string, bool) CheckVar(double calc_val, double calc_uncertain, double user_calc, double user_uncertain) {
+        double fix1 = double.Parse(user_uncertain.ToString("#e+0"));
+        double fix2 = double.Parse(calc_uncertain.ToString("#e+0"));
+        bool checkcorr = Math.Abs(fix1 - user_uncertain) <= double.Epsilon;
+        return ($"用户计算值和机器值的误差{(user_calc - calc_val) / calc_val:###%},不确定度误差:{(fix1 - fix2) / fix2:###%}", checkcorr);
+    }
+    public static (string, string) FixResult(double origin, double uncertain) {
         string s = uncertain.ToString("#e+0");
         if(double.TryParse(s, out double ufix)) {
-            bool chk = false;
-            if(MATH.Abs(ufix - uncertain) <= double.Epsilon) {
-                chk = true;
-            }
             Match mch = Regex.Match(s, "e[+|-][0-9]+", RegexOptions.Compiled);
             if(int.TryParse(mch.Value.Substring(1), out int digit)) {
                 Console.WriteLine(digit);
@@ -138,7 +142,7 @@ public static class StaticMethods {
                 int fixlen = fix.ToString().Length;
                 string fmt = "#." + new string('#', fixlen - 1) + "e+0";
                 string res = (fix * move).ToString(fmt);
-                return (res, s, chk);
+                return (res, s);
             }
         }
         return default;
