@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Exp_1 : MonoBehaviour
 {
@@ -12,15 +13,6 @@ public class Exp_1 : MonoBehaviour
     public static int Move_able = 1;
     public static double score_1 = 0;
     public static int state_1 = 0;//0代表未开始，1代表正在实验，2代表结束实验
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

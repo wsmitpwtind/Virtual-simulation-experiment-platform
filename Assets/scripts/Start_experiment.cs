@@ -20,12 +20,12 @@ public class Start_experiment : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if(Input.GetKeyDown(KeyCode.D) && Exp_1.state_1 == 1) {
+        if(Input.GetKeyDown(KeyCode.D) && Exp_2.state.Equals(1)) {
             cam_look.enabled = false;
             //print(cam_look.enabled);
             indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
         }
-        if(Input.GetKeyDown(KeyCode.F) && Exp_1.state_1 == 1) {
+        if(Input.GetKeyDown(KeyCode.F) && Exp_2.state.Equals(1)) {
             cam_look.enabled = true;
             //print(cam_look.enabled);
             indicatorManager.Indicator1.ShowIndicate("D", "锁定视角");
@@ -34,18 +34,18 @@ public class Start_experiment : MonoBehaviour {
 
     void OnTriggerStay(Collider other) {
         if(Input.GetKey(KeyCode.E)) {
-            Exp_1.state_1 = 1;//开始实验
+            Exp_2.state.Value=1;//开始实验
             Start_the_experienment();
         }
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(Exp_1.state_1 != 1)
+        if(Exp_2.state.Equals(0))
             indicatorManager.Indicator1.ShowIndicate("E", "开始实验");
     }
 
     private void OnTriggerExit(Collider other) {
-        if(Exp_1.state_1 != 1)
+        if(Exp_2.state.Equals(0))
             indicatorManager.Indicator1.HideIndicate();
 
     }
@@ -53,7 +53,7 @@ public class Start_experiment : MonoBehaviour {
     void Start_the_experienment() {
         indicatorManager.HideAllIndicator();
         Canvas.transform.Find("Dropdown").gameObject.SetActive(true);
-        Exp_1.Move_able = 0;
+        Exp_2.Move_able = 0;
         Player.transform.position = new Vector3(1.18f, 1.6f, -1.58f);
         Player.transform.rotation = Quaternion.Euler(new Vector3(0f, -90f, 0f));
         Camera.transform.rotation = Quaternion.Euler(new Vector3(30f, -90f, 0f));
