@@ -22,16 +22,15 @@ public class Create_trigonum : MonoBehaviour
     }
     void Trigonum()
     {
-        Now_trigonum = GameObject.Find("ruler(Clone)");
-        if (Now_trigonum == null)
+        Now_trigonum = GameObject.Find("ruler");
+        if (Now_trigonum.transform.position.x - 9f > 0)
         {
-            GameObject trigonum = GameObject.Instantiate(My_trigonum, position, rotation) as GameObject;
-            trigonum.AddComponent<Move_tri>();
-            trigonum.AddComponent<BoxCollider>();
+            Now_trigonum.transform.position = position;
         }
         else
         {
-            Destroy(Now_trigonum);
+            Now_trigonum.transform.position = new Vector3(13.2f, 2f, -2.5f);
+           
         }
 
         GameObject.Find("Dropdown").GetComponent<Dropdown>().value = 0;
