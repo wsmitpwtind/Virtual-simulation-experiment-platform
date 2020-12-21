@@ -30,11 +30,13 @@ public class SwitchPanel : MonoBehaviour
         var animate = panel.GetComponent<RectTransform>().DOScale(1, 0.5f);
         animate.startValue = new Vector3(0, 0, 0);
         animate.SetEase(Ease.OutExpo);
+        animate.SetUpdate(true);
     }
     void HidePanel()
     {
         var animate = panel.GetComponent<RectTransform>().DOScale(0, 0.5f);
         animate.startValue = new Vector3(1, 1, 1);
         animate.SetEase(Ease.InOutExpo);
+        animate.SetUpdate(true);
     }
 }

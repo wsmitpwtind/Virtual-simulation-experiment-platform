@@ -32,7 +32,7 @@ public class Wwlplay : MonoBehaviour
         }
 
 
-        Debug.Log(Exp_2.state);
+        //Debug.Log(Exp_2.state);
     }
 
     private void ShutWwl()

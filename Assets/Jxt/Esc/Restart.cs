@@ -28,7 +28,7 @@ public class Restart : MonoBehaviour
         if (AniInstance != null && Transition != null)
         {
             AniInstance.Show(new List<Graphic>() { Transition }, 400);
-            Invoke(nameof(Delay), (float)0.5);
+            GameObject.Find("Canvas").GetComponent<ShowEsc>().Restart();
         }
         else
             Delay();
