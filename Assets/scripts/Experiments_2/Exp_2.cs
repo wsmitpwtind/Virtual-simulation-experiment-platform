@@ -23,12 +23,22 @@ public class Exp_2 : MonoBehaviour
     public static double V_Real = 0;
 
     public static int Move_able = 1;
-    public static double score_2 = 0;
+    public static double score = 0;
 
 
-    public static MonitorableValue<int> state = new MonitorableValue<int>(0);//0代表未开始，1代表正在实验，2代表结束实验
+    public static MonitorableValue<int> state = new MonitorableValue<int>(0);//含义如下
+    /*
+    0代表未开始，1代表正在实验，2代表结束实验
 
-    // Start is called before the first frame update
+
+
+
+    */
+
+
+
+
+
     void Start()
     {
     }

@@ -8,6 +8,8 @@ public class Manager : MonoBehaviour
     private GameObject Player;
     private GameObject Camera;
     private GameObject Canvas;
+
+    public static MonitorableValue<int> state = new MonitorableValue<int>(0);
     // Start is called before the first frame update
     void Start()
     {
