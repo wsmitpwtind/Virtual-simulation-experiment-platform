@@ -55,7 +55,6 @@ public class ShowEsc : MonoBehaviour
             }
             try
             {
-                LoadScripts();
                 if (GameObject.Find("MainCamera").GetComponent<Look>() != null)
                 {
                     LastCameraEnabled = GameObject.Find("MainCamera").GetComponent<Look>().enabled;
@@ -84,25 +83,5 @@ public class ShowEsc : MonoBehaviour
             GameObject.Find("MainCamera").GetComponent<Look>().enabled = LastCameraEnabled;
         }
         catch { }
-    }
-
-    void LoadScripts()
-    {
-        var buttons = EscInstance.GetComponentsInChildren<Button>(true);
-        foreach (var item in buttons)
-        {
-            if (item.gameObject.name == "ContinueButton")
-            {
-                item.gameObject.AddComponent<Continue>();
-            }
-            else if (item.gameObject.name == "RestartButton")
-            {
-                item.gameObject.AddComponent<Restart>();
-            }
-            else if (item.gameObject.name == "QuitButton")
-            {
-                item.gameObject.AddComponent<Quit>();
-            }
-        }
     }
 }
