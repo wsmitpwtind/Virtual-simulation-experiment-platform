@@ -37,25 +37,18 @@ public class RecordSaver : MonoBehaviour
         dropdown.GetComponentInChildren<ScrollRect>(true).gameObject.SetActive(false);
         dropdown.onValueChanged.AddListener(DropdownValueChanged);
     }
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void DropdownValueChanged(int value)
     {
         if (value == 0)
             return;
         inputField.text = manager.records.Find(x => recordIdTable[value].Equals(x.recordId)).title;
     }
-
     void SaveRecordHandler()
     {
-        var record = new Record();
         var name = inputField.text.Trim();
-        record.recordInfo = record.GenRecordInfo(recordIdTable[dropdown.value], string.IsNullOrEmpty(name) ? "存档" : name);
-        manager.SaveRecord(record);
+        int id = recordIdTable[dropdown.value];
+        var recordInfo = Record.GenRecordInfo(id, string.IsNullOrEmpty(name) ? $"存档 {id}" : name);
+        manager.SaveRecord(recordInfo);
         switchPanel.SwitchPanelHandler();
     }
 }
