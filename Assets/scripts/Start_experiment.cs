@@ -57,6 +57,8 @@ public class Start_experiment : MonoBehaviour {
         Player.transform.position = new Vector3(1.18f, 1.6f, -1.58f);
         Player.transform.rotation = Quaternion.Euler(new Vector3(0f, -90f, 0f));
         Camera.transform.rotation = Quaternion.Euler(new Vector3(30f, -90f, 0f));
+        GameObject CAI = GameObject.Find("Camera_invisiable");
+        CAI.transform.rotation = Quaternion.Euler(new Vector3(30f, -90f, 0f));
         cam_look.enabled = false;
         indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
         if(Input.GetKey(KeyCode.F)) {

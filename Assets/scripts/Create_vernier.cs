@@ -11,7 +11,7 @@ public class Create_vernier : MonoBehaviour
     private GameObject Now_vernier2;
     private Vector3 Vv1;
     private Vector3 Vv2;
-    Vector3 position = new Vector3(0, 2f, -2.5f);
+    Vector3 position = new Vector3(0.3f, 2f, -1.8f);
     Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, 0));
 
     IndicatorManager indicatorManager;
@@ -20,13 +20,7 @@ public class Create_vernier : MonoBehaviour
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(Vernier);
-        Now_vernier = GameObject.Find("Vernier");
-        Now_vernier1 = GameObject.Find("MeasureBody");
-        Now_vernier2 = GameObject.Find("MeasureHead");
-        Vv1 = Now_vernier1.transform.position- Now_vernier.transform.position;
-        Vv2 = Now_vernier2.transform.position- Now_vernier.transform.position;
-        print(Vv1);
-
+        Now_vernier = GameObject.Find("Real_Vernier");
         indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
     }
 
@@ -37,27 +31,15 @@ public class Create_vernier : MonoBehaviour
     }
     void Vernier()
     {
-        //Now_vernier = GameObject.Find("Vernier");
-        BoxCollider Bc = Now_vernier.GetComponent<BoxCollider>();
-        //GameObject V1 = GameObject.Find("Vernier");
-        //Move_vernier v1=V1.GetComponent<Move_vernier>();
-        Move_vernier v1 = Now_vernier.GetComponent<Move_vernier>();
-        v1.move1 = true;
-        //GameObject V2 = GameObject.Find("Vernier");
-        //Move_vernier v2 = V2.GetComponent<Move_vernier>();
-        Move_vernier v2 = Now_vernier.GetComponent<Move_vernier>();
-        v2.move2 = true;
         if (Now_vernier.transform.position.x-9f>0)
         {
             Now_vernier.transform.position = position;
-            indicatorManager.Indicator2.ShowIndicate("P", "进行夹持");
+            //indicatorManager.Indicator2.ShowIndicate("P", "进行夹持");
         }
         else
         {
             Now_vernier.transform.position= new Vector3(10.2f, 2f, -2.5f);
-            Now_vernier1.transform.position = Vv1+ Now_vernier.transform.position;
-            Now_vernier2.transform.position = Vv2+ Now_vernier.transform.position;
-            indicatorManager.Indicator2.HideIndicate();
+            //indicatorManager.Indicator2.HideIndicate();
         }
 
         GameObject.Find("Dropdown").GetComponent<Dropdown>().value = 0;

@@ -10,22 +10,14 @@ public class Move_vernier : MonoBehaviour
     private float distance = 0.5f;
     public bool move1 = true;
     public bool move2 = true;
+    private Vector3 Temp = new Vector3(0.0f, 0.0f, 0.0f); 
     // Start is called before the first frame update
 
     void Start()
     {
         
     }
-    void OnMouseDrag()
-    {
-        //获取到鼠标的位置(鼠标水平的输入和竖直的输入以及距离)
-        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance);
-        //物体的位置，屏幕坐标转换为世界坐标
-        Vector3 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        //把鼠标位置传给物体
-        print("qwq");
-        this.transform.position = objectPosition;
-    }
+   
     // Update is called once per frame
     void Update()
     {
@@ -45,15 +37,28 @@ public class Move_vernier : MonoBehaviour
     void Code()
     {
         //print("qwqw");
-        GameObject V1 = GameObject.Find("MeasureBody");
+        GameObject V1 = GameObject.Find("Real_Vernier");
         GameObject V2 = GameObject.Find("MeasureHead");
-        if (move1)
+        if (move1 && move2)
         {
-            V1.transform.position = new Vector3(V1.transform.position.x, V1.transform.position.y, V1.transform.position.z + 0.002f);
+            V1.transform.position += 0.002f * (V2.transform.position - V1.transform.position).normalized;
+            V2.transform.position -= 0.004f * (V2.transform.position - V1.transform.position).normalized;
         }
-        if (move2)
+        else if (move1 && !move2)
         {
-        V2.transform.position = new Vector3(V2.transform.position.x, V2.transform.position.y, V2.transform.position.z - 0.002f);
+            Temp = V2.transform.position;
+            V1.transform.position += 0.002f * (V2.transform.position - V1.transform.position).normalized;
+            V2.transform.position = Temp;
+        }
+        else if (!move1 && move2)
+        {
+            V2.transform.position -= 0.002f * (V2.transform.position - V1.transform.position).normalized;
+        }
+        if ((V1.transform.position - V2.transform.position).magnitude <= 0.003f)
+        {
+            V2.transform.position = V1.transform.position;
+            move1 = false;
+            move2 = false;
         }
     }
     
