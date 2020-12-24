@@ -43,7 +43,7 @@ public static class RecordManager
         set
         {
             _currentRecordId = value;
-            Storage.CommonStorage.SetStorage("currentRecordId", value);
+            Storage.CommonStorage.SetStorage("currentRecordId", new HH() { currentRecordId = value });
         }
     }
     public static Record currentDefaultRecord
@@ -114,6 +114,8 @@ public static class RecordManager
         if (index != -1)
             list.RemoveAt(index);
         Storage.CommonStorage.SetStorage("RecordInfo", list);
+        Storage storage = new Storage(Id);
+        storage.DeleteStorage();
         onRecordUpdate();
     }
     /// <summary>
@@ -179,7 +181,7 @@ public static class RecordManager
     {
         var list = Storage.CommonStorage.GetStorage<List<RecordInfo>>("RecordInfo");
         int index = list.FindIndex(x => Id.Equals(x.recordId));
-        if (index != -1)
+        if (index == -1)
             return false;
         return true;
     }
