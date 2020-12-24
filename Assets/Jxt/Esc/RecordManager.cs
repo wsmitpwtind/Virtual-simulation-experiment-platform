@@ -157,6 +157,14 @@ public static class RecordManager
     {
         var record = new Record();
         // 在此处收集存档信息
+        record.Manager_state = Manager.state.Value;
+        record.Exp1_state = Exp_1.state.Value;
+        record.Exp2_state = Exp_2.state.Value;
+
+
+
+
+
         return record;
     }
     public class RecordIndexor
@@ -191,6 +199,10 @@ public class RecordInfo
 public class Record
 {
     public int someValue { get; set; }
+    public int Manager_state { get; set; }
+    public int Exp1_state { get; set; }
+    public int Exp2_state { get; set; }
+
 
     public static RecordInfo GenRecordInfo(int id, string title)
     {

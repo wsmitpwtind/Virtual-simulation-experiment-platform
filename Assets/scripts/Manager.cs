@@ -22,14 +22,19 @@ public class Manager : MonoBehaviour
     
     void Start()
     {
+        //加载存档
+        if (RecordManager.)
+        {
+            
+            Record record = RecordManager.defaultRecord[RecordManager.currentRecordId];
+        }
+
+
+
+
         Player = GameObject.Find("Player");
         Camera = GameObject.Find("MainCamera");
-        Canvas = GameObject.Find("Canvas");
-
-
-
-
-        
+        Canvas = GameObject.Find("Canvas");        
     }
 
     // Update is called once per frame

@@ -47,6 +47,8 @@ public class RecordScript : MonoBehaviour
 
     void LoadRecord()
     {
+        RecordManager.currentRecordId = recordId;
+
         SceneManager.LoadScene("MainScene");
     }
 

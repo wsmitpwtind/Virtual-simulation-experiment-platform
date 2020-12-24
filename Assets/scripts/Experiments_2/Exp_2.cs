@@ -44,7 +44,7 @@ public class Exp_2 : MonoBehaviour
 
     void Start()
     {
-
+        
 
     }
 
