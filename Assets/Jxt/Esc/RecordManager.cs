@@ -46,6 +46,10 @@ public static class RecordManager
             Storage.CommonStorage.SetStorage("currentRecordId", value);
         }
     }
+    public static Record currentDefaultRecord
+    {
+        get => GetRecord(currentRecordId);
+    }
     public delegate void RecordUpdate();
     private static int _currentRecordId = -1;
     /// <summary>
@@ -94,9 +98,7 @@ public static class RecordManager
     /// <param name="Id">存档ID</param>
     public static Record GetRecord(int Id)
     {
-        var list = Storage.CommonStorage.GetStorage<List<RecordInfo>>("RecordInfo");
-        var item = list.Find(x => Id.Equals(x.recordId));
-        if (item == null)
+        if (!RecordContains(Id))
             return null;
         Storage recordStorage = new Storage(Id);
         return recordStorage.GetStorage<Record>("defaultRecord");
@@ -134,6 +136,8 @@ public static class RecordManager
     /// <param name="name">附件名称</param>
     public static T GetAttachments<T>(int Id, string name) where T : new()
     {
+        if (!RecordContains(Id))
+            return default(T);
         Storage recordStorage = new Storage(Id);
         return recordStorage.GetStorage<T>(name);
     }
@@ -160,12 +164,24 @@ public static class RecordManager
         record.Manager_state = Manager.state.Value;
         record.Exp1_state = Exp_1.state.Value;
         record.Exp2_state = Exp_2.state.Value;
-
-
-
+        //record.Exp2_length = Exp_2.Experiment2_length;
+        //record.Exp2_width = Exp_2.Experiment2_width;
+        //record.Exp2_height = Exp_2.Experiment2_height;
 
 
         return record;
+    }
+    /// <summary>
+    /// 是否存在指定ID的存档
+    /// </summary>
+    /// <param name="Id">存档ID</param>
+    public static bool RecordContains(int Id)
+    {
+        var list = Storage.CommonStorage.GetStorage<List<RecordInfo>>("RecordInfo");
+        int index = list.FindIndex(x => Id.Equals(x.recordId));
+        if (index != -1)
+            return false;
+        return true;
     }
     public class RecordIndexor
     {
@@ -202,6 +218,22 @@ public class Record
     public int Manager_state { get; set; }
     public int Exp1_state { get; set; }
     public int Exp2_state { get; set; }
+    //实验二
+    public double[] Exp2_length { get; set; } = new double[100];
+    public double[] Exp2_width { get; set; } = new double[100];
+    public double[] Exp2_height { get; set; } = new double[100];
+    public double Exp2_A_User { get; set; }
+    public double Exp2_UA_User { get; set; }
+    public double Exp2_A_Real { get; set; }
+    public double Exp2_B_User { get; set; }
+    public double Exp2_UB_User { get; set; }
+    public double Exp2_B_Real { get; set; }
+    public double Exp2_C_User { get; set; }
+    public double Exp2_UC_User { get; set; }
+    public double Exp2_C_Real { get; set; }
+    public double Exp2_V_User { get; set; }
+    public double Exp2_UV_User { get; set; }
+    public double Exp2_V_Real { get; set; }
 
 
     public static RecordInfo GenRecordInfo(int id, string title)

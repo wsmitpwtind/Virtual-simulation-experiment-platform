@@ -14,12 +14,12 @@ public class Wwlplay : MonoBehaviour
     private bool[] ifFirst1_= { true, true, true };
     private bool[] ifFirst2_= { true, true, true };
     private int i_0 = 0;//_0代表manager
-    private int i_1 = 0;
-    private int i_2 = 0;//播放第几个视频,与state相对应
+    private int i_1 = -1;
+    private int i_2 = -1;//播放第几个视频,与state相对应
 
     private void Start()
     {
-        Exp_2.state.onMyValueChanged += Voice2_;
+        Manager.state.onMyValueChanged += Voice0_;
 
 
 
@@ -34,7 +34,7 @@ public class Wwlplay : MonoBehaviour
 
     private void Update()
     {
-
+        
     }
 
     private void ShutWwl()
@@ -55,9 +55,10 @@ public class Wwlplay : MonoBehaviour
                 transform.Find("Wwl").gameObject.SetActive(true);
                 transform.Find("voice0_" + i_0).gameObject.SetActive(true);
                 Invoke("ShutWwl", time0_[i_0]);
+                ifFirst0_[i_0] = false;
                 i_0++;
                 isplay = true;
-                ifFirst0_[i_0]= false;
+                
                     
             }
             
@@ -77,9 +78,10 @@ public class Wwlplay : MonoBehaviour
                 transform.Find("Wwl").gameObject.SetActive(true);
                 transform.Find("voice1_" + i_1).gameObject.SetActive(true);
                 Invoke("ShutWwl", time1_[i_1]);
+                ifFirst1_[i_1] = false;
                 i_1++;
                 isplay = true;
-                ifFirst1_[i_1] = false;
+                
 
             }
         }
@@ -98,9 +100,10 @@ public class Wwlplay : MonoBehaviour
                 transform.Find("Wwl").gameObject.SetActive(true);
                 transform.Find("voice2_" + i_2).gameObject.SetActive(true);
                 Invoke("ShutWwl", time2_[i_2]);
+                ifFirst0_[i_2] = false;
                 i_2++;
                 isplay = true;
-                ifFirst0_[i_2] = false;
+                
 
             }
         }
@@ -111,7 +114,7 @@ public class Wwlplay : MonoBehaviour
 
     private void Voice0_(object sender, MonitorableValue<int>.ValueChangedEventArgs e)
     {
-        if (e.newValue == i_2)
+        if (e.newValue == i_0)
         {
             WakeWwl0_();
         }
@@ -119,7 +122,7 @@ public class Wwlplay : MonoBehaviour
     }
     private void Voice1_(object sender, MonitorableValue<int>.ValueChangedEventArgs e)
     {
-        if (e.newValue == i_2)
+        if (e.newValue == i_1)
         {
             WakeWwl1_();
         }

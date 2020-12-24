@@ -18,16 +18,40 @@ public class Manager : MonoBehaviour
 
 
     */
+    public static Record record = new Record();//根据存档初始化
 
-    
+
+
+    private void Awake()
+    {
+        Debug.Log("awake");
+        //加载存档,优先级大于start
+        if (RecordManager.RecordContains(RecordManager.currentRecordId))
+        {
+            record = RecordManager.currentDefaultRecord;
+        }
+        else
+        {
+            RecordManager.currentRecordId = RecordManager.GetFirstNone();
+        }
+    }
     void Start()
     {
-        //加载存档
-        if (RecordManager.)
+        
+        //赋值
+        Manager.state.Value = record.Manager_state;
+
+
+
+
+
+
+
+        if (Manager.state.Value > 0)
         {
-            
-            Record record = RecordManager.defaultRecord[RecordManager.currentRecordId];
+            GameObject.Find("Gamemanager").GetComponent<Start_experiment>().Start_the_experienment();
         }
+
 
 
 
@@ -53,7 +77,10 @@ public class Manager : MonoBehaviour
                 Quit_the_experienment();
             }
         }
-        
+
+        Debug.Log(Manager.state.Value);
+        Debug.Log(record.Manager_state);
+        Debug.Log(Exp_2.Experiment2_length[0]);
     }
 
 

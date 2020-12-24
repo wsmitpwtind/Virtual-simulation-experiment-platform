@@ -38,20 +38,33 @@ public class Exp_2 : MonoBehaviour
 
     */
 
-
-
-
-
     void Start()
     {
-        
+        //赋初值
+        Exp_2.state.Value = Manager.record.Exp2_state;
+        Experiment2_length = Manager.record.Exp2_length;
+        Experiment2_width = Manager.record.Exp2_width;
+        Experiment2_height = Manager.record.Exp2_height;
+        A_User = Manager.record.Exp2_A_User;
+        UA_User = Manager.record.Exp2_UA_User;
+        A_Real = Manager.record.Exp2_A_Real;
+        B_User = Manager.record.Exp2_B_User;
+        UB_User = Manager.record.Exp2_UB_User;
+        B_Real = Manager.record.Exp2_B_Real;
+        C_User = Manager.record.Exp2_C_User;
+        UC_User = Manager.record.Exp2_UC_User;
+        C_Real = Manager.record.Exp2_C_Real;
+        V_User = Manager.record.Exp2_V_User;
+        UV_User = Manager.record.Exp2_UV_User;
+        V_Real = Manager.record.Exp2_V_Real;
 
+        Debug.Log("调用start");
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
         
     }
          

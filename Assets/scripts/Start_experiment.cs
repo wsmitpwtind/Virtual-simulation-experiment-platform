@@ -20,12 +20,12 @@ public class Start_experiment : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if(Input.GetKeyDown(KeyCode.D) && Exp_2.state.Equals(1)) {
+        if(Input.GetKeyDown(KeyCode.D) && Manager.state.Equals(1)) {
             cam_look.enabled = false;
             //print(cam_look.enabled);
             indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
         }
-        if(Input.GetKeyDown(KeyCode.F) && Exp_2.state.Equals(1)) {
+        if(Input.GetKeyDown(KeyCode.F) && Manager.state.Equals(1)) {
             cam_look.enabled = true;
             //print(cam_look.enabled);
             indicatorManager.Indicator1.ShowIndicate("D", "锁定视角");
@@ -34,13 +34,13 @@ public class Start_experiment : MonoBehaviour {
 
     void OnTriggerStay(Collider other) {
         if(Input.GetKey(KeyCode.E)) {
-            Exp_2.state.Value=1;//开始实验
+            Manager.state.Value=1;//开始实验
             Start_the_experienment();
         }
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(Exp_2.state.Equals(0))
+        if(Manager.state.Equals(0))
             indicatorManager.Indicator1.ShowIndicate("E", "开始实验");
     }
 
@@ -50,8 +50,8 @@ public class Start_experiment : MonoBehaviour {
 
     }
 
-    void Start_the_experienment() {
-
+    public void Start_the_experienment() {
+        Debug.Log("*****");
         if (Manager.state.Value == 0)
         {
             Manager.state.Value = 1;
