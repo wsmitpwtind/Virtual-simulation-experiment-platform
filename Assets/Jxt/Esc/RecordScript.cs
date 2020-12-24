@@ -47,6 +47,9 @@ public class RecordScript : MonoBehaviour
 
     void LoadRecord()
     {
+        RecordManager.currentRecordId = recordId;
+        Record record = RecordManager.defaultRecord[recordId];
+        // 赋值
         SceneManager.LoadScene("MainScene");
     }
 
