@@ -46,6 +46,10 @@ public static class RecordManager
             Storage.CommonStorage.SetStorage("currentRecordId", value);
         }
     }
+    public static Record currentDefaultRecord
+    {
+        get => GetRecord(currentRecordId);
+    }
     public delegate void RecordUpdate();
     private static int _currentRecordId = -1;
     /// <summary>
