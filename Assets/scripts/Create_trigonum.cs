@@ -7,7 +7,7 @@ public class Create_trigonum : MonoBehaviour
 {
     public GameObject My_trigonum;
     private GameObject Now_trigonum;
-    Vector3 position = new Vector3(0, 1.94f, -3f);
+    Vector3 position = new Vector3(0.2f, 1.94f, -2.5f);
     Quaternion rotation = Quaternion.Euler(new Vector3(-90f, 0, 0));
     // Start is called before the first frame update
     void Start()

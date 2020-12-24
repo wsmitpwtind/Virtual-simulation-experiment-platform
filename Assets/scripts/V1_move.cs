@@ -11,10 +11,11 @@ public class V1_move : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "book")
+        print(other.name);
+        if (other.tag== "book")
         {
-            GameObject V1 = GameObject.Find("Vernier");
-            print("1");
+            GameObject V1 = GameObject.Find("Real_Vernier");
+            print(other.name);
             V1.GetComponent<Move_vernier>().move1=false;
         }
         
