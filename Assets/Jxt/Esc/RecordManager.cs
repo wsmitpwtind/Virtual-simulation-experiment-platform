@@ -94,9 +94,7 @@ public static class RecordManager
     /// <param name="Id">存档ID</param>
     public static Record GetRecord(int Id)
     {
-        var list = Storage.CommonStorage.GetStorage<List<RecordInfo>>("RecordInfo");
-        var item = list.Find(x => Id.Equals(x.recordId));
-        if (item == null)
+        if (!RecordContains(Id))
             return null;
         Storage recordStorage = new Storage(Id);
         return recordStorage.GetStorage<Record>("defaultRecord");
@@ -134,6 +132,8 @@ public static class RecordManager
     /// <param name="name">附件名称</param>
     public static T GetAttachments<T>(int Id, string name) where T : new()
     {
+        if (!RecordContains(Id))
+            return default(T);
         Storage recordStorage = new Storage(Id);
         return recordStorage.GetStorage<T>(name);
     }
@@ -158,6 +158,18 @@ public static class RecordManager
         var record = new Record();
         // 在此处收集存档信息
         return record;
+    }
+    /// <summary>
+    /// 是否存在指定ID的存档
+    /// </summary>
+    /// <param name="Id">存档ID</param>
+    public static bool RecordContains(int Id)
+    {
+        var list = Storage.CommonStorage.GetStorage<List<RecordInfo>>("RecordInfo");
+        int index = list.FindIndex(x => Id.Equals(x.recordId));
+        if (index != -1)
+            return false;
+        return true;
     }
     public class RecordIndexor
     {
