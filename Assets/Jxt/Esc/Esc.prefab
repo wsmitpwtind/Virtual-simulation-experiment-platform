@@ -362,7 +362,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panel: {fileID: 7657622240296453616}
-  manager: {fileID: 5084816222997164990}
   switchPanel: {fileID: 7912392308354533118}
 --- !u!1 &1284307124844274376
 GameObject:
@@ -3776,7 +3775,6 @@ GameObject:
   - component: {fileID: 5193783321299511476}
   - component: {fileID: 4837920372911104454}
   - component: {fileID: 3033644958912925687}
-  - component: {fileID: 5084816222997164990}
   - component: {fileID: 3457622081134777478}
   m_Layer: 5
   m_Name: Content
@@ -3801,7 +3799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 928302.7}
+  m_AnchoredPosition: {x: 0, y: 930759.25}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &4837920372911104454
@@ -3843,18 +3841,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &5084816222997164990
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8716513806593794698}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b42eee59ee8555a4fbf5658df2aa0ffe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3457622081134777478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3869,7 +3855,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RecordObj: {fileID: 5866167717567192520, guid: ce521ed244478df4a87d872c4813b423,
     type: 3}
-  manager: {fileID: 5084816222997164990}
 --- !u!1 &8792548311260878795
 GameObject:
   m_ObjectHideFlags: 0

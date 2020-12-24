@@ -20,7 +20,6 @@ public class RecordScript : MonoBehaviour
         get => _time.text;
         set => _time.text = value;
     }
-    public RecordManager recordManager;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +52,6 @@ public class RecordScript : MonoBehaviour
 
     void DeleteRecord()
     {
-        GetComponentInParent<RecordManager>().DeleteRecord(recordId);
+        RecordManager.DeleteRecord(recordId);
     }
 }
