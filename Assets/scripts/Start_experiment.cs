@@ -51,7 +51,7 @@ public class Start_experiment : MonoBehaviour {
     }
 
     public void Start_the_experienment() {
-        Debug.Log("*****");
+        
         if (Manager.state.Value == 0)
         {
             Manager.state.Value = 1;

@@ -568,7 +568,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1541,7 +1541,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3579,7 +3579,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5896,17 +5896,17 @@ PrefabInstance:
     - target: {fileID: 4296084319423373745, guid: 84b04aff491bb6d4b98ab1eb8d009475,
         type: 3}
       propertyPath: m_Size.z
-      value: 0.44740403
+      value: 0.4912298
       objectReference: {fileID: 0}
     - target: {fileID: 4296084319423373745, guid: 84b04aff491bb6d4b98ab1eb8d009475,
         type: 3}
       propertyPath: m_Center.x
-      value: -0.0070575075
+      value: -0.007057508
       objectReference: {fileID: 0}
     - target: {fileID: 4296084319423373745, guid: 84b04aff491bb6d4b98ab1eb8d009475,
         type: 3}
       propertyPath: m_Center.z
-      value: -0.005011022
+      value: 0.01690187
       objectReference: {fileID: 0}
     - target: {fileID: 6296259094581929731, guid: 84b04aff491bb6d4b98ab1eb8d009475,
         type: 3}
@@ -9531,7 +9531,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -10075,7 +10075,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -12946,24 +12946,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052034461}
   m_CullTransparentMesh: 0
---- !u!1 &1052225237 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6296259094581929731, guid: 84b04aff491bb6d4b98ab1eb8d009475,
-    type: 3}
-  m_PrefabInstance: {fileID: 2094448770}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1052225238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1052225237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15f8ef01f3dc574fa2a680d608f3afc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1053363755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15509,7 +15491,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1315752541}
   - component: {fileID: 1315752542}
-  - component: {fileID: 1315752543}
   m_Layer: 0
   m_Name: Gamemanager
   m_TagString: Untagged
@@ -15541,18 +15522,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f90f246d88faf3479d0602bb2621851, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1315752543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1315752540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15f8ef01f3dc574fa2a680d608f3afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1341699254
@@ -17013,7 +16982,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1

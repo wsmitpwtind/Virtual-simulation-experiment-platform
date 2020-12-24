@@ -24,7 +24,6 @@ public class Manager : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("awake");
         //加载存档,优先级大于start
         if (RecordManager.RecordContains(RecordManager.currentRecordId))
         {
@@ -37,7 +36,11 @@ public class Manager : MonoBehaviour
     }
     void Start()
     {
-        
+        Player = GameObject.Find("Player");
+        Camera = GameObject.Find("MainCamera");
+        Canvas = GameObject.Find("Canvas");
+
+
         //赋值
         Manager.state.Value = record.Manager_state;
 
@@ -49,17 +52,22 @@ public class Manager : MonoBehaviour
 
         if (Manager.state.Value > 0)
         {
-            GameObject.Find("Gamemanager").GetComponent<Start_experiment>().Start_the_experienment();
+            Invoke("SitonChair", 0.01f);
+            
         }
 
 
 
 
 
-        Player = GameObject.Find("Player");
-        Camera = GameObject.Find("MainCamera");
-        Canvas = GameObject.Find("Canvas");        
+        
+        
     }
+    private void SitonChair()
+    {
+        GameObject.Find("Chair_01_Snaps014").GetComponent<Start_experiment>().Start_the_experienment();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -78,9 +86,7 @@ public class Manager : MonoBehaviour
             }
         }
 
-        Debug.Log(Manager.state.Value);
-        Debug.Log(record.Manager_state);
-        Debug.Log(Exp_2.Experiment2_length[0]);
+        
     }
 
 

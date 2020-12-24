@@ -18,6 +18,7 @@ public class To_height : MonoBehaviour
     {
         if (Exp_2.Experiment2_width[4] > 0)
         {
+            Menu.Exp2_pagenumber = 2;
             Experiment2.transform.Find("InputFields2_2").gameObject.SetActive(false);
             Experiment2.transform.Find("InputFields2_3").gameObject.SetActive(true);
         }

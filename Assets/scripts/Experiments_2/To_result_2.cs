@@ -24,8 +24,8 @@ public class To_result_2 : MonoBehaviour
             Experiment2.transform.Find("Deal_2").gameObject.SetActive(false);            
         }*/
         if (Exp_2.A_User > 0 && Exp_2.UV_User > 0 && Exp_2.B_User > 0 && Exp_2.UB_User > 0 && Exp_2.C_User > 0 && Exp_2.UC_User > 0 && Exp_2.V_User > 0 && Exp_2.UV_User > 0)
-        {            
-
+        {
+            Menu.Exp2_pagenumber = 4;
             Experiment2.transform.Find("Result_2").gameObject.SetActive(true);
             Experiment2.transform.Find("Deal_2").gameObject.SetActive(false);
         }

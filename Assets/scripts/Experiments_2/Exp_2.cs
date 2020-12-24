@@ -58,7 +58,7 @@ public class Exp_2 : MonoBehaviour
         UV_User = Manager.record.Exp2_UV_User;
         V_Real = Manager.record.Exp2_V_Real;
 
-        Debug.Log("调用start");
+        
     }
 
     // Update is called once per frame

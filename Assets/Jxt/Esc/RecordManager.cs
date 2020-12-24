@@ -166,10 +166,17 @@ public static class RecordManager
         record.Manager_state = Manager.state.Value;
         record.Exp1_state = Exp_1.state.Value;
         record.Exp2_state = Exp_2.state.Value;
-        //record.Exp2_length = Exp_2.Experiment2_length;
-        //record.Exp2_width = Exp_2.Experiment2_width;
-        //record.Exp2_height = Exp_2.Experiment2_height;
-
+        record.Exp2_length = Exp_2.Experiment2_length;
+        record.Exp2_width = Exp_2.Experiment2_width;
+        record.Exp2_height = Exp_2.Experiment2_height;
+        record.ifFirst0_ = Wwlplay.ifFirst0_;
+        record.ifFirst1_ = Wwlplay.ifFirst1_;
+        record.ifFirst2_ = Wwlplay.ifFirst2_;
+        record.i_0 = Wwlplay.i_0;
+        record.i_1 = Wwlplay.i_1;
+        record.i_2 = Wwlplay.i_2;
+        record.Exp1_pagenumber = Menu.Exp1_pagenumber;
+        record.Exp2_pagenumber = Menu.Exp2_pagenumber;
 
         return record;
     }
@@ -216,6 +223,7 @@ public class RecordInfo
 /// </summary>
 public class Record
 {
+    //状态
     public int someValue { get; set; }
     public int Manager_state { get; set; }
     public int Exp1_state { get; set; }
@@ -236,6 +244,16 @@ public class Record
     public double Exp2_V_User { get; set; }
     public double Exp2_UV_User { get; set; }
     public double Exp2_V_Real { get; set; }
+    //wwl视频
+    public bool[] ifFirst0_ { get; set; } = { true, true, true };
+    public bool[] ifFirst1_ { get; set; } = { true, true, true };
+    public bool[] ifFirst2_ { get; set; } = { true, true, true };
+    public int i_0 { get; set; } = 0;
+    public int i_1 { get; set; } = -1;
+    public int i_2 { get; set; } = -1;
+    //数据记录位置
+    public int Exp1_pagenumber { get; set; } = 0;
+    public int Exp2_pagenumber { get; set; } = 0;
 
 
     public static RecordInfo GenRecordInfo(int id, string title)

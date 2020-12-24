@@ -10,15 +10,24 @@ public class Wwlplay : MonoBehaviour
     private bool isplay = false;
 
 
-    private bool[] ifFirst0_= {true, true, true};
-    private bool[] ifFirst1_= { true, true, true };
-    private bool[] ifFirst2_= { true, true, true };
-    private int i_0 = 0;//_0代表manager
-    private int i_1 = -1;
-    private int i_2 = -1;//播放第几个视频,与state相对应
+    public static bool[] ifFirst0_= {true, true, true};
+    public static bool[] ifFirst1_= { true, true, true };
+    public static bool[] ifFirst2_= { true, true, true };
+    public static int i_0 = 0;//_0代表manager
+    public static int i_1 = -1;
+    public static int i_2 = -1;//播放第几个视频,与state相对应
 
     private void Start()
     {
+        //初始化
+        ifFirst0_ = Manager.record.ifFirst0_;
+        ifFirst1_ = Manager.record.ifFirst1_;
+        ifFirst2_ = Manager.record.ifFirst2_;
+        i_0 = Manager.record.i_0;
+        i_1 = Manager.record.i_1;
+        i_2 = Manager.record.i_2;
+
+
         Manager.state.onMyValueChanged += Voice0_;
 
 
