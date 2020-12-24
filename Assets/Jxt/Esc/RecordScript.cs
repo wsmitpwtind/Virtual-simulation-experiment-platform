@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class RecordScript : MonoBehaviour
 {
-    private Text _title = null;
-    private Text _time = null;
+    public Text _title;
+    public Text _time;
     public int recordId { get; set; }
     public string title
     {
@@ -19,17 +20,11 @@ public class RecordScript : MonoBehaviour
         get => _time.text;
         set => _time.text = value;
     }
+    public RecordManager recordManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach (var item in GetComponentsInChildren<Text>(true))
-        {
-            if (item.gameObject.name.Equals("RecordTitle"))
-                _title = item;
-            if (item.gameObject.name.Equals("RecordTime"))
-                _time = item;
-        }
         foreach (var item in GetComponentsInChildren<Button>(true))
         {
             if (item.gameObject.name.Equals("LoadRecordButton"))
@@ -44,7 +39,7 @@ public class RecordScript : MonoBehaviour
     {
 
     }
-    void SetRecordInfo(RecordInfo recordInfo)
+    public void SetRecordInfo(RecordInfo recordInfo)
     {
         this.recordId = recordInfo.recordId;
         this.time = recordInfo.timeString;
@@ -53,7 +48,7 @@ public class RecordScript : MonoBehaviour
 
     void LoadRecord()
     {
-        throw new NotImplementedException();
+        SceneManager.LoadScene("MainScene");
     }
 
     void DeleteRecord()

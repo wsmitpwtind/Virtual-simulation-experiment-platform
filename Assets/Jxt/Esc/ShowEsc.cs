@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Timers;
+using UnityEngine.SceneManagement;
 using System;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ShowEsc : MonoBehaviour
 {
@@ -48,31 +50,27 @@ public class ShowEsc : MonoBehaviour
             var Position = new Vector3(0, 0, 0);
             var Rotation = new Quaternion(0, 0, 0, 0);
             EscInstance = Instantiate(EscObject, Position, Rotation);
-            if (AniInstance != null)
-            {
-                EscInstance.SetActive(false);
-                AniInstance.Show(EscInstance, 200);
-            }
+            var animate = GameObject.Find("TweenObject").GetComponent<RectTransform>().DOLocalMoveY(0, 0.5f);
+            animate.SetEase(Ease.OutExpo);
+            animate.startValue = new Vector3(0, 400, 0);
+            animate.SetUpdate(true);
+            Time.timeScale = 0;
             try
             {
-                LoadScripts();
                 if (GameObject.Find("MainCamera").GetComponent<Look>() != null)
-                {
                     LastCameraEnabled = GameObject.Find("MainCamera").GetComponent<Look>().enabled;
-                }
                 GameObject.Find("MainCamera").GetComponent<Look>().enabled = false;
             }
             catch { }
         }
         else
         {
-            if (AniInstance != null)
-            {
-                AniInstance.Hide(EscInstance, 200);
-                Invoke(nameof(Delay), (float)0.5);
-            }
-            else
-                Delay();
+            var animate = GameObject.Find("TweenObject").GetComponent<RectTransform>().DOLocalMoveY(400, 0.5f);
+            animate.SetEase(Ease.OutExpo);
+            animate.startValue = new Vector3(0, 0, 0);
+            animate.SetUpdate(true);
+            Time.timeScale = 1;
+            Invoke("Delay", 0.15f);
         }
     }
 
@@ -86,23 +84,12 @@ public class ShowEsc : MonoBehaviour
         catch { }
     }
 
-    void LoadScripts()
+    public void Restart()
     {
-        var buttons = EscInstance.GetComponentsInChildren<Button>(true);
-        foreach (var item in buttons)
-        {
-            if (item.gameObject.name == "ContinueButton")
-            {
-                item.gameObject.AddComponent<Continue>();
-            }
-            else if (item.gameObject.name == "RestartButton")
-            {
-                item.gameObject.AddComponent<Restart>();
-            }
-            else if (item.gameObject.name == "QuitButton")
-            {
-                item.gameObject.AddComponent<Quit>();
-            }
-        }
+        Invoke("_Restart", 0.5f);
+    }
+    void _Restart()
+    {
+        SceneManager.LoadScene("Start");
     }
 }

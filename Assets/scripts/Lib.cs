@@ -501,9 +501,31 @@ public class Storage {
     /// <typeparam name="T">映射的对象类型</typeparam>
     /// <param name="key">键</param>
     /// <returns></returns>
-    public T GetStorage<T>(string key) {
+    public T GetStorage<T>(string key) where T: new()
+    {
         string path = directory + key;
-        return JsonConvert.DeserializeObject<T>(FileIOHelper.ReadJSONFile(path));
+        var ret = JsonConvert.DeserializeObject<T>(FileIOHelper.ReadJSONFile(path), new JsonSerializerSettings(){
+            Error = (sender, e) => {
+                e.ErrorContext.Handled = true;
+                SetStorage(key, new T());
+            }
+        });
+        if (ret == null)
+            return new T();
+        return ret;
+    }
+    public T GetStorage<T>(string key, Func<T> initializer) where T: new() {
+        string path = directory + key;
+        T whenError = new T();
+        var ret = JsonConvert.DeserializeObject<T>(FileIOHelper.ReadJSONFile(path), new JsonSerializerSettings(){
+            Error = (sender, e) => {
+                e.ErrorContext.Handled = true;
+                whenError = initializer();
+            }
+        });
+        if (ret == null)
+            return whenError;
+        return ret;
     }
     /// <summary>
     /// 将对象存储到Storage中
@@ -513,7 +535,18 @@ public class Storage {
     public void SetStorage(string key, object values) {
         string path = directory + key;
         FileIOHelper.SaveFile(path, JsonConvert.SerializeObject(values, new JsonSerializerSettings() {
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            Error = (sender, e) => {
+                Debug.Log($"JsonSerializationError: {e.ErrorContext.Error}");
+                e.ErrorContext.Handled = true;
+            }
+        }));
+    }
+    public void SetStorage(string key, object values, EventHandler<Newtonsoft.Json.Serialization.ErrorEventArgs> errorHandler) {
+        string path = directory + key;
+        FileIOHelper.SaveFile(path, JsonConvert.SerializeObject(values, new JsonSerializerSettings() {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+            Error = errorHandler
         }));
     }
     protected static class FileIOHelper {

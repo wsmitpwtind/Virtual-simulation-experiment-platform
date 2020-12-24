@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        if  (Exp_2.Move_able == 1)
+        if  (Manager.Move_able == 1)
         {
             Move();
         }

@@ -51,9 +51,14 @@ public class Start_experiment : MonoBehaviour {
     }
 
     void Start_the_experienment() {
+
+        if (Manager.state.Value == 0)
+        {
+            Manager.state.Value = 1;
+        }
         indicatorManager.HideAllIndicator();
         Canvas.transform.Find("Dropdown").gameObject.SetActive(true);
-        Exp_2.Move_able = 0;
+        Manager.Move_able = 0;
         Player.transform.position = new Vector3(1.18f, 1.6f, -1.58f);
         Player.transform.rotation = Quaternion.Euler(new Vector3(0f, -90f, 0f));
         Camera.transform.rotation = Quaternion.Euler(new Vector3(30f, -90f, 0f));

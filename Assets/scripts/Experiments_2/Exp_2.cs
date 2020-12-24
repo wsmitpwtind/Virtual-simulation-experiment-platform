@@ -22,14 +22,17 @@ public class Exp_2 : MonoBehaviour
     public static double UV_User = 0;
     public static double V_Real = 0;
 
-    public static int Move_able = 1;
+    
     public static double score = 0;
 
 
     public static MonitorableValue<int> state = new MonitorableValue<int>(0);//含义如下
     /*
-    0代表未开始，1代表正在实验，2代表结束实验
-
+    0代表未开始
+    1代表填入长度的第一个实验数据，最多可填100个
+    101代表填入宽度的第一个实验数据，最多可填100个
+    201代表填入高度的第一个实验数据，最多可填100个
+    301代表实验完成
 
 
 
@@ -41,6 +44,8 @@ public class Exp_2 : MonoBehaviour
 
     void Start()
     {
+
+
     }
 
     // Update is called once per frame
