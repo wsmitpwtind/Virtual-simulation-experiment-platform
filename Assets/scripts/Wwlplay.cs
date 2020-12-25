@@ -4,19 +4,20 @@ using UnityEngine;
 
 public class Wwlplay : MonoBehaviour
 {
-    private float[] time0_ = {7f,6f,6f};//每段音频的时间
+    private float[] time0_ = { 7f, 6f, 6f };//每段音频的时间
     private float[] time1_ = { 7f, 6f, 6f };
     private float[] time2_ = { 7f, 6f, 6f };
     private bool isplay = false;
 
 
-    public static bool[] ifFirst0_= {true, true, true};
-    public static bool[] ifFirst1_= { true, true, true };
-    public static bool[] ifFirst2_= { true, true, true };
+    public static bool[] ifFirst0_ = { true, true, true };
+    public static bool[] ifFirst1_ = { true, true, true };
+    public static bool[] ifFirst2_ = { true, true, true };
     public static int i_0 = 0;//_0代表manager
     public static int i_1 = -1;
     public static int i_2 = -1;//播放第几个视频,与state相对应
 
+    private MonitorableValue<float> timeScale = new MonitorableValue<float>(1);
     private void Start()
     {
         //初始化
@@ -29,7 +30,7 @@ public class Wwlplay : MonoBehaviour
 
 
         Manager.state.onMyValueChanged += Voice0_;
-
+        timeScale.onMyValueChanged += OnPause;
 
 
         //开场白
@@ -37,13 +38,19 @@ public class Wwlplay : MonoBehaviour
         {
             WakeWwl0_();
         }
-        
+
 
     }
-
+    private void OnPause(object sender, MonitorableValue<float>.ValueChangedEventArgs e)
+    {
+        foreach (var item in GetComponentsInChildren<AudioSource>(true))
+        {
+            item.pitch = e.newValue;
+        }
+    }
     private void Update()
     {
-        
+        timeScale.Value = Time.timeScale;
     }
 
     private void ShutWwl()
@@ -67,7 +74,7 @@ public class Wwlplay : MonoBehaviour
     {
         if (isplay == true)
         {
-            Invoke("WakeWwl0_",1f);
+            Invoke("WakeWwl0_", 1f);
         }
         else
         {
@@ -79,12 +86,12 @@ public class Wwlplay : MonoBehaviour
                 ifFirst0_[i_0] = false;
                 i_0++;
                 isplay = true;
-                
-                    
+
+
             }
-            
+
         }
-        
+
     }
     private void WakeWwl1_()
     {
@@ -102,7 +109,7 @@ public class Wwlplay : MonoBehaviour
                 ifFirst1_[i_1] = false;
                 i_1++;
                 isplay = true;
-                
+
 
             }
         }
@@ -124,7 +131,7 @@ public class Wwlplay : MonoBehaviour
                 ifFirst0_[i_2] = false;
                 i_2++;
                 isplay = true;
-                
+
 
             }
         }
@@ -155,7 +162,7 @@ public class Wwlplay : MonoBehaviour
         {
             WakeWwl2_();
         }
-                
+
     }
 
 

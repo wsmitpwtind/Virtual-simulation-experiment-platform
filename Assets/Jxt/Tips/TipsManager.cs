@@ -32,7 +32,7 @@ public class TipsManager : MonoBehaviour
         AtQuitExperiment
     }
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         if (tipsClass == TipsClass.Input)
             tipsComponent.ShowTips(text);
@@ -45,7 +45,7 @@ public class TipsManager : MonoBehaviour
     {
 
     }
-    void onDestroy()
+    void OnDisable()
     {
         tipsComponent.HideTips();
     }
