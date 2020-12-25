@@ -123,7 +123,7 @@ public static class StaticMethods {
         double uv = MATH.Sqrt(uar * uar + ubr * ubr + ucr * ucr);
         double u = uv * V;
         (string, string) fx = FixResult(V, u);
-        return (V, u, $"计算过程:A={A_av};B={B_av};C={C_av};\r\n卡尺的b类不确定度Ub={u2}\r\na类不确定度:Ua(A)={u1a};Ua(B)={u1b};Ua(C)={u1c};\r\n合成不确实度U(A)={ua};U(B)={ub};U(C)={uc};\r\n相对不确定度 U(V)/V=sqrt((U(a)/A)^2+(U(b)/B)^2+(U(C)/C)^2))={uv}\r\n最终修约结果:(A +- U(A))={A_av}+-{ua}\r\n(B +- U(B))={B_av}+-{ub}\r\n(C +- U(C))={C_av}+-{uc}\r\n\r\nV={fx.Item1};U(V)={fx.Item2}");
+        return (V, u, $"计算过程:A={A_av};B={B_av};C={C_av};\r\n卡尺的b类不确定度Ub={u2}\r\na类不确定度:Ua(A)={u1a};Ua(B)={u1b};Ua(C)={u1c};\r\n合成不确实度U(A)={ua};U(B)={ub};U(C)={uc};\r\n相对不确定度 U(V)/V=sqrt((U(a)/A)^2+(U(b)/B)^2+(U(C)/C)^2))={uv}\r\n最终修约结果:(A +- U(A))={A_av}+-{ua}\r\n(B +- U(B))={B_av}+-{ub}\r\n(C +- U(C))={C_av}+-{uc}\r\n\r\nV={fx.Item1};U(V)={fx.Item2};(V +- U(V))={fx.Item1}+-{fx.Item2}");
     }
     public static (string, bool) CheckVar(double calc_val, double calc_uncertain, double user_calc, double user_uncertain) {
         double fix1 = double.Parse(user_uncertain.ToString("#e+0"));
@@ -146,6 +146,19 @@ public static class StaticMethods {
             }
         }
         return default;
+    }
+    public static double CheckCorrectness(
+        double v_real, double v_user, double v_user_uncertain,
+        double a_real, double a_user, double a_user_uncertain,
+        double b_real, double b_user, double b_user_uncertain,
+        double c_real, double c_user, double c_user_uncertain
+        ) {
+        double cor = 0;
+        cor += (v_real <= v_user + v_user_uncertain && v_real >= v_user_uncertain) ? 1.5 : 1;
+        cor += (a_real <= a_user + a_user_uncertain && a_real >= a_user_uncertain) ? 1 : 0.7;
+        cor += (b_real <= b_user + b_user_uncertain && a_real >= b_user_uncertain) ? 1 : 0.7;
+        cor += (c_real <= c_user + c_user_uncertain && a_real >= c_user_uncertain) ? 1 : 0.7;
+        return cor;
     }
 }
 public static class InstrumentError {
