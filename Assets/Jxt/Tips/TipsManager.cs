@@ -45,7 +45,7 @@ public class TipsManager : MonoBehaviour
     {
 
     }
-    void OnDestroy()
+    void OnDisable()
     {
         if (tipsComponent != null)
             tipsComponent.HideTips();
