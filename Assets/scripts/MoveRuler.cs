@@ -27,7 +27,7 @@ public class MoveRuler : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update() {
+    private void FixedUpdate() {
         if(!moving && Input.GetKeyDown(KeyCode.P)) {
             moving = true;
             body_rigid.velocity = Vector3.right;

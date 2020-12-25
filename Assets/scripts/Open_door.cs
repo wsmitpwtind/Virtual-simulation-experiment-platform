@@ -21,7 +21,7 @@ public class Open_door : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         If_end();
     }

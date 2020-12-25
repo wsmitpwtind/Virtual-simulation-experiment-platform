@@ -70,7 +70,7 @@ public class Manager : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         If_bug();
         

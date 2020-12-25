@@ -19,7 +19,7 @@ public class Move_vernier : MonoBehaviour
     }
    
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.P))
         {

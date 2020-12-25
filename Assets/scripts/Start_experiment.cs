@@ -19,7 +19,7 @@ public class Start_experiment : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update() {
+    void FixedUpdate() {
         if(Input.GetKeyDown(KeyCode.D) && Manager.state.Equals(1)) {
             cam_look.enabled = false;
             //print(cam_look.enabled);

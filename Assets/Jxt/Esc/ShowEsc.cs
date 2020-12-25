@@ -55,13 +55,6 @@ public class ShowEsc : MonoBehaviour
             animate.startValue = new Vector3(0, 400, 0);
             animate.SetUpdate(true);
             Time.timeScale = 0;
-            try
-            {
-                if (GameObject.Find("MainCamera").GetComponent<Look>() != null)
-                    LastCameraEnabled = GameObject.Find("MainCamera").GetComponent<Look>().enabled;
-                GameObject.Find("MainCamera").GetComponent<Look>().enabled = false;
-            }
-            catch { }
         }
         else
         {
@@ -77,11 +70,6 @@ public class ShowEsc : MonoBehaviour
     void Delay()
     {
         Destroy(EscInstance);
-        try
-        {
-            GameObject.Find("MainCamera").GetComponent<Look>().enabled = LastCameraEnabled;
-        }
-        catch { }
     }
 
     public void Restart()

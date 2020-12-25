@@ -71,7 +71,7 @@ public class Move_tri : MonoBehaviour
             LookLockedIndicate =Tuple.Create(indicatorManager.Indicator1.keyText, indicatorManager.Indicator1.indicateText);
         }
     }
-    void Update()
+    void FixedUpdate()
     {
         if (Input.GetKey(KeyCode.S)&&On_exam)
         {
