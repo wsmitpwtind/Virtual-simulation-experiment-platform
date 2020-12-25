@@ -110,20 +110,20 @@ public static class StaticMethods {
         if(A == null || B == null || C == null) {
             return default;
         }
-        int n = A.Length;
+        int n = A.Length;//A,B,C:mm
         if(B.Length != n || C.Length != n) {
             return default;
         }
         double A_av = Average(A), B_av = Average(B), C_av = Average(C);
         double u1a = Uncertain_A(A), u1b = Uncertain_A(B), u1c = Uncertain_A(C);
-        double u2 = 0.02 / MATH.Sqrt(3);
-        double ua = MATH.Sqrt(u1a * u1a + u2 * u2), ub = MATH.Sqrt(u1b * u1b + u2 * u2), uc = MATH.Sqrt(u1c * u1c + u2 * u2);
+        double sq3 = MATH.Sqrt(3), u2 = 0.02 / sq3, u22 = 0.5 / sq3;
+        double ua = MATH.Sqrt(u1a * u1a + u22 * u22), ub = MATH.Sqrt(u1b * u1b + u22 * u22), uc = MATH.Sqrt(u1c * u1c + u2 * u2);
         double uar = ua / A_av, ubr = ub / B_av, ucr = uc / C_av;
         double V = A_av * B_av * C_av;
         double uv = MATH.Sqrt(uar * uar + ubr * ubr + ucr * ucr);
         double u = uv * V;
         (string, string) fx = FixResult(V, u), fa = FixResult(A_av, ua), fb = FixResult(B_av, ub), fc = FixResult(C_av, uc);
-        return (V, u, $"计算过程:A={A_av};B={B_av};C={C_av};\r\n卡尺的b类不确定度Ub={u2}\r\na类不确定度:Ua(A)={u1a};Ua(B)={u1b};Ua(C)={u1c};\r\n合成不确实度U(A)={ua};U(B)={ub};U(C)={uc};\r\n相对不确定度 U(V)/V=sqrt((U(a)/A)^2+(U(b)/B)^2+(U(C)/C)^2))={uv}\r\n最终修约结果:(A +- U(A))={fa.Item1}+-{fa.Item2}\r\n(B +- U(B))={fb.Item1}+-{fb.Item2}\r\n(C +- U(C))={fc.Item1}+-{fc.Item2}\r\n\r\nV={fx.Item1};U(V)={fx.Item2};(V +- U(V))={fx.Item1}+-{fx.Item2}");
+        return (V, u, $"计算过程:\r\n未修约:A={A_av};B={B_av};C={C_av};\r\n直尺的b类不确定度Ub1={u22},卡尺的b类不确定度Ub1={u2}\r\na类不确定度:Ua(A)={u1a};Ua(B)={u1b};Ua(C)={u1c};\r\n合成不确实度U(A)={ua};U(B)={ub};U(C)={uc};\r\n相对不确定度 U(V)/V=sqrt((U(a)/A)^2+(U(b)/B)^2+(U(C)/C)^2))={uv}\r\n最终修约结果:\r\n(A +- U(A))={fa.Item1}+-{fa.Item2}\r\n(B +- U(B))={fb.Item1}+-{fb.Item2}\r\n(C +- U(C))={fc.Item1}+-{fc.Item2}\r\nV={fx.Item1};U(V)={fx.Item2}\r\n(V +- U(V))={fx.Item1}+-{fx.Item2}\r\n以上内容均以毫米为单位,结果仅供参考");
     }
     public static (string, bool) CheckVar(double calc_val, double calc_uncertain, double user_calc, double user_uncertain) {
         double fix1 = double.Parse(user_uncertain.ToString("#e+0"));
