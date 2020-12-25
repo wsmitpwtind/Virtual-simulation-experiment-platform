@@ -30,6 +30,14 @@ public class Start_experiment : MonoBehaviour {
             //print(cam_look.enabled);
             indicatorManager.Indicator1.ShowIndicate("D", "锁定视角");
         }
+        if (Input.GetKeyDown(KeyCode.Z) && Exp_2.state.Equals(1))
+        {
+            indicatorManager.Indicator2.ShowIndicate("X", "切换旋转");
+        }
+        if (Input.GetKeyDown(KeyCode.X) && Exp_2.state.Equals(1))
+        {
+            indicatorManager.Indicator2.ShowIndicate("Z", "切换平移");
+        }
     }
 
     void OnTriggerStay(Collider other) {
@@ -45,8 +53,11 @@ public class Start_experiment : MonoBehaviour {
     }
 
     private void OnTriggerExit(Collider other) {
-        if(Exp_2.state.Equals(0))
+        if (Exp_2.state.Equals(0))
+        {
             indicatorManager.Indicator1.HideIndicate();
+            indicatorManager.Indicator2.HideIndicate();
+        }
 
     }
 
@@ -66,8 +77,7 @@ public class Start_experiment : MonoBehaviour {
         CAI.transform.rotation = Quaternion.Euler(new Vector3(30f, -90f, 0f));
         cam_look.enabled = false;
         indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
-        if(Input.GetKey(KeyCode.F)) {
-            cam_look.enabled = cam_look.enabled;
-        }
+        indicatorManager.Indicator2.ShowIndicate("X", "切换旋转");
+
     }
 }

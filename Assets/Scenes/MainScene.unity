@@ -2231,7 +2231,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _activateTranslationGizmoShortcut:
-    _keys: 7700000000000000
+    _keys: 7a00000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -2246,7 +2246,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 1
     _name: Activate move gizmo
   _activateRotationGizmoShortcut:
-    _keys: 6500000000000000
+    _keys: 7800000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -2261,7 +2261,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 1
     _name: Activate rotation gizmo
   _activateScaleGizmoShortcut:
-    _keys: 7200000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -2276,7 +2276,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 1
     _name: Activate scale gizmo
   _activateVolumeScaleGizmoShortcut:
-    _keys: 7500000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -2291,7 +2291,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 1
     _name: Activate volume scale gizmo
   _activateGlobalTransformShortcut:
-    _keys: 6700000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -2306,7 +2306,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 1
     _name: Activate global transform
   _activateLocalTransformShortcut:
-    _keys: 6c00000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -2321,7 +2321,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 1
     _name: Activate local transform
   _turnOffGizmosShortcut:
-    _keys: 7100000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -2336,7 +2336,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 1
     _name: Turn off gizmos
   _togglePivotShortcut:
-    _keys: 7000000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -10467,7 +10467,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 0
     _name: Multi deselect
   _duplicateSelectionShortcut:
-    _keys: 6400000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 1
     _lCmd: 0
@@ -10482,7 +10482,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 0
     _name: Duplicate selection
   _deleteSelectionShortcut:
-    _keys: 7f00000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -21357,8 +21357,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.060000002, y: 0.3200001, z: 0.00405806}
-  m_Center: {x: 0, y: 0, z: -0.00017574667}
+  m_Size: {x: 0.08, y: 0.34, z: 0.012467374}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1910987874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24317,7 +24317,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 0
     _name: Enable step snapping
   _enableVertexSnappingShortcut:
-    _keys: 7600000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -24332,7 +24332,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 0
     _name: Enable vertex snapping
   _enableSurfacePlacementWithYAlignment:
-    _keys: 2000000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 0
     _lCmd: 0
@@ -24347,7 +24347,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 0
     _name: Enable surface placement (with Y axis alignment)
   _enableSurfacePlacementWithXAlignment:
-    _keys: 2000000078000000
+    _keys: 2000000000000000
     _numberOfKeys: 2
     _lCtrl: 0
     _lCmd: 0
@@ -24362,7 +24362,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 0
     _name: Enable surface placement (with X axis alignment)
   _enableSurfacePlacementWithZAlignment:
-    _keys: 200000007a000000
+    _keys: 2000000000000000
     _numberOfKeys: 2
     _lCtrl: 0
     _lCmd: 0
@@ -24377,7 +24377,7 @@ MonoBehaviour:
     _useStrictMouseCheck: 0
     _name: Enable surface placement (with Z axis alignment)
   _enableSurfacePlacementNoAxisAlignment:
-    _keys: 2000000000000000
+    _keys: 0000000000000000
     _numberOfKeys: 1
     _lCtrl: 1
     _lCmd: 0

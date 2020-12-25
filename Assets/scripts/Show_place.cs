@@ -6,6 +6,7 @@ public class Show_place : MonoBehaviour
 {
     // Start is called before the first frame update
     public bool Enable = true;
+    IndicatorManager indicatorManager;
     private bool moveable = false;
     public string name = "Vernier";
     private Vector3 temp1 = new Vector3(0.0f, 0.0f, 0.0f);
@@ -61,6 +62,8 @@ public class Show_place : MonoBehaviour
             mCamera.fieldOfView = 19.0f;
             moveable = false;
             GetComponent<Back_place>().enabled = true;
+            indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
+            indicatorManager.Indicator1.ShowIndicate("V", "返回视角");
         }
     }
 

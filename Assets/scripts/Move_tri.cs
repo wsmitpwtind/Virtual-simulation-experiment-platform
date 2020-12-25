@@ -79,7 +79,6 @@ public class Move_tri : MonoBehaviour
             enable_move = true;
             On_exam = false;
             indicatorManager.Indicator1.ShowIndicate(LookLockedIndicate.Item1, LookLockedIndicate.Item2);
-            indicatorManager.Indicator2.HideIndicate();
         }
         if (Input.GetKey(KeyCode.A) && On_exam)
         {
