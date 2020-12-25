@@ -169,6 +169,15 @@ public static class RecordManager
         record.Exp2_length = Exp_2.Experiment2_length;
         record.Exp2_width = Exp_2.Experiment2_width;
         record.Exp2_height = Exp_2.Experiment2_height;
+        record.Exp2_A_User = Exp_2.A_User;
+        record.Exp2_UA_User = Exp_2.UA_User;
+        record.Exp2_A_Real = Exp_2.A_Real;
+        record.Exp2_B_User = Exp_2.B_User;
+        record.Exp2_UB_User = Exp_2.UB_User;
+        record.Exp2_B_Real = Exp_2.B_Real;
+        record.Exp2_C_User = Exp_2.C_User;
+        record.Exp2_UC_User = Exp_2.UC_User;
+        record.Exp2_C_Real = Exp_2.C_Real;
         record.ifFirst0_ = Wwlplay.ifFirst0_;
         record.ifFirst1_ = Wwlplay.ifFirst1_;
         record.ifFirst2_ = Wwlplay.ifFirst2_;
