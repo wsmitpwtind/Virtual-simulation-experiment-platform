@@ -50,6 +50,18 @@ public class Wwlplay : MonoBehaviour
     {
         transform.Find("Wwl").gameObject.SetActive(false);
         isplay = false;
+
+
+        List<Transform> lst = new List<Transform>();
+        foreach (Transform child in transform)
+        {
+            lst.Add(child);
+        }
+        for (int i = 0; i < lst.Count; i++)
+        {
+            lst[i].gameObject.SetActive(false);
+        }
+
     }
     private void WakeWwl0_()
     {

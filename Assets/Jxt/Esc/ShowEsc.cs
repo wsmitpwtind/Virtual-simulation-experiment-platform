@@ -54,6 +54,7 @@ public class ShowEsc : MonoBehaviour
             animate.SetEase(Ease.OutExpo);
             animate.startValue = new Vector3(0, 400, 0);
             animate.SetUpdate(true);
+            //GameObject.FindGameObjectWithTag("TeacherVoice").GetComponent<AudioSource>().Stop();//暂停音频
             Time.timeScale = 0;
             try
             {
@@ -70,6 +71,7 @@ public class ShowEsc : MonoBehaviour
             animate.startValue = new Vector3(0, 0, 0);
             animate.SetUpdate(true);
             Time.timeScale = 1;
+            //GameObject.FindGameObjectWithTag("TeacherVoice").GetComponent<AudioSource>().//播放音频
             Invoke("Delay", 0.15f);
         }
     }

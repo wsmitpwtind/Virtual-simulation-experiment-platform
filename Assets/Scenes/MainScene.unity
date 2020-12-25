@@ -1596,7 +1596,7 @@ GameObject:
   - component: {fileID: 124997961}
   m_Layer: 0
   m_Name: voice2_1
-  m_TagString: Untagged
+  m_TagString: TeacherVoice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1798,7 +1798,7 @@ GameObject:
   - component: {fileID: 127004973}
   m_Layer: 0
   m_Name: voice1_2
-  m_TagString: Untagged
+  m_TagString: TeacherVoice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2979,7 +2979,7 @@ GameObject:
   - component: {fileID: 247753887}
   m_Layer: 0
   m_Name: voice2_2
-  m_TagString: Untagged
+  m_TagString: TeacherVoice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3415,7 +3415,7 @@ GameObject:
   - component: {fileID: 299877417}
   m_Layer: 0
   m_Name: voice2_0
-  m_TagString: Untagged
+  m_TagString: TeacherVoice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5249,7 +5249,7 @@ GameObject:
   - component: {fileID: 482360277}
   m_Layer: 0
   m_Name: voice0_2
-  m_TagString: Untagged
+  m_TagString: TeacherVoice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13821,7 +13821,7 @@ GameObject:
   - component: {fileID: 1128582909}
   m_Layer: 0
   m_Name: voice1_1
-  m_TagString: Untagged
+  m_TagString: TeacherVoice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14760,7 +14760,7 @@ GameObject:
   - component: {fileID: 1212738503}
   m_Layer: 0
   m_Name: voice0_0
-  m_TagString: Untagged
+  m_TagString: TeacherVoice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14888,8 +14888,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
-  tipsClass: 1
-  text: 
+  tipsClass: 0
+  text: 0-0
 --- !u!1 &1222083895
 GameObject:
   m_ObjectHideFlags: 0
@@ -20271,7 +20271,7 @@ GameObject:
   - component: {fileID: 1832712639}
   m_Layer: 0
   m_Name: voice0_1
-  m_TagString: Untagged
+  m_TagString: TeacherVoice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20399,8 +20399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
-  tipsClass: 2
-  text: 
+  tipsClass: 0
+  text: 0-1
 --- !u!1 &1845679910
 GameObject:
   m_ObjectHideFlags: 0
@@ -22631,7 +22631,7 @@ GameObject:
   - component: {fileID: 2055386276}
   m_Layer: 0
   m_Name: voice1_0
-  m_TagString: Untagged
+  m_TagString: TeacherVoice
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
