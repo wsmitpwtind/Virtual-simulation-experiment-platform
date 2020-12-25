@@ -11,6 +11,11 @@ public class Origin_data2_height : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        while (Manager.record.Exp2_height[Number - 1] > 0)
+        {
+            Number++;
+        }
+        GameObject.Find("Text_number2").GetComponent<Text>().text = "请输入您高度的第" + Number + "个实验数据/mm";
         GetComponent<InputField>().onEndEdit.AddListener(Accept);
     }
 
