@@ -11773,8 +11773,9 @@ GameObject:
   - component: {fileID: 979772677}
   - component: {fileID: 979772679}
   - component: {fileID: 979772678}
+  - component: {fileID: 979772680}
   m_Layer: 5
-  m_Name: BackGroundImage
+  m_Name: Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11812,7 +11813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: bd06b3cb1c1b1e548a459cfd97e0af79, type: 2}
-  m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0.7176471}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7058824}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -11836,6 +11837,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 979772676}
   m_CullTransparentMesh: 0
+--- !u!114 &979772680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979772676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65b179193f4498441863e087e9e9b321, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dim: {fileID: 2100000, guid: bd06b3cb1c1b1e548a459cfd97e0af79, type: 2}
+  transparent: {fileID: 2100000, guid: dfe359f54b0d9f94fbae29ecf0644078, type: 2}
+  toMonitor: {fileID: 6489577}
 --- !u!1001 &984587340
 PrefabInstance:
   m_ObjectHideFlags: 0

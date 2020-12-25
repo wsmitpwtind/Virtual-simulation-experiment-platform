@@ -23,11 +23,11 @@ public class TipsManager : MonoBehaviour
     public enum TipsClass
     {
         [InspectorName("采用输入的文本")]
-        Input, 
+        Input,
         [InspectorName("刚刚进入实验")]
-        AtStart, 
+        AtStart,
         [InspectorName("刚刚开始实验")]
-        AtEntryExperiment, 
+        AtEntryExperiment,
         [InspectorName("刚刚结束实验")]
         AtQuitExperiment
     }
@@ -45,8 +45,9 @@ public class TipsManager : MonoBehaviour
     {
 
     }
-    void OnDisable()
+    void OnDestroy()
     {
-        tipsComponent.HideTips();
+        if (tipsComponent != null)
+            tipsComponent.HideTips();
     }
 }
