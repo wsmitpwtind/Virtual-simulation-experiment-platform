@@ -12,15 +12,12 @@ public class Player : MonoBehaviour
     {
         Body = GetComponent<Rigidbody>();
     }
-    void Update()
+    void FixedUpdate()
     {
-        if  (Exp_2.Move_able == 1)
+        if (Manager.Move_able == 1)
         {
             Move();
         }
-        
-        
-       
     }
     void Move()
     {
@@ -52,6 +49,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    
-    
+
+
 }

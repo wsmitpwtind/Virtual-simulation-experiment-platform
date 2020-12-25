@@ -5,11 +5,10 @@ using UnityEngine;
 public class RecordShower : MonoBehaviour
 {
     public GameObject RecordObj;
-    public RecordManager manager;
     private List<RecordScript> showedRecords = new List<RecordScript>();
     void Start()
     {
-        manager.onRecordUpdate += RefreshRecord;
+        RecordManager.onRecordUpdate += RefreshRecord;
         RefreshRecord();
     }
     private void RefreshRecord()
@@ -17,13 +16,17 @@ public class RecordShower : MonoBehaviour
         foreach (var item in showedRecords)
             Destroy(item.gameObject);
         showedRecords.Clear();
-        var list = manager.records;
+        var list = RecordManager.recordInfos;
         foreach (var item in list)
         {
             var recordScript = Instantiate<GameObject>(RecordObj, gameObject.transform).GetComponent<RecordScript>();
             recordScript.SetRecordInfo(item);
-            recordScript.recordManager = manager;
             showedRecords.Add(recordScript);
         }
+    }
+
+    void OnDestroy()
+    {
+        RecordManager.onRecordUpdate -= RefreshRecord;
     }
 }

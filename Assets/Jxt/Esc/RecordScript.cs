@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 
 public class RecordScript : MonoBehaviour
 {
@@ -19,7 +20,6 @@ public class RecordScript : MonoBehaviour
         get => _time.text;
         set => _time.text = value;
     }
-    public RecordManager recordManager;
 
     // Start is called before the first frame update
     void Start()
@@ -47,11 +47,13 @@ public class RecordScript : MonoBehaviour
 
     void LoadRecord()
     {
-        throw new NotImplementedException();
+        RecordManager.currentRecordId = recordId;
+        Time.timeScale = 1;
+        SceneManager.LoadScene("MainScene");
     }
 
     void DeleteRecord()
     {
-        GetComponentInParent<RecordManager>().DeleteRecord(recordId);
+        RecordManager.DeleteRecord(recordId);
     }
 }

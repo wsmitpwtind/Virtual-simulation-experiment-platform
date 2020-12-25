@@ -22,12 +22,9 @@ public class Look : MonoBehaviour
         Rotation_y = GameObject.Find("Player").GetComponent<Transform>().localEulerAngles.y;
         player = GameObject.Find("Player");
     }
-
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Lookaround();
-        
     }
     void Lookaround()
     {
@@ -53,13 +50,13 @@ public class Look : MonoBehaviour
             Rotation_x -= Input.GetAxis("Mouse Y") * Speed_v;//注意是-=
             Rotation_x = Mathf.Clamp(Rotation_x, Min_head, Max_head);//水平Verital
             Rotation_y = Rotation_y + Input.GetAxis("Mouse X") * Speed_h;
-            transform.localEulerAngles = new Vector3(Rotation_x,0, 0);
+            transform.localEulerAngles = new Vector3(Rotation_x, 0, 0);
             player.GetComponent<Transform>().localEulerAngles = new Vector3(0, Rotation_y, 0);
         }
         if (Input.GetKey(KeyCode.E) | Input.GetKey(KeyCode.UpArrow))
         {
             //Rotation_x-=2;
-           // Rotation_y += 2;
+            // Rotation_y += 2;
         }
     }
     public enum RotationAxes

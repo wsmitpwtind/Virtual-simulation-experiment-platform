@@ -135,7 +135,7 @@ public class FadeAnimate : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // 循环设置透明度
         for (int i = animateObjects.Count - 1; i >= 0; i--)

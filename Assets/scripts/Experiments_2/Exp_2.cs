@@ -22,21 +22,49 @@ public class Exp_2 : MonoBehaviour
     public static double UV_User = 0;
     public static double V_Real = 0;
 
-    public static int Move_able = 1;
-    public static double score_2 = 0;
+    
+    public static double score = 0;
 
 
-    public static MonitorableValue<int> state = new MonitorableValue<int>(0);//0代表未开始，1代表正在实验，2代表结束实验
+    public static MonitorableValue<int> state = new MonitorableValue<int>(0);//含义如下
+    /*
+    0代表未开始
+    1代表填入长度的第一个实验数据，最多可填100个
+    101代表填入宽度的第一个实验数据，最多可填100个
+    201代表填入高度的第一个实验数据，最多可填100个
+    301代表实验完成
 
-    // Start is called before the first frame update
+
+
+    */
+
     void Start()
     {
+        //赋初值
+        Exp_2.state.Value = Manager.record.Exp2_state;
+        Experiment2_length = Manager.record.Exp2_length;
+        Experiment2_width = Manager.record.Exp2_width;
+        Experiment2_height = Manager.record.Exp2_height;
+        A_User = Manager.record.Exp2_A_User;
+        UA_User = Manager.record.Exp2_UA_User;
+        A_Real = Manager.record.Exp2_A_Real;
+        B_User = Manager.record.Exp2_B_User;
+        UB_User = Manager.record.Exp2_UB_User;
+        B_Real = Manager.record.Exp2_B_Real;
+        C_User = Manager.record.Exp2_C_User;
+        UC_User = Manager.record.Exp2_UC_User;
+        C_Real = Manager.record.Exp2_C_Real;
+        V_User = Manager.record.Exp2_V_User;
+        UV_User = Manager.record.Exp2_UV_User;
+        V_Real = Manager.record.Exp2_V_Real;
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
         
     }
          
