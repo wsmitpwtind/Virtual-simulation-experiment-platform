@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - book
+  - TeacherVoice
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - UI3
   - teacher
   - Moveable
-  - 
+  - TeacherVoice
   - 
   - 
   - 
