@@ -110,10 +110,10 @@ public static class StaticMethods {
         if(A == null || B == null || C == null) {
             return default;
         }
-        int n = A.Length;//A,B,C:mm
-        if(B.Length != n || C.Length != n) {
-            return default;
-        }
+        //int n = A.Length;//A,B,C:mm
+        //if(B.Length != n || C.Length != n) {
+        //    return default;
+        //}
         double A_av = Average(A), B_av = Average(B), C_av = Average(C);
         double u1a = Uncertain_A(A), u1b = Uncertain_A(B), u1c = Uncertain_A(C);
         double sq3 = MATH.Sqrt(3), u2 = 0.02 / sq3, u22 = 0.5 / sq3;
