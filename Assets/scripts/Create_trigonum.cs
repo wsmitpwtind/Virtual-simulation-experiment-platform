@@ -7,6 +7,8 @@ public class Create_trigonum : MonoBehaviour
 {
     public GameObject My_trigonum;
     private GameObject Now_trigonum;
+    IndicatorManager indicatorManager;
+    private GameObject view;
     Vector3 position = new Vector3(0.2f, 1.94f, -2.5f);
     Quaternion rotation = Quaternion.Euler(new Vector3(-90f, 0, 0));
     // Start is called before the first frame update
@@ -23,14 +25,19 @@ public class Create_trigonum : MonoBehaviour
     void Trigonum()
     {
         Now_trigonum = GameObject.Find("ruler");
+        view = GameObject.Find("MainCamera");
         if (Now_trigonum.transform.position.x - 9f > 0)
         {
+            view.GetComponent<Show_place>().name = "Ruler";
             Now_trigonum.transform.position = position;
+            indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
+            indicatorManager.Indicator1.ShowIndicate("B", "贴近测量");
         }
         else
         {
             Now_trigonum.transform.position = new Vector3(13.2f, 2f, -2.5f);
-           
+            indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
+            indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
         }
 
         GameObject.Find("Dropdown").GetComponent<Dropdown>().value = 0;

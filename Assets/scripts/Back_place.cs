@@ -6,6 +6,7 @@ public class Back_place : MonoBehaviour
 {
     public bool Enable = true;
     private bool moveable = false;
+    IndicatorManager indicatorManager;
     private Vector3 temp1 = new Vector3(0.0f, 0.0f, 0.0f);
     private Vector3 temp2 = new Vector3(0.0f, 0.0f, 0.0f);
     public float time = 5.0f;
@@ -43,6 +44,8 @@ public class Back_place : MonoBehaviour
             mCamera.fieldOfView = 60.0f;
             moveable = false;
             GetComponent<Show_place>().enabled = true;
+            indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
+            indicatorManager.Indicator1.ShowIndicate("B", "贴近测量");
         }
     }
 }

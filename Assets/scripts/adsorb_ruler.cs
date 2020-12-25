@@ -21,9 +21,13 @@ public class adsorb_ruler : MonoBehaviour
         {
             if (!Input.GetMouseButton(0))
             {
-                if (Vector3.Distance(RU.transform.position, BO.transform.position) <= 0.2f&&Doing)
-                { 
+                if (Vector3.Distance(RU.transform.position, BO.transform.position) <= 0.2f && Doing)
+                {
                     absord();
+                }
+                else if(Vector3.Distance(RU.transform.position, BO.transform.position) > 0.2f)
+                {
+                    Doing = true;
                 }
             }
         }
