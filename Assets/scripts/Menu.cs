@@ -81,6 +81,12 @@ public class Menu : MonoBehaviour
         }
         else if (value == 1)
         {
+            if (Manager.state.Value == 1)
+            {
+                Manager.state.Value = 2;
+            }
+
+
             AniInstance.Show(Instrument.transform.Find("Buttons").gameObject, 200);
             AniInstance.Hide(Exp1_page[Exp1_pagenumber], 200);
             Exp1_page[Exp1_pagenumber].SetActive(false);
@@ -102,6 +108,12 @@ public class Menu : MonoBehaviour
         }
         else if (value == 3)
         {
+            if (Exp_2.state.Value == 0)
+            {
+                Exp_2.state.Value = 1;
+            }
+
+
             AniInstance.Hide(Instrument.transform.Find("Buttons").gameObject, 200);
             Instrument.transform.Find("Buttons").gameObject.SetActive(false);
             AniInstance.Hide(Exp1_page[Exp1_pagenumber], 200);

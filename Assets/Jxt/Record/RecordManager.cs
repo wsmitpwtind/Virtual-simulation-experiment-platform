@@ -253,12 +253,12 @@ public class Record
     public double Exp2_UV_User { get; set; }
     public double Exp2_V_Real { get; set; } 
     //wwl视频
-    public bool[] ifFirst0_ { get; set; } = { true, true, true };
+    public bool[] ifFirst0_ { get; set; } = { true, true, true, true, true, true };
     public bool[] ifFirst1_ { get; set; } = { true, true, true };
-    public bool[] ifFirst2_ { get; set; } = { true, true, true };
+    public bool[] ifFirst2_ { get; set; } = { true, true, true, true, true };
     public int i_0 { get; set; } = 0;
-    public int i_1 { get; set; } = -1;
-    public int i_2 { get; set; } = -1;
+    public int i_1 { get; set; } = 0;
+    public int i_2 { get; set; } = 0;
     //数据记录位置
     public int Exp1_pagenumber { get; set; } = 0;
     public int Exp2_pagenumber { get; set; } = 0;

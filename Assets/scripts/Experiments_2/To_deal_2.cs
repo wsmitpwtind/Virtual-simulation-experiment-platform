@@ -19,6 +19,7 @@ public class To_deal_2 : MonoBehaviour
         if (Exp_2.Experiment2_height[4]>0)
         {
             Menu.Exp2_pagenumber = 3;
+            Exp_2.state.Value = 4;
             Experiment2.transform.Find("InputFields2_3").gameObject.SetActive(false);
             Experiment2.transform.Find("Deal_2").gameObject.SetActive(true);
         }

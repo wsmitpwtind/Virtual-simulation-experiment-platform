@@ -29,10 +29,11 @@ public class Exp_2 : MonoBehaviour
     public static MonitorableValue<int> state = new MonitorableValue<int>(0);//含义如下
     /*
     0代表未开始
-    1代表填入长度的第一个实验数据，最多可填100个
-    101代表填入宽度的第一个实验数据，最多可填100个
-    201代表填入高度的第一个实验数据，最多可填100个
-    301代表实验完成
+    1代表填长度的实验数据
+    2代表填宽度的实验数据
+    3代表填高度的实验数据
+    4代表数据处理
+    5代表实验完成
 
 
 
@@ -64,8 +65,8 @@ public class Exp_2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
+
+        Debug.Log(state.Value);
     }
          
 }

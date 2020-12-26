@@ -15,7 +15,7 @@ public class Origin_data2_height : MonoBehaviour
         {
             Number++;
         }
-        GameObject.Find("Text_number2").GetComponent<Text>().text = "请输入您高度的第" + Number + "个实验数据/mm";
+        GameObject.Find("Text_number2").GetComponent<Text>().text = "请输入您厚度的第" + Number + "个实验数据/mm";
         GetComponent<InputField>().onEndEdit.AddListener(Accept);
     }
 
@@ -26,7 +26,7 @@ public class Origin_data2_height : MonoBehaviour
         {
             Exp_2.Experiment2_height[Number - 1] = Input;
             Number += 1;
-            GameObject.Find("Text_number2").GetComponent<Text>().text = "请输入您高度的第" + Number + "个实验数据/mm";
+            GameObject.Find("Text_number2").GetComponent<Text>().text = "请输入您厚度的第" + Number + "个实验数据/mm";
         }
         
         
