@@ -42,10 +42,12 @@ public class Manager : MonoBehaviour
 
         //赋值
         Manager.state.Value = record.Manager_state;
-
-
-
-
+        GameObject.Find("book_0001b").GetComponent<Transform>().position = record.BookPosition;
+        GameObject.Find("book_0001b").GetComponent<Transform>().localEulerAngles = record.BookRotation;
+        GameObject.Find("ruler").GetComponent<Transform>().position = record.RulerPosition;
+        GameObject.Find("ruler").GetComponent<Transform>().localEulerAngles = record.RulerRotation;
+        GameObject.Find("Real_Vernier").GetComponent<Transform>().position = record.VerinerPosition;
+        GameObject.Find("Real_Vernier").GetComponent<Transform>().localEulerAngles = record.VerinerRotation;
 
 
 

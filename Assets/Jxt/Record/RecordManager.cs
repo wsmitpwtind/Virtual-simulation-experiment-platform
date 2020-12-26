@@ -186,6 +186,12 @@ public static class RecordManager
         record.i_2 = Wwlplay.i_2;
         record.Exp1_pagenumber = Menu.Exp1_pagenumber;
         record.Exp2_pagenumber = Menu.Exp2_pagenumber;
+        record.BookPosition = GameObject.Find("book_0001b").GetComponent<Transform>().position;
+        record.BookRotation = GameObject.Find("book_0001b").GetComponent<Transform>().rotation.eulerAngles;
+        record.RulerPosition = GameObject.Find("ruler").GetComponent<Transform>().position;
+        record.RulerRotation = GameObject.Find("ruler").GetComponent<Transform>().rotation.eulerAngles;
+        record.VerinerPosition = GameObject.Find("Real_Vernier").GetComponent<Transform>().position;
+        record.VerinerRotation = GameObject.Find("Real_Vernier").GetComponent<Transform>().rotation.eulerAngles;
 
         return record;
     }
@@ -262,7 +268,13 @@ public class Record
     //数据记录位置
     public int Exp1_pagenumber { get; set; } = 0;
     public int Exp2_pagenumber { get; set; } = 0;
-
+    //记录仪器位置
+    public Vector3 BookPosition { get; set; } = new Vector3(0.352f, 1.965f, -1.159f);
+    public Vector3 BookRotation { get; set; } = new Vector3(0, 180, 90);
+    public Vector3 VerinerPosition { get; set; } = new Vector3(12.98f, 2.248f, -1.405f);
+    public Vector3 VerinerRotation { get; set; } = new Vector3(-90, 0, 90);
+    public Vector3 RulerPosition { get; set; } = new Vector3(47.05f, 2.156f, 0.0105f);
+    public Vector3 RulerRotation { get; set; } = new Vector3(-90, 0, 0);
 
     public static RecordInfo GenRecordInfo(int id, string title)
     {
