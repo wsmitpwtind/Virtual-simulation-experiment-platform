@@ -756,6 +756,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f9ec2f5b43ac0204199acdb66395048b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f9ec2f5b43ac0204199acdb66395048b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f9ec2f5b43ac0204199acdb66395048b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9ec2f5b43ac0204199acdb66395048b, type: 3}
 --- !u!1001 &50160440
@@ -11404,7 +11416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enable: 1
   name: Vernier
-  time: 15
+  time: 2
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11418,7 +11430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enable: 1
-  time: 15
+  time: 2
 --- !u!1 &970075614
 GameObject:
   m_ObjectHideFlags: 0
@@ -15495,6 +15507,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6173953d608be6d4995654ff44f74ff5,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.126
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6173953d608be6d4995654ff44f74ff5,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.126
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 6173953d608be6d4995654ff44f74ff5,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2.126
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6173953d608be6d4995654ff44f74ff5,
         type: 3}
@@ -34859,7 +34886,7 @@ Transform:
   m_GameObject: {fileID: 146603466763030486}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.17606916, y: 0, z: 0.000099897385}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.98, y: 1, z: 1}
   m_Children:
   - {fileID: 2508661380322061735}
   - {fileID: 1377517969359061901}
