@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6981132, g: 0.019757926, b: 0.019757926, a: 1}
+  m_Color: {r: 0.7921569, g: 0.16078432, b: 0.16078432, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -364,8 +364,9 @@ GameObject:
   - component: {fileID: 2379070936177404679}
   - component: {fileID: 2379070936177404677}
   - component: {fileID: 2379070936177404676}
+  - component: {fileID: 9038503756192960426}
   m_Layer: 5
-  m_Name: Record
+  m_Name: StartRecord
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -431,6 +432,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &9038503756192960426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2379070936177404678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a9406157b6f2347a9f77c9f4ccbd71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _title: {fileID: 2379070934735071747}
+  _time: {fileID: 2379070936539890710}
 --- !u!1 &2379070936325261920
 GameObject:
   m_ObjectHideFlags: 0

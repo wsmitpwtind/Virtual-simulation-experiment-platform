@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6509434, g: 0.1473834, b: 0.1473834, a: 1}
+  m_Color: {r: 0.7921569, g: 0.16078432, b: 0.16078432, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.46226418, g: 0.46226418, b: 0.46226418, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -290,7 +290,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _title: {fileID: 6966179030138672182}
   _time: {fileID: 1006595953235522798}
-  recordManager: {fileID: 0}
 --- !u!1 &6035421183482138028
 GameObject:
   m_ObjectHideFlags: 0
