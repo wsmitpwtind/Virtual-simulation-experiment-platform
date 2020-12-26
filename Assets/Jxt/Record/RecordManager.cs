@@ -78,7 +78,8 @@ public static class RecordManager
             list[index] = recordInfo;
         recordStorage.SetStorage("defaultRecord", record);
         Storage.CommonStorage.SetStorage("RecordInfo", list);
-        onRecordUpdate();
+        if (onRecordUpdate != null)
+            onRecordUpdate();
     }
     /// <summary>
     /// 获取存档信息列表
@@ -116,7 +117,8 @@ public static class RecordManager
         Storage.CommonStorage.SetStorage("RecordInfo", list);
         Storage storage = new Storage(Id);
         storage.DeleteStorage();
-        onRecordUpdate();
+        if (onRecordUpdate != null)
+            onRecordUpdate();
     }
     /// <summary>
     /// 获取第一个没有存档的ID
@@ -251,7 +253,7 @@ public class Record
     public double Exp2_C_Real { get; set; } = 27.7f;
     public double Exp2_V_User { get; set; }
     public double Exp2_UV_User { get; set; }
-    public double Exp2_V_Real { get; set; } 
+    public double Exp2_V_Real { get; set; }
     //wwl视频
     public bool[] ifFirst0_ { get; set; } = { true, true, true, true, true, true };
     public bool[] ifFirst1_ { get; set; } = { true, true, true };
