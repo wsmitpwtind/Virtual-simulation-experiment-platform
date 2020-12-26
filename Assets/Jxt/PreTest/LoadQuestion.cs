@@ -139,8 +139,12 @@ public class LoadQuestion : MonoBehaviour
         if (answer.Trim().Length == 0)
         {
             DOTween.Clear();
+            float yyy = inputEmpty.GetComponent<RectTransform>().localPosition.y;
+            Debug.Log(yyy);
+            if (yyy < 200)
+                yyy = 400;
             inputEmpty.GetComponent<RectTransform>().DOLocalMoveY(150, 0.5f).SetEase(Ease.OutExpo);
-            inputEmpty.GetComponent<RectTransform>().DOLocalMoveY(300, 0.5f).SetEase(Ease.OutExpo).SetDelay(2);
+            inputEmpty.GetComponent<RectTransform>().DOLocalMoveY(yyy, 0.5f).SetEase(Ease.OutExpo).SetDelay(2);
         }
         else
         {

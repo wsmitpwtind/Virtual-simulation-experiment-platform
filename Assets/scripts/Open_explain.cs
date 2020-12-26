@@ -2,21 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 public class Open_explain : MonoBehaviour
 {
-    private GameObject Canvas;
+    public bool Show;
+    private GameObject tips;
     // Start is called before the first frame update
     void Start()
     {
+        var Canvas = GameObject.Find("Canvas");
+        tips = Canvas.transform.Find("Explain").gameObject;
+        tips.SetActive(true);
+        tips.transform.localScale = new Vector3(0, 0, 0);
         GetComponent<Button>().onClick.AddListener(Open);
-        Canvas = GameObject.Find("Canvas");
     }
 
     // Update is called once per frame
     void Open()
     {
-        GameObject.Find("Canvas").GetComponent<FadeAnimate>().Show(Canvas.transform.Find("Explain").gameObject, 200);
-        // Canvas.transform.Find("Explain").gameObject.SetActive(true);
+        if (Show)
+        {
+            var animate = tips.transform.DOScale(new Vector3(1, 1, 1), .5f);
+            animate.SetEase(Ease.OutExpo);
+        }
+        else
+        {
+            var animate = tips.transform.DOScale(new Vector3(0, 0, 0), .5f);
+            animate.SetEase(Ease.InOutExpo);
+        }
     }
 }

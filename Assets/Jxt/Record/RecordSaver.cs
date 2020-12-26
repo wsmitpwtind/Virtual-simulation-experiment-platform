@@ -39,14 +39,16 @@ public class RecordSaver : MonoBehaviour
     void DropdownValueChanged(int value)
     {
         if (value == 0)
-            return;
-        inputField.text = RecordManager.recordInfos.Find(x => recordIdTable[value].Equals(x.recordId)).title;
+            inputField.text = "";
+        else
+            inputField.text = RecordManager.recordInfos.Find(x => recordIdTable[value].Equals(x.recordId)).title;
     }
     void SaveRecordHandler()
     {
         var name = inputField.text.Trim();
         int id = recordIdTable[dropdown.value];
         var recordInfo = Record.GenRecordInfo(id, string.IsNullOrEmpty(name) ? $"存档 {id}" : name);
+        inputField.text = "";
         RecordManager.SaveRecord(recordInfo);
         switchPanel.SwitchPanelHandler();
     }
