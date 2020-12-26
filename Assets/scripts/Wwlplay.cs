@@ -54,6 +54,11 @@ public class Wwlplay : MonoBehaviour
     private void Update()
     {
         timeScale.Value = Time.timeScale;
+
+
+        Debug.Log(ifFirst0_);
+        Debug.Log(ifFirst1_);
+        Debug.Log(ifFirst2_);
     }
 
     private void ShutWwl()
