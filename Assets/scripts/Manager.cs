@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.UI;
 public class Manager : MonoBehaviour
 {    
     private GameObject Player;
@@ -105,6 +105,7 @@ public class Manager : MonoBehaviour
 
     void Quit_the_experienment()
     {
+        Canvas.transform.Find("Dropdown").gameObject.GetComponent<Dropdown>().value = 0;
         Canvas.transform.Find("Dropdown").gameObject.SetActive(false);
         Camera.GetComponent<Look>().enabled = true;
         Manager.Move_able = 1;

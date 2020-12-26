@@ -1168,7 +1168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
   tipsClass: 0
-  text: 0-1
+  text: "\u957F\u5BBD\u9AD8\u5E94\u9009\u62E9\u4E66\u7684\u4E0D\u540C\u4F4D\u7F6E\u5206\u522B\u6D4B\u91CF\u81F3\u5C11\u4E94\u6B21"
 --- !u!82 &102756222
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1881,7 +1881,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
   tipsClass: 0
-  text: 11
+  text: "\u539A\u5EA6\u9700\u8981\u4F7F\u7528\u6E38\u6807\u5361\u5C3A\u8FDB\u884C\u6D4B\u91CF\uFF0C\u8981\u4E0D\u7136\u8BB0\u5F55\u7684\u6570\u636E\u65E0\u6548\u54DF"
 --- !u!1001 &125950951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3169,7 +3169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
   tipsClass: 0
-  text: 22
+  text: "\u8BF7\u4EE5\u201C\u4E3B\u503C+\u4E0D\u786E\u5B9A\u5EA6\u7684\u65B9\u5F0F\u201D\u8BB0\u5F55\u60A8\u6570\u636E\u5904\u7406\u7684\u7ED3\u679C"
 --- !u!1001 &259608921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3621,7 +3621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
   tipsClass: 0
-  text: 00
+  text: "\u8F93\u5165\u5B8C\u4E00\u4E2A\u6570\u636E\u540E\uFF0C\u6309\u56DE\u8F66\u6216\u201C\u4E0B\u4E00\u6B65\u201D\uFF0C\u8F93\u5165\u7B2C\u4E94\u4E2A\u6570\u636E\u65F6\uFF0C\u56DE\u8F66\u4F1A\u7EE7\u7EED\u8BB0\u5F55\u6570\u636E\uFF0C\u201C\u4E0B\u4E00\u6B65\u201D\u8DF3\u8F6C\u5230\u4E0B\u4E00\u7C7B\u578B\u6570\u636E"
 --- !u!1 &299993192
 GameObject:
   m_ObjectHideFlags: 0
@@ -4009,7 +4009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
   tipsClass: 0
-  text: 0-1
+  text: "\u70B9\u51FB\u6216\u6846\u9009\u5747\u53EF\u9009\u4E2D\u7269\u4F53\uFF0C\u6309Z\u8FDB\u884C\u5E73\u79FB\uFF0C\u6309X\u8FDB\u884C\u65CB\u8F6C"
 --- !u!82 &366345142
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10431,7 +10431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
   tipsClass: 0
-  text: 0-1
+  text: "\u8BF7\u81EA\u884C\u9009\u62E9\u5408\u9002\u7684\u4EEA\u5668\u8FDB\u884C\u6D4B\u91CF"
 --- !u!82 &857948205
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10752,7 +10752,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &862161136
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13306,7 +13306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
   tipsClass: 0
-  text: 33
+  text: "\u5B9E\u9A8C\u8FC7\u7A0B\u4EC5\u4F9B\u53C2\u8003\uFF0C\u5B9E\u9A8C\u4E8C\u5DF2\u5B8C\u6210"
 --- !u!82 &1056873851
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15238,7 +15238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
   tipsClass: 0
-  text: 0-0
+  text: "\u719F\u6089\u5B8C\u6559\u5BA4\u540E\uFF0C\u8BF7\u8D70\u5230\u51F3\u5B50\u65C1\u6309E\u5F00\u59CB\u5B9E\u9A8C"
 --- !u!1 &1222083895
 GameObject:
   m_ObjectHideFlags: 0
@@ -15715,7 +15715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
   tipsClass: 0
-  text: 0-1
+  text: "\u606D\u559C\uFF0C\u60A8\u5DF2\u5B8C\u6210\u6240\u6709\u5B9E\u9A8C\uFF0C\u6309Q\u79BB\u5F00\u5EA7\u4F4D\uFF0C\u8BF7\u4ECE\u524D\u95E8\u79BB\u5F00"
 --- !u!82 &1282841946
 AudioSource:
   m_ObjectHideFlags: 0
@@ -20939,7 +20939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tipsComponent: {fileID: 543846549}
   tipsClass: 0
-  text: 0-1
+  text: "\u70B9\u51FB\u5DE6\u4E0A\u89D2\u7684\u83DC\u5355\u680F\u9009\u62E9\u60A8\u60F3\u4F7F\u7528\u7684\u6D4B\u91CF\u5DE5\u5177"
 --- !u!1 &1845679910
 GameObject:
   m_ObjectHideFlags: 0
