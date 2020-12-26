@@ -233,7 +233,6 @@ public class RecordInfo
 public class Record
 {
     //状态
-    public int someValue { get; set; }
     public int Manager_state { get; set; }
     public int Exp1_state { get; set; }
     public int Exp2_state { get; set; }
@@ -243,16 +242,16 @@ public class Record
     public double[] Exp2_height { get; set; } = new double[100];
     public double Exp2_A_User { get; set; }
     public double Exp2_UA_User { get; set; }
-    public double Exp2_A_Real { get; set; }
+    public double Exp2_A_Real { get; set; } = 247.8f;
     public double Exp2_B_User { get; set; }
     public double Exp2_UB_User { get; set; }
-    public double Exp2_B_Real { get; set; }
+    public double Exp2_B_Real { get; set; } = 161.2f;
     public double Exp2_C_User { get; set; }
     public double Exp2_UC_User { get; set; }
-    public double Exp2_C_Real { get; set; }
+    public double Exp2_C_Real { get; set; } = 27.7f;
     public double Exp2_V_User { get; set; }
     public double Exp2_UV_User { get; set; }
-    public double Exp2_V_Real { get; set; }
+    public double Exp2_V_Real { get; set; } 
     //wwl视频
     public bool[] ifFirst0_ { get; set; } = { true, true, true };
     public bool[] ifFirst1_ { get; set; } = { true, true, true };

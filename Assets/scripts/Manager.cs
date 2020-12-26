@@ -81,7 +81,7 @@ public class Manager : MonoBehaviour
             if (Input.GetKey(KeyCode.Q))
             {
                 Debug.Log("退出试验");
-                Exp_1.state_1 = 0;
+                Manager.state.Value = 0;
                 Quit_the_experienment();
             }
         }

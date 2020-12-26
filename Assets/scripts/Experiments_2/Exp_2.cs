@@ -11,13 +11,13 @@ public class Exp_2 : MonoBehaviour
 
     public static double A_User = 0;//使用者计算的长度的平均值
     public static double UA_User = 0;//使用者计算的长度的不确定度
-    public static double A_Real = 0;//书籍的真实长度,不存在不确定度
+    public static double A_Real = 247.8f;//书籍的真实长度,不存在不确定度
     public static double B_User = 0;
     public static double UB_User = 0;
-    public static double B_Real = 0;
+    public static double B_Real = 161.2f;
     public static double C_User = 0;
     public static double UC_User = 0;
-    public static double C_Real = 0;
+    public static double C_Real = 27.7f;
     public static double V_User = 0;
     public static double UV_User = 0;
     public static double V_Real = 0;
