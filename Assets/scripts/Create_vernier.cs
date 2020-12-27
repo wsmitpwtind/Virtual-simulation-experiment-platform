@@ -9,6 +9,7 @@ public class Create_vernier : MonoBehaviour
     private GameObject Now_vernier;
     private GameObject Now_vernier1;
     private GameObject Now_vernier2;
+    public bool on = false; 
     private Vector3 Vv1;
     private GameObject view;
     private Vector3 Vv2;
@@ -20,6 +21,7 @@ public class Create_vernier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        on = false;
         GetComponent<Button>().onClick.AddListener(Vernier);
         Now_vernier = GameObject.Find("Real_Vernier");
         indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
@@ -45,7 +47,10 @@ public class Create_vernier : MonoBehaviour
             view.GetComponent<Show_place>().name = "Vernier";
             indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
             indicatorManager.Indicator1.ShowIndicate("B", "贴近测量");
-            indicatorManager.Indicator2.ShowIndicate("P", "收紧卡尺");
+            GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = true;
+            indicatorManager.Indicator2.ShowIndicate("O", "收紧卡尺");
+            indicatorManager.Indicator3.ShowIndicate("P", "拉伸卡尺");
+            on = true;
         }
         else
         {
@@ -53,7 +58,13 @@ public class Create_vernier : MonoBehaviour
             Now_vernier.transform.position= new Vector3(10.2f, 2f, -2.5f);
             indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
             indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
+            if (GameObject.Find("MainCamera").GetComponent<Show_place>().name == "Vernier")
+            {
+                GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = false;
+            }
             indicatorManager.Indicator2.HideIndicate();
+            indicatorManager.Indicator3.HideIndicate();
+            on = false;
         }
 
         GameObject.Find("Dropdown").GetComponent<Dropdown>().value = 0;

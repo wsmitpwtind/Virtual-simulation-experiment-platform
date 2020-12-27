@@ -11639,7 +11639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee6d35fda8dad54095b96e06ae208cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Enable: 1
+  Enable: 0
   name: Vernier
   time: 2
 --- !u!114 &963194231
@@ -14570,6 +14570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   My_vernier: {fileID: 919132149155446097, guid: bcd0556407ae9a34bbeb5ce0738ae449,
     type: 3}
+  on: 0
 --- !u!1 &1158254525
 GameObject:
   m_ObjectHideFlags: 0
@@ -24492,6 +24493,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   My_trigonum: {fileID: 919132149155446097, guid: 6173953d608be6d4995654ff44f74ff5,
     type: 3}
+  on: 0
 --- !u!1001 &2122354373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25571,6 +25573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13d4e1ba9804914ebb807d2c80c9c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doing: 0
 --- !u!54 &146603466763030488
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -25598,8 +25601,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.022359133, y: 0.12190345, z: 0.021928787}
-  m_Center: {x: 0.25837213, y: -0.023495987, z: 0.0004544258}
+  m_Size: {x: 0.023228416, y: 0.12190345, z: 0.021928787}
+  m_Center: {x: 0.2628633, y: -0.023495987, z: 0.0004544258}
 --- !u!23 &154059115107614035
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27968,7 +27971,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757728696628584918}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.2106331, y: 0, z: 0}
+  m_LocalPosition: {x: 0.2153, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5941931315061111190}
@@ -30439,7 +30442,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6555165702259279278}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.21353303, y: 0.0049914555, z: 0.0052999994}
+  m_LocalPosition: {x: 0.217533, y: 0.0049914555, z: 0.0052999994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4375027102610656202}
@@ -30598,6 +30601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85bec8c0ca252f148a36c45998c71cac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  doing: 0
 --- !u!54 &2553152351532932158
 Rigidbody:
   m_ObjectHideFlags: 0

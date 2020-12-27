@@ -30,11 +30,11 @@ public class Start_experiment : MonoBehaviour {
             //print(cam_look.enabled);
             indicatorManager.Indicator1.ShowIndicate("D", "锁定视角");
         }
-        if (Input.GetKeyDown(KeyCode.Z) && Exp_2.state.Equals(1))
+        if (Input.GetKeyDown(KeyCode.Z) && Manager.state.Equals(1))
         {
             indicatorManager.Indicator2.ShowIndicate("X", "切换旋转");
         }
-        if (Input.GetKeyDown(KeyCode.X) && Exp_2.state.Equals(1))
+        if (Input.GetKeyDown(KeyCode.X) && Manager.state.Equals(1))
         {
             indicatorManager.Indicator2.ShowIndicate("Z", "切换平移");
         }
@@ -53,7 +53,7 @@ public class Start_experiment : MonoBehaviour {
     }
 
     private void OnTriggerExit(Collider other) {
-        if (Exp_2.state.Equals(0))
+        if (Manager.state.Equals(0))
         {
             indicatorManager.Indicator1.HideIndicate();
             indicatorManager.Indicator2.HideIndicate();
