@@ -42,8 +42,7 @@ public class Start_experiment : MonoBehaviour {
 
     void OnTriggerStay(Collider other) {
         if(Input.GetKey(KeyCode.E)) {
-            Manager.state.Value=1;//开始实验
-            Start_the_experienment();
+            Start_the_experienment();//开始实验
         }
     }
 

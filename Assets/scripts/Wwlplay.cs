@@ -7,7 +7,7 @@ public class Wwlplay : MonoBehaviour
     private float[] time0_ = { 7f, 5f, 13f, 8f, 7f, 7f };//每段音频的时间
     private float[] time1_ = { 0f, 6f, 6f };
     private float[] time2_ = { 15f, 10f, 9f, 9f };
-    private bool isplay = false;
+    private bool isplay;
 
 
     public static bool[] ifFirst0_ = { true, true, true, true, true, true };
@@ -27,6 +27,7 @@ public class Wwlplay : MonoBehaviour
         i_0 = Manager.record.i_0;
         i_1 = Manager.record.i_1;
         i_2 = Manager.record.i_2;
+        isplay = false;
 
 
         Manager.state.onMyValueChanged += Voice0_;
@@ -54,6 +55,8 @@ public class Wwlplay : MonoBehaviour
     private void Update()
     {
         timeScale.Value = Time.timeScale;
+
+        Debug.Log("****");
     }
 
     private void ShutWwl()
@@ -144,7 +147,7 @@ public class Wwlplay : MonoBehaviour
 
     private void Voice0_(object sender, MonitorableValue<int>.ValueChangedEventArgs e)
     {
-        if (e.newValue == i_0)
+        if (e.newValue == 0 || e.newValue == 1 || e.newValue == 2 || e.newValue == 3 || e.newValue == 4 || e.newValue == 5)
         {
             WakeWwl0_();
         }        

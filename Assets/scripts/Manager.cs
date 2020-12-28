@@ -52,8 +52,8 @@ public class Manager : MonoBehaviour
             Invoke("SitonChair", 0.01f);
             Move_able = 0;
         }
-        Debug.Log($"Manager: {Manager.state.Value}");
-        Debug.Log($"Exp_2: {Exp_2.state.Value}");
+        
+
     }
     private void SitonChair()
     {
@@ -80,6 +80,9 @@ public class Manager : MonoBehaviour
                 Quit_the_experienment();
             }
         }
+
+        Debug.Log($"Manager: {Manager.state.Value}");
+        Debug.Log($"Exp_2: {Exp_2.state.Value}");
     }
 
 
