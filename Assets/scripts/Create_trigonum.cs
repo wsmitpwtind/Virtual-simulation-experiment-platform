@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Create_trigonum : MonoBehaviour
 {
+    private GameObject Now_vernier;
     public GameObject My_trigonum;
     private GameObject Now_trigonum;
     IndicatorManager indicatorManager;
@@ -35,7 +36,21 @@ public class Create_trigonum : MonoBehaviour
             indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
             GameObject.Find("MainCamera").GetComponent<Show_place>().Enable=true;
             indicatorManager.Indicator1.ShowIndicate("B", "贴近测量");
+            Manager.state.Value = 3;
             on = true;
+            if (GameObject.Find("book_0001b").GetComponent<Self_s>().t == 0)
+            {
+                GameObject.Find("book_0001b").GetComponent<Self_s>().t = 1;
+            }
+            if (GameObject.Find("book_0001b").GetComponent<Self_s>().t == 2)
+            {
+                GameObject.Find("book_0001b").GetComponent<Self_s>().t = 1;
+                Now_vernier = GameObject.Find("Real_Vernier");
+                Now_vernier.GetComponent<Move_vernier>().enabled = false;
+                Now_vernier.transform.position = new Vector3(10.2f, 2f, -2.5f);
+                indicatorManager.Indicator2.HideIndicate();
+                indicatorManager.Indicator3.HideIndicate();
+            }
         }
         else
         {
@@ -46,6 +61,7 @@ public class Create_trigonum : MonoBehaviour
                 GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = false;
             }
             indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
+            indicatorManager.Indicator2.ShowIndicate("X", "切换旋转");
             on = false;
         }
 

@@ -86,6 +86,7 @@ public class Wwlplay : MonoBehaviour
         {
             if (ifFirst0_[i_0] == true)
             {
+                Debug.Log(transform);
                 transform.Find("Wwl").gameObject.SetActive(true);
                 transform.Find("voice0_" + i_0).gameObject.SetActive(true);
                 Invoke("ShutWwl", time0_[i_0]);
@@ -170,7 +171,12 @@ public class Wwlplay : MonoBehaviour
 
     }
 
-
+    private void OnDestroy()
+    {
+        Manager.state.onMyValueChanged -= Voice0_;
+        Exp_1.state.onMyValueChanged -= Voice1_;
+        Exp_2.state.onMyValueChanged -= Voice2_;
+    }
 
 
 }

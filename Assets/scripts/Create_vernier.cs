@@ -12,6 +12,7 @@ public class Create_vernier : MonoBehaviour
     public bool on = false; 
     private Vector3 Vv1;
     private GameObject view;
+    private GameObject Now_trigonum;
     private Vector3 Vv2;
     Vector3 position = new Vector3(0.3f, 2f, -1.8f);
     Quaternion rotation = Quaternion.Euler(new Vector3(0, 0, 0));
@@ -50,7 +51,19 @@ public class Create_vernier : MonoBehaviour
             GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = true;
             indicatorManager.Indicator2.ShowIndicate("O", "收紧卡尺");
             indicatorManager.Indicator3.ShowIndicate("P", "拉伸卡尺");
+            Manager.state.Value = 3;
             on = true;
+            if (GameObject.Find("book_0001b").GetComponent<Self_s>().t == 0)
+            {
+                GameObject.Find("book_0001b").GetComponent<Self_s>().t = 2;
+            }
+            if (GameObject.Find("book_0001b").GetComponent<Self_s>().t == 1)
+            {
+                GameObject.Find("book_0001b").GetComponent<Self_s>().t = 2;
+                Now_vernier = GameObject.Find("Real_Vernier");
+                Now_trigonum = GameObject.Find("ruler");
+                Now_trigonum.transform.position = new Vector3(13.2f, 2f, -2.5f);
+            }
         }
         else
         {
@@ -62,7 +75,7 @@ public class Create_vernier : MonoBehaviour
             {
                 GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = false;
             }
-            indicatorManager.Indicator2.HideIndicate();
+            indicatorManager.Indicator2.ShowIndicate("X", "切换旋转");
             indicatorManager.Indicator3.HideIndicate();
             on = false;
         }
