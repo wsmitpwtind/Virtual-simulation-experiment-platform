@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class Manager : MonoBehaviour
-{    
+{
     private GameObject Player;
     private GameObject Camera;
     private GameObject Canvas;
@@ -14,24 +14,23 @@ public class Manager : MonoBehaviour
     public static MonitorableValue<int> state = new MonitorableValue<int>(0);
     /*
      * 0代表刚进入教室，1代表坐上凳子，2代表呼出了菜单栏中的仪器部分，3代表生成了尺子或游标卡尺，4代表开始读数，5代表所有实验完成
-
-
     */
     public static Record record = new Record();//根据存档初始化
-
-
-
+    public static void UpdateRecord()
+    {
+        Move_able = 1;
+        var rec = RecordManager.currentDefaultRecord;
+        if (rec != null)
+            record = rec;
+        else
+            record = new Record();
+        state.Value = record.Manager_state;
+    }
     private void Awake()
     {
         //加载存档,优先级大于start
-        if (RecordManager.RecordContains(RecordManager.currentRecordId))
-        {
-            record = RecordManager.currentDefaultRecord;
-        }
-        else
-        {
-            RecordManager.currentRecordId = RecordManager.GetFirstNone();
-        }
+        UpdateRecord();
+        Exp_2.Initialize();
     }
     void Start()
     {
@@ -39,9 +38,7 @@ public class Manager : MonoBehaviour
         Camera = GameObject.Find("MainCamera");
         Canvas = GameObject.Find("Canvas");
 
-
         //赋值
-        Manager.state.Value = record.Manager_state;
         GameObject.Find("book_0001b").GetComponent<Transform>().position = record.BookPosition;
         GameObject.Find("book_0001b").GetComponent<Transform>().localEulerAngles = record.BookRotation;
         GameObject.Find("ruler").GetComponent<Transform>().position = record.RulerPosition;
@@ -50,19 +47,13 @@ public class Manager : MonoBehaviour
         GameObject.Find("Real_Vernier").GetComponent<Transform>().localEulerAngles = record.VerinerRotation;
 
 
-
         if (Manager.state.Value > 0)
         {
             Invoke("SitonChair", 0.01f);
-            
+            Move_able = 0;
         }
-
-
-
-
-
-        
-        
+        Debug.Log($"Manager: {Manager.state.Value}");
+        Debug.Log($"Exp_2: {Exp_2.state.Value}");
     }
     private void SitonChair()
     {
@@ -83,27 +74,27 @@ public class Manager : MonoBehaviour
 
         if (Manager.state.Equals(5))
         {
-                        
+
             if (Input.GetKey(KeyCode.Q))
-            {                
+            {
                 Quit_the_experienment();
             }
         }
 
-        
+
     }
 
 
     void If_bug()
     {
-        if(Player.transform.position.y < 0f)
+        if (Player.transform.position.y < 0f)
         {
             Manager.state.Value = 0;
             Quit_the_experienment();
             SceneManager.LoadScene("Bug");
         }
     }
-    
+
 
     void Quit_the_experienment()
     {

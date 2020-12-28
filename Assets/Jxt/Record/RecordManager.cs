@@ -241,9 +241,9 @@ public class RecordInfo
 public class Record
 {
     //状态
-    public int Manager_state { get; set; }
-    public int Exp1_state { get; set; }
-    public int Exp2_state { get; set; }
+    public int Manager_state { get; set; } = 0;
+    public int Exp1_state { get; set; } = 0;
+    public int Exp2_state { get; set; } = 0;
     //实验二
     public double[] Exp2_length { get; set; } = new double[100];
     public double[] Exp2_width { get; set; } = new double[100];

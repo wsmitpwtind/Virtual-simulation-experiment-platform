@@ -13,5 +13,6 @@ public class NewExp : MonoBehaviour
     void setRecord()
     {
         RecordManager.currentRecordId = RecordManager.GetFirstNone();
+        Manager.UpdateRecord();
     }
 }

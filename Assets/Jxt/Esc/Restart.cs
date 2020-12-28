@@ -23,8 +23,6 @@ public class Restart : MonoBehaviour
     void RestartGame()
     {
         ShowEscInstance.SwitchEscMenu();
-        Debug.Log(AniInstance == null);
-        Debug.Log(Transition == null);
         if (AniInstance != null && Transition != null)
         {
             AniInstance.Show(new List<Graphic>() { Transition }, 400);

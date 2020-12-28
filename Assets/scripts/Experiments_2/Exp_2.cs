@@ -21,8 +21,6 @@ public class Exp_2 : MonoBehaviour
     public static double V_User = 0;
     public static double UV_User = 0;
     public static double V_Real = 0;
-
-    
     public static double score = 0;
 
 
@@ -34,14 +32,16 @@ public class Exp_2 : MonoBehaviour
     3代表填高度的实验数据
     4代表数据处理
     5代表实验完成
-
-
-
     */
 
     void Start()
     {
         //赋初值
+        Initialize();
+    }
+
+    public static void Initialize()
+    {
         Exp_2.state.Value = Manager.record.Exp2_state;
         Experiment2_length = Manager.record.Exp2_length;
         Experiment2_width = Manager.record.Exp2_width;
@@ -58,17 +58,7 @@ public class Exp_2 : MonoBehaviour
         V_User = Manager.record.Exp2_V_User;
         UV_User = Manager.record.Exp2_UV_User;
         V_Real = Manager.record.Exp2_V_Real;
-
-        
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        Debug.Log(state.Value);
-    }
-         
 }
 
 

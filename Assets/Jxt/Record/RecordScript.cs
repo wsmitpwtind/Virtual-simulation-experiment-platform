@@ -48,6 +48,7 @@ public class RecordScript : MonoBehaviour
     void LoadRecord()
     {
         RecordManager.currentRecordId = recordId;
+        Manager.UpdateRecord();
         Time.timeScale = 1;
         SceneManager.LoadScene("MainScene");
     }

@@ -140,7 +140,6 @@ public class LoadQuestion : MonoBehaviour
         {
             DOTween.Clear();
             float yyy = inputEmpty.GetComponent<RectTransform>().localPosition.y;
-            Debug.Log(yyy);
             if (yyy < 200)
                 yyy = 400;
             inputEmpty.GetComponent<RectTransform>().DOLocalMoveY(150, 0.5f).SetEase(Ease.OutExpo);

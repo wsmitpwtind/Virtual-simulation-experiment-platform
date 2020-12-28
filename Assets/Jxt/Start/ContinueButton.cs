@@ -21,6 +21,7 @@ public class ContinueButton : MonoBehaviour
     }
     void conti()
     {
+        Manager.UpdateRecord();
         SceneManager.LoadScene("MainScene");
     }
 }
