@@ -90,7 +90,7 @@ public class Manager : MonoBehaviour
             }
         }
 
-        
+        Debug.Log("manager.state.value="+Manager.state.Value);
     }
 
 

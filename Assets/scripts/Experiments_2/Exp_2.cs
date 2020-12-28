@@ -66,7 +66,6 @@ public class Exp_2 : MonoBehaviour
     void Update()
     {
 
-        Debug.Log(state.Value);
     }
          
 }
