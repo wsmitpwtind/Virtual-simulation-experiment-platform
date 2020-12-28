@@ -61,6 +61,7 @@ public class Create_trigonum : MonoBehaviour
                 GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = false;
             }
             indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
+            indicatorManager.Indicator2.ShowIndicate("X", "切换旋转");
             on = false;
         }
 

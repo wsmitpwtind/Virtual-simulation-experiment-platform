@@ -75,7 +75,7 @@ public class Create_vernier : MonoBehaviour
             {
                 GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = false;
             }
-            indicatorManager.Indicator2.HideIndicate();
+            indicatorManager.Indicator2.ShowIndicate("X", "切换旋转");
             indicatorManager.Indicator3.HideIndicate();
             on = false;
         }

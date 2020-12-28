@@ -20,21 +20,21 @@ public class Start_experiment : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
-        if(Input.GetKeyDown(KeyCode.D) && Manager.state.Equals(1)) {
+        if(Input.GetKeyDown(KeyCode.D) && Manager.state.Value>0 &&  Manager.state.Value<5) {
             cam_look.enabled = false;
             //print(cam_look.enabled);
             indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
         }
-        if(Input.GetKeyDown(KeyCode.F) && Manager.state.Equals(1)) {
+        if(Input.GetKeyDown(KeyCode.F) && Manager.state.Value > 0 && Manager.state.Value < 5) {
             cam_look.enabled = true;
             //print(cam_look.enabled);
             indicatorManager.Indicator1.ShowIndicate("D", "锁定视角");
         }
-        if (Input.GetKeyDown(KeyCode.Z) && Manager.state.Equals(1))
+        if (Input.GetKeyDown(KeyCode.Z) && Manager.state.Value > 0 && Manager.state.Value < 5)
         {
             indicatorManager.Indicator2.ShowIndicate("X", "切换旋转");
         }
-        if (Input.GetKeyDown(KeyCode.X) && Manager.state.Equals(1))
+        if (Input.GetKeyDown(KeyCode.X) && Manager.state.Value > 0 && Manager.state.Value < 5)
         {
             indicatorManager.Indicator2.ShowIndicate("Z", "切换平移");
         }
