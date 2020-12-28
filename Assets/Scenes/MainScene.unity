@@ -5130,7 +5130,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444042841}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cc3972ee0de2e74ab3d9adbadb7708b, type: 3}
   m_Name: 
@@ -22315,6 +22315,7 @@ GameObject:
   - component: {fileID: 1982935880}
   - component: {fileID: 1982935882}
   - component: {fileID: 1982935881}
+  - component: {fileID: 1982935883}
   m_Layer: 0
   m_Name: (Singleton)RTEditor.EditorCamera
   m_TagString: Untagged
@@ -22330,7 +22331,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982935879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.839, y: 2.389, z: -1.482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2144239625}
@@ -22568,6 +22569,18 @@ MonoBehaviour:
     _topColor: {r: 0.2784314, g: 0.2784314, b: 0.2784314, a: 1}
     _bottomColor: {r: 0, g: 0, b: 0, a: 1}
     _gradientOffset: 0
+--- !u!114 &1982935883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982935879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95cfe6b46dfda744fa7bd48a296b1b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1988416938
 PrefabInstance:
   m_ObjectHideFlags: 0
