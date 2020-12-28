@@ -22,6 +22,7 @@ public class To_width : MonoBehaviour
             Exp_2.state.Value = 2;
             Experiment2.transform.Find("InputFields2_1").gameObject.SetActive(false);
             Experiment2.transform.Find("InputFields2_2").gameObject.SetActive(true);
+            Debug.Log("*****");
         }
 
     }

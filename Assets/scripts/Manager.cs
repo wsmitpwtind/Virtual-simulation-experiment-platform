@@ -80,8 +80,6 @@ public class Manager : MonoBehaviour
                 Quit_the_experienment();
             }
         }
-
-
     }
 
 
