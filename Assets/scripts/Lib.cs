@@ -12,6 +12,7 @@ using UnityEngine.UIElements;
 using UnityEditor;
 using OBJECT = UnityEngine.Object;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 public static class StaticMethods {
     public static void cbj0() {
@@ -104,16 +105,17 @@ public static class StaticMethods {
         //返回值:{{拟合的b,拟合的a,X的平均值,Y的平均值,b的不确定度},{每个逐差的斜率}}
         return new double[][] { new double[] { bar, yav - xav * bar, xav, yav, Uncertain_A(bi) / n }, bi };
     }
-    public static (double, double, string) BookVolume(double[] A, double[] B, double[] C) {
+    public static (double, double, string) BookVolume(double[] A0, double[] B0, double[] C0) {
         //测量数据,长A 宽B 高C,用户输入自行计算的体积和不确定度
         //calcstr若不为null返回计算过程字符串
-        if(A == null || B == null || C == null) {
+        if(A0 == null || B0 == null || C0 == null) {
             return default;
         }
         //int n = A.Length;//A,B,C:mm
         //if(B.Length != n || C.Length != n) {
         //    return default;
         //}
+        double[] A = A0.Where((i) => i != 0.0).ToArray(), B = B0.Where((i) => i != 0.0).ToArray(), C = C0.Where((i) => i != 0.0).ToArray();
         double A_av = Average(A), B_av = Average(B), C_av = Average(C);
         double u1a = Uncertain_A(A), u1b = Uncertain_A(B), u1c = Uncertain_A(C);
         double sq3 = MATH.Sqrt(3), u2 = 0.02 / sq3, u22 = 0.5 / sq3;
