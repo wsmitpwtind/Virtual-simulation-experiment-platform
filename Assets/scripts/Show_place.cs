@@ -25,7 +25,8 @@ public class Show_place : MonoBehaviour
         if (Input.GetKey(KeyCode.B)&&Enable)
         {
             GetComponent<Back_place>().enabled = false;
-            moveable=true;
+            Manager.state.Value = 4;
+            moveable =true;
         }
         if (moveable)
         {

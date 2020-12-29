@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class Wwlplay : MonoBehaviour
 {
-    private float[] time0_ = { 7f, 6f, 6f };//每段音频的时间
-    private float[] time1_ = { 7f, 6f, 6f };
-    private float[] time2_ = { 7f, 6f, 6f };
-    private bool isplay = false;
+    private float[] time0_ = { 7f, 5f, 13f, 8f, 7f, 7f };//每段音频的时间
+    private float[] time1_ = { 0f, 6f, 6f };
+    private float[] time2_ = { 15f, 10f, 9f, 9f };
+    private bool isplay;
 
 
-    public static bool[] ifFirst0_ = { true, true, true };
+    public static bool[] ifFirst0_ = { true, true, true, true, true, true };
     public static bool[] ifFirst1_ = { true, true, true };
-    public static bool[] ifFirst2_ = { true, true, true };
+    public static bool[] ifFirst2_ = { true, true, true, true, true };
     public static int i_0 = 0;//_0代表manager
-    public static int i_1 = -1;
-    public static int i_2 = -1;//播放第几个视频,与state相对应
+    public static int i_1 = 0;
+    public static int i_2 = 0;//播放第几个视频,与state相对应
 
     private MonitorableValue<float> timeScale = new MonitorableValue<float>(1);
     private void Start()
@@ -27,14 +27,18 @@ public class Wwlplay : MonoBehaviour
         i_0 = Manager.record.i_0;
         i_1 = Manager.record.i_1;
         i_2 = Manager.record.i_2;
+        isplay = false;
 
 
         Manager.state.onMyValueChanged += Voice0_;
+        Exp_1.state.onMyValueChanged += Voice1_;
+        Exp_2.state.onMyValueChanged += Voice2_;
+
         timeScale.onMyValueChanged += OnPause;
 
 
         //开场白
-        if (Manager.state.Value == 0)
+        if (Manager.state.Value == 0&&i_0==0)
         {
             WakeWwl0_();
         }
@@ -51,6 +55,8 @@ public class Wwlplay : MonoBehaviour
     private void Update()
     {
         timeScale.Value = Time.timeScale;
+
+        Debug.Log("****");
     }
 
     private void ShutWwl()
@@ -80,13 +86,13 @@ public class Wwlplay : MonoBehaviour
         {
             if (ifFirst0_[i_0] == true)
             {
+                Debug.Log(transform);
                 transform.Find("Wwl").gameObject.SetActive(true);
                 transform.Find("voice0_" + i_0).gameObject.SetActive(true);
                 Invoke("ShutWwl", time0_[i_0]);
                 ifFirst0_[i_0] = false;
                 i_0++;
                 isplay = true;
-
 
             }
 
@@ -142,15 +148,15 @@ public class Wwlplay : MonoBehaviour
 
     private void Voice0_(object sender, MonitorableValue<int>.ValueChangedEventArgs e)
     {
-        if (e.newValue == i_0)
+        if (e.newValue == 0 || e.newValue == 1 || e.newValue == 2 || e.newValue == 3 || e.newValue == 4 || e.newValue == 5)
         {
             WakeWwl0_();
-        }
+        }        
 
     }
     private void Voice1_(object sender, MonitorableValue<int>.ValueChangedEventArgs e)
     {
-        if (e.newValue == i_1)
+        if (e.newValue == 1)
         {
             WakeWwl1_();
         }
@@ -158,14 +164,19 @@ public class Wwlplay : MonoBehaviour
     }
     private void Voice2_(object sender, MonitorableValue<int>.ValueChangedEventArgs e)
     {
-        if (e.newValue == i_2)
+        if (e.newValue == 1 || e.newValue == 3 || e.newValue == 4 || e.newValue == 5)
         {
             WakeWwl2_();
         }
 
     }
 
-
+    private void OnDestroy()
+    {
+        Manager.state.onMyValueChanged -= Voice0_;
+        Exp_1.state.onMyValueChanged -= Voice1_;
+        Exp_2.state.onMyValueChanged -= Voice2_;
+    }
 
 
 }

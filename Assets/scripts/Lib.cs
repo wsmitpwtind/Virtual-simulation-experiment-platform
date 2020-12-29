@@ -548,7 +548,6 @@ public class Storage {
     /// <param name="values">对象值，不可为自包含属性类型</param>
     public void SetStorage(string key, object values) {
         string path = directory + key;
-        Debug.Log($"正在存{path}");
         FileIOHelper.SaveFile(path, JsonConvert.SerializeObject(values, new JsonSerializerSettings() {
             ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
             Error = (sender, e) => {

@@ -19,8 +19,10 @@ public class To_width : MonoBehaviour
         if (Exp_2.Experiment2_length[4] > 0)
         {
             Menu.Exp2_pagenumber = 1;
+            Exp_2.state.Value = 2;
             Experiment2.transform.Find("InputFields2_1").gameObject.SetActive(false);
             Experiment2.transform.Find("InputFields2_2").gameObject.SetActive(true);
+            Debug.Log("*****");
         }
 
     }

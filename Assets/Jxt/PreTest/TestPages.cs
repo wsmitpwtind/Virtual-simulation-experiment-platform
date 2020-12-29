@@ -51,7 +51,7 @@ public class TestPage : ITestPage
     {
         string[] reflector = { "填空", "单选", "多选" };
         title.text = $"课前测试 第{count}题 {reflector[(int)question.type - 1]}";
-        this.question.text = $"{count}. {question.question}";
+        this.question.text = $"{count}.{question.question.Trim()}";
     }
 
     public virtual string GetAnswer()
@@ -70,6 +70,12 @@ public class TextTestPage : TestPage
     public TextTestPage(Text title, Text question, InputField input) : base(title, question)
     {
         this.input = input;
+    }
+
+    public override void SetQuestion(Question question, int count)
+    {
+        base.SetQuestion(question, count);
+        input.text = "";
     }
 
     public override string GetAnswer()

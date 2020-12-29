@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class V2_move : MonoBehaviour
 {
+    public bool doing=false;
     // Start is called before the first frame update
     void Start()
     {
@@ -11,7 +12,7 @@ public class V2_move : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "book")
+        if (other.tag == "book" && doing)
         {
             GameObject V2 = GameObject.Find("Real_Vernier");
             //print("2");

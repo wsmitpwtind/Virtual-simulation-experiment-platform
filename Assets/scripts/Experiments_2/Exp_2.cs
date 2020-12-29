@@ -11,36 +11,37 @@ public class Exp_2 : MonoBehaviour
 
     public static double A_User = 0;//使用者计算的长度的平均值
     public static double UA_User = 0;//使用者计算的长度的不确定度
-    public static double A_Real = 0;//书籍的真实长度,不存在不确定度
+    public static double A_Real = 247.8f;//书籍的真实长度,不存在不确定度
     public static double B_User = 0;
     public static double UB_User = 0;
-    public static double B_Real = 0;
+    public static double B_Real = 161.2f;
     public static double C_User = 0;
     public static double UC_User = 0;
-    public static double C_Real = 0;
+    public static double C_Real = 27.7f;
     public static double V_User = 0;
     public static double UV_User = 0;
     public static double V_Real = 0;
-
-    
     public static double score = 0;
 
 
     public static MonitorableValue<int> state = new MonitorableValue<int>(0);//含义如下
     /*
     0代表未开始
-    1代表填入长度的第一个实验数据，最多可填100个
-    101代表填入宽度的第一个实验数据，最多可填100个
-    201代表填入高度的第一个实验数据，最多可填100个
-    301代表实验完成
-
-
-
+    1代表填长度的实验数据
+    2代表填宽度的实验数据
+    3代表填高度的实验数据
+    4代表数据处理
+    5代表实验完成
     */
 
     void Start()
     {
         //赋初值
+        Initialize();
+    }
+
+    public static void Initialize()
+    {
         Exp_2.state.Value = Manager.record.Exp2_state;
         Experiment2_length = Manager.record.Exp2_length;
         Experiment2_width = Manager.record.Exp2_width;
@@ -57,17 +58,7 @@ public class Exp_2 : MonoBehaviour
         V_User = Manager.record.Exp2_V_User;
         UV_User = Manager.record.Exp2_UV_User;
         V_Real = Manager.record.Exp2_V_Real;
-
-        
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
-    }
-         
 }
 
 
