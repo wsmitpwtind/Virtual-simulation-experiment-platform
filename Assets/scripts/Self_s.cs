@@ -14,6 +14,6 @@ public class Self_s : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        print(Manager.state.Value);
     }
 }

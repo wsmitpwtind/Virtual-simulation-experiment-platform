@@ -145,7 +145,7 @@ public class Wwlplay : MonoBehaviour
 
     private void Voice0_(object sender, MonitorableValue<int>.ValueChangedEventArgs e)
     {
-        if (e.newValue == i_0)
+        if (e.newValue == 1|| e.newValue ==2|| e.newValue == 3)
         {
             WakeWwl0_();
         }        
