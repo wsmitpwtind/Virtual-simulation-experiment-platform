@@ -51,7 +51,10 @@ public class Create_vernier : MonoBehaviour
             GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = true;
             indicatorManager.Indicator2.ShowIndicate("O", "收紧卡尺");
             indicatorManager.Indicator3.ShowIndicate("P", "拉伸卡尺");
-            Manager.state.Value = 3;
+            if (Manager.state.Value < 3)
+            {
+                Manager.state.Value = 3;
+            }           
             on = true;
             if (GameObject.Find("book_0001b").GetComponent<Self_s>().t == 0)
             {

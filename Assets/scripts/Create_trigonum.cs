@@ -36,7 +36,10 @@ public class Create_trigonum : MonoBehaviour
             indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
             GameObject.Find("MainCamera").GetComponent<Show_place>().Enable=true;
             indicatorManager.Indicator1.ShowIndicate("B", "贴近测量");
-            Manager.state.Value = 3;
+            if (Manager.state.Value < 3)
+            {
+                Manager.state.Value = 3;
+            }
             on = true;
             if (GameObject.Find("book_0001b").GetComponent<Self_s>().t == 0)
             {
