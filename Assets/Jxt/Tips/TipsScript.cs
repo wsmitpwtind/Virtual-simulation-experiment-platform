@@ -17,7 +17,7 @@ public class TipsScript : MonoBehaviour
         if (shown)
             HideTips();
         gameObject.GetComponentInChildren<Text>(true).text = message;
-        var animate = gameObject.GetComponent<RectTransform>().DOLocalMoveX(250, .5f);
+        var animate = gameObject.GetComponent<RectTransform>().DOLocalMoveX(270, .5f);
         animate.SetEase(Ease.OutExpo);
         shown = true;
     }

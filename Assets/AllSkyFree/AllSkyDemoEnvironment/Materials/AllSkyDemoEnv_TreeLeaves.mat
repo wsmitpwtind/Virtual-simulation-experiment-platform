@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dim
-  m_Shader: {fileID: 4800000, guid: 3bdc0ba4f57cca34cbb98a61ec3d11c0, type: 3}
+  m_Name: AllSkyDemoEnv_TreeLeaves
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -61,18 +61,26 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0.275
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _Size: 0
+    - _RimAmount: 2
     - _SmoothnessTextureChannel: 0
+    - _SnowLevel: 0
     - _SpecularHighlights: 1
+    - _SpecularPower: 0.2
     - _SrcBlend: 1
     - _UVSec: 0
+    - _VertexOcclusion: 0.8
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.17647058, g: 0.5, b: 0.1924707, a: 1}
+    - _DiffuseColour: {r: 0.3264874, g: 0.50735295, b: 0.15295199, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SnowColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SnowSpecularColour: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _SpecularColour: {r: 0.18831098, g: 0.5955882, b: 0.2585316, a: 1}
