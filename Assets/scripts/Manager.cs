@@ -47,7 +47,7 @@ public class Manager : MonoBehaviour
         GameObject.Find("Real_Vernier").GetComponent<Transform>().localEulerAngles = record.VerinerRotation;
 
 
-        if (Manager.state.Value > 0)
+        if (Manager.state.Value > 0 && Manager.state.Value < 5)
         {
             Invoke("SitonChair", 0.01f);
             Move_able = 0;
