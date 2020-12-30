@@ -27,11 +27,15 @@ public class Open_door : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        indicatorManager.Indicator1.ShowIndicate("E", "开门退出实验");
+        if (Manager.state.Value == 5)
+        {
+            indicatorManager.Indicator1.ShowIndicate("E", "开门结束实验");
+        }
+        
     }
     void OnTriggerStay(Collider other)
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.E)&&Manager.state.Value==5)
         {
             Open_classroom_door();
             Is_open = true;
