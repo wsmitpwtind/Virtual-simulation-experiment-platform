@@ -13982,8 +13982,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectSelectionSettings:
     _objectSelectionRenderMode: 0
-    _selectableLayers: -3896
-    _duplicatableLayers: -7992
+    _selectableLayers: -12088
+    _duplicatableLayers: -16184
     _canSelectTerrainObjects: 0
     _canSelectLightObjects: 0
     _canSelectParticleSystemObjects: 0
