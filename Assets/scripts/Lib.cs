@@ -26,6 +26,9 @@ public static class StaticMethods {
             s1 += input[i];
             s2 += input[i] * input[i];
         }
+        s2 /= length;
+        s1 /= length;
+        s1 = s1 * s1;
         return MATH.Sqrt((s2 - s1) / (length - 1));
     }
     public static double Average(IEnumerable<double> input) {
