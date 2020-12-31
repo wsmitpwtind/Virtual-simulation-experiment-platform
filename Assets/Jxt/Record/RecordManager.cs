@@ -194,6 +194,9 @@ public static class RecordManager
         record.RulerRotation = GameObject.Find("ruler").GetComponent<Transform>().rotation.eulerAngles;
         record.VerinerPosition = GameObject.Find("Real_Vernier").GetComponent<Transform>().position;
         record.VerinerRotation = GameObject.Find("Real_Vernier").GetComponent<Transform>().rotation.eulerAngles;
+        record.Show_Enable = Show_place.Enable;
+        record.Back_Enable = Back_place.Enable;
+
 
         return record;
     }
@@ -277,6 +280,9 @@ public class Record
     public Vector3 VerinerRotation { get; set; } = new Vector3(-90, 0, 90);
     public Vector3 RulerPosition { get; set; } = new Vector3(47.05f, 2.156f, 0.0105f);
     public Vector3 RulerRotation { get; set; } = new Vector3(-90, 0, 0);
+    //记录BV可否使用
+    public bool Show_Enable { get; set; } = true;
+    public bool Back_Enable { get; set; } = true;
 
     public static RecordInfo GenRecordInfo(int id, string title)
     {

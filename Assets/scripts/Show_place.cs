@@ -5,7 +5,7 @@ using UnityEngine;
 public class Show_place : MonoBehaviour
 {
     // Start is called before the first frame update
-    public bool Enable = true;
+    public static bool Enable = true;
     IndicatorManager indicatorManager;
     private bool moveable = false;
     public string name = "Vernier";
@@ -15,7 +15,7 @@ public class Show_place : MonoBehaviour
     Camera mCamera;
     void Start()
     {
-        
+        Enable = Manager.record.Show_Enable;
     }
 
     // Update is called once per frame

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Back_place : MonoBehaviour
 {
-    public bool Enable = true;
+    public static bool Enable = true;
     private bool moveable = false;
     IndicatorManager indicatorManager;
     private Vector3 temp1 = new Vector3(0.0f, 0.0f, 0.0f);
@@ -13,7 +13,7 @@ public class Back_place : MonoBehaviour
     Camera mCamera;
     void Start()
     {
-        
+        Enable = Manager.record.Back_Enable;
     }
 
     // Update is called once per frame

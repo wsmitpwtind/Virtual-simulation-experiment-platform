@@ -48,7 +48,7 @@ public class Create_vernier : MonoBehaviour
             view.GetComponent<Show_place>().name = "Vernier";
             indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
             indicatorManager.Indicator1.ShowIndicate("B", "贴近测量");
-            GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = true;
+            Show_place.Enable = true;
             indicatorManager.Indicator2.ShowIndicate("O", "收紧卡尺");
             indicatorManager.Indicator3.ShowIndicate("P", "拉伸卡尺");
             if (Manager.state.Value < 3)
@@ -76,7 +76,7 @@ public class Create_vernier : MonoBehaviour
             indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
             if (GameObject.Find("MainCamera").GetComponent<Show_place>().name == "Vernier")
             {
-                GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = false;
+                Show_place.Enable = false;
             }
             indicatorManager.Indicator2.ShowIndicate("X", "切换旋转");
             indicatorManager.Indicator3.HideIndicate();

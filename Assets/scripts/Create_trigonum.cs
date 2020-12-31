@@ -34,7 +34,7 @@ public class Create_trigonum : MonoBehaviour
             view.GetComponent<Show_place>().name = "Ruler";
             Now_trigonum.transform.position = position;
             indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
-            GameObject.Find("MainCamera").GetComponent<Show_place>().Enable=true;
+            Show_place.Enable=true;
             indicatorManager.Indicator1.ShowIndicate("B", "贴近测量");
             if (Manager.state.Value < 3)
             {
@@ -61,7 +61,7 @@ public class Create_trigonum : MonoBehaviour
             indicatorManager = GameObject.Find("Indicator").GetComponent<IndicatorManager>();
             if (GameObject.Find("MainCamera").GetComponent<Show_place>().name == "Ruler")
             {
-                GameObject.Find("MainCamera").GetComponent<Show_place>().Enable = false;
+                Show_place.Enable = false;
             }
             indicatorManager.Indicator1.ShowIndicate("F", "解锁视角");
             indicatorManager.Indicator2.ShowIndicate("X", "切换旋转");
